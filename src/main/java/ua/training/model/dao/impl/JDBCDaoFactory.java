@@ -4,6 +4,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.DaoFactory;
+import ua.training.model.dao.UserDao;
 
 
 import javax.sql.DataSource;
@@ -15,6 +16,11 @@ public class JDBCDaoFactory extends DaoFactory {
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
 
 
+    @Override
+    public UserDao createUserDao() {
+        return new JDBCUserDao(getConnection());
+    }
+
     public Connection getConnection(){
         try {
             return dataSource.getConnection();
@@ -23,6 +29,5 @@ public class JDBCDaoFactory extends DaoFactory {
             throw new RuntimeException(e);
         }
     }
-
 
 }
