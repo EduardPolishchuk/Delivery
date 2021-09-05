@@ -27,20 +27,31 @@ public class JDBCCityDao implements CityDao {
     }
 
     @Override
-    public boolean create(City entity) {
-        return false;
+    public boolean create(City city) {
+        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO city (name, name_uk, latitude, longitude) VALUES (?,?,?,?)")) {
+            int k = 1;
+            ps.setString(k++, city.getName());
+            ps.setString(k++, city.getNameUk());
+            ps.setFloat(k++, city.getLatitude());
+            ps.setFloat(k, city.getLongitude());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.ERROR, e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public Optional<City> findById(long id) {
         City city = null;
         CityMapper cityMapper = new CityMapper();
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM city WHERE id = ?")){
-            ps.setLong(1,id);
-            try(ResultSet rs = ps.executeQuery()){
-                city = rs.next()? cityMapper.extractFromResultSet(rs) : null;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM city WHERE id = ?")) {
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                city = rs.next() ? cityMapper.extractFromResultSet(rs) : null;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             LOGGER.log(Level.ERROR, e.getMessage());
         }
         return Optional.ofNullable(city);
@@ -52,7 +63,7 @@ public class JDBCCityDao implements CityDao {
         CityMapper cityMapper = new CityMapper();
         try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM city");
              ResultSet rs = ps.executeQuery()) {
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(cityMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
@@ -62,12 +73,28 @@ public class JDBCCityDao implements CityDao {
     }
 
     @Override
-    public boolean update(City entity) {
-        return false;
+    public boolean update(City city) {
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE city SET name = ?, name_uk = ?, latitude = ?, longitude = ? WHERE id = ?")) {
+            int k = 1;
+            ps.setString(k++, city.getName());
+            ps.setString(k++, city.getNameUk());
+            ps.setFloat(k++, city.getLatitude());
+            ps.setFloat(k++, city.getLongitude());
+            ps.setLong(k, city.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.ERROR, e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public void close() {
-
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+        }
     }
 }

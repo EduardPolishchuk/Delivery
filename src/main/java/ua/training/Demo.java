@@ -30,9 +30,10 @@ public class Demo {
                 .build();
 
 
-        City vinnitsa = City.builder()
+        City vinn = City.builder()
                 .latitude(49.2320162F)
-                .name("Vinnitsa")
+                .name("Vinn")
+                .nameUk("Вінн")
                 .id(2)
                 .longitude(28.467975F)
                 .build();
@@ -49,7 +50,7 @@ public class Demo {
                 .receivingDate(LocalDate.now())
                 .id(2)
                 .userSender(user)
-                .cityFrom(vinnitsa)
+                .cityFrom(vinn)
                 .cityTo(City.builder().name("Kiev").build())
                 .price(BigDecimal.valueOf(120))
                 .parcel(parcel)
@@ -62,7 +63,11 @@ public class Demo {
         CityDao cityDao = daoFactory.createCityDao();
         List<City> list = cityDao.findAll();
         list.forEach(System.out::println);
+
+        City newCity = cityDao.findById(1).get();
+        newCity.setNameUk("DDDDD");
+        cityDao.update(newCity);
         System.out.println("=================================");
-        System.out.println(cityDao.findById(10));
+
     }
 }
