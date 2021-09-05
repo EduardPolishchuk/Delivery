@@ -1,4 +1,16 @@
 package ua.training.model.dao;
 
-public interface UserDao extends GenericDao{
+import ua.training.model.entity.User;
+
+import java.math.BigDecimal;
+import java.util.Optional;
+
+public interface UserDao extends GenericDao<User> {
+
+    Optional<User> getUser(String login, String password);
+
+
+    BigDecimal getUserBalance(User user);
+
+    BigDecimal balanceReplenishment(BigDecimal amount, User user);
 }

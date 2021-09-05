@@ -4,6 +4,8 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.DBPropertyReader;
+import ua.training.model.dao.DaoFactory;
+import ua.training.model.dao.UserDao;
 import ua.training.model.entity.City;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;
@@ -53,9 +55,15 @@ public class Demo {
                 .parcel(parcel)
                 .build();
 
-        System.out.println(user);
-        System.out.println(parcel);
-        System.out.println(vinnitsa);
-        System.out.println(order.getParcel().getHeight());
+        DaoFactory daoFactory = DaoFactory.getInstance();
+
+        UserDao userDao = daoFactory.createUserDao();
+
+        System.out.println( userDao.findById(20).get());
+
+//        System.out.println(user);
+//        System.out.println(parcel);
+//        System.out.println(vinnitsa);
+//        System.out.println(order.getParcel().getHeight());
     }
 }
