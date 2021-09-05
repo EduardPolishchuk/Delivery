@@ -77,7 +77,7 @@ public class User {
         this.balance = balance;
     }
 
-    public static UserBuilder builder(){
+    public static UserBuilder builder() {
         return new UserBuilder();
     }
 
@@ -116,49 +116,49 @@ public class User {
     }
 
     public static class UserBuilder {
-        private User newUser;
+        private final User newUser;
 
-        public UserBuilder() {
+        private UserBuilder() {
             this.newUser = new User();
         }
 
         public UserBuilder id(int id) {
-            newUser.id = id;
+            newUser.setId(id);
             return this;
         }
 
         public UserBuilder login(String login) {
-            newUser.login = login;
+            newUser.setLogin(login);
             return this;
         }
 
         public UserBuilder email(String email) {
-            newUser.email = email;
+            newUser.setEmail(email);
             return this;
         }
 
         public UserBuilder password(String password) {
-            newUser.password = password;
+            newUser.setPassword(password);
             return this;
         }
 
         public UserBuilder balance(BigDecimal balance) {
-            newUser.balance = balance;
+            newUser.setBalance(balance);
             return this;
         }
 
         public UserBuilder firstName(String firstName) {
-            newUser.firstName = firstName;
+            newUser.setFirstName(firstName);
             return this;
         }
 
         public UserBuilder lastName(String lastName) {
-            newUser.lastName = lastName;
+            newUser.setLastName(lastName);
             return this;
         }
 
         public UserBuilder role(Role role) {
-            newUser.role = role;
+            newUser.setRole(role);
             return this;
         }
 
