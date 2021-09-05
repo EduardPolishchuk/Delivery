@@ -9,6 +9,12 @@ import java.sql.SQLException;
 public class CityMapper implements ObjectMapper<City>{
     @Override
     public City extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        return City.builder()
+                .name(rs.getString("name"))
+                .nameUk(rs.getString("name_uk"))
+                .id(rs.getLong("id"))
+                .longitude(rs.getFloat("longitude"))
+                .latitude(rs.getFloat("latitude"))
+                .build();
     }
 }

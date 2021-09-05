@@ -1,9 +1,8 @@
 package ua.training;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ua.training.model.dao.DBPropertyReader;
+import ua.training.model.dao.CityDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
 import ua.training.model.entity.City;
@@ -13,6 +12,7 @@ import ua.training.model.entity.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Demo {
     private static final Logger LOGGER = LogManager.getLogger(Demo.class);
@@ -59,11 +59,9 @@ public class Demo {
 
         UserDao userDao = daoFactory.createUserDao();
 
-        System.out.println( userDao.findById(20).get());
+        CityDao cityDao = daoFactory.createCityDao();
+        List<City> list = cityDao.findAll();
+        list.forEach(System.out::println);
 
-//        System.out.println(user);
-//        System.out.println(parcel);
-//        System.out.println(vinnitsa);
-//        System.out.println(order.getParcel().getHeight());
     }
 }

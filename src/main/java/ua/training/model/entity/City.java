@@ -4,9 +4,18 @@ import java.util.Objects;
 
 public class City {
     private String name;
+    private String nameUk;
     private long id;
     private float longitude;
     private float latitude;
+
+    public String getNameUk() {
+        return nameUk;
+    }
+
+    public void setNameUk(String nameUk) {
+        this.nameUk = nameUk;
+    }
 
     public String getName() {
         return name;
@@ -41,26 +50,27 @@ public class City {
     }
 
     @Override
-    public String toString() {
-        return "City{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city = (City) o;
-        return id == city.id && Float.compare(city.longitude, longitude) == 0 && Float.compare(city.latitude, latitude) == 0 && name.equals(city.name);
+        return id == city.id && Float.compare(city.longitude, longitude) == 0 && Float.compare(city.latitude, latitude) == 0 && name.equals(city.name) && nameUk.equals(city.nameUk);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id, longitude, latitude);
+        return Objects.hash(name, nameUk, id, longitude, latitude);
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", nameUk='" + nameUk + '\'' +
+                ", id=" + id +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
     }
 
     public static CityBuilder builder(){
@@ -76,6 +86,11 @@ public class City {
 
         public CityBuilder name(String name) {
             newCity.setName(name);
+            return this;
+        }
+
+        public CityBuilder nameUk(String nameUk) {
+            newCity.setNameUk(nameUk);
             return this;
         }
 

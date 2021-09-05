@@ -3,6 +3,7 @@ package ua.training.model.dao.impl;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import ua.training.model.dao.CityDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.OrderDao;
 import ua.training.model.dao.UserDao;
@@ -25,6 +26,11 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public OrderDao createOrderDao() {
         return new JDBCOrderDao(getConnection());
+    }
+
+    @Override
+    public CityDao createCityDao() {
+        return new JDBCCityDao(getConnection());
     }
 
     public Connection getConnection(){
