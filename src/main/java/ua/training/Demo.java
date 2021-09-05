@@ -62,6 +62,7 @@ public class Demo {
         CityDao cityDao = daoFactory.createCityDao();
         List<City> list = cityDao.findAll();
         list.forEach(System.out::println);
-
+        System.out.println("=================================");
+        System.out.println(cityDao.findById(10));
     }
 }

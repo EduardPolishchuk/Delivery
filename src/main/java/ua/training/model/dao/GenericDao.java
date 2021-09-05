@@ -13,7 +13,7 @@ public interface GenericDao<T> extends AutoCloseable{
     Logger logger = LogManager.getLogger(GenericDao.class);
 
     boolean create (T entity);
-    Optional<T> findById(int id);
+    Optional<T> findById(long id);
     List<T> findAll();
     boolean update(T entity);
     void close();

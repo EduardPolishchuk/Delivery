@@ -27,7 +27,7 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public Optional<Order> findById(int id) {
+    public Optional<Order> findById(long id) {
         return Optional.empty();
     }
 
