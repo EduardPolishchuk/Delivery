@@ -9,7 +9,6 @@ public interface UserDao extends GenericDao<User> {
 
     Optional<User> getUser(String login, String password);
 
-
     BigDecimal getUserBalance(User user);
 
     BigDecimal balanceReplenishment(BigDecimal amount, User user);

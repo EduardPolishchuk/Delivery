@@ -15,6 +15,7 @@ public class Order {
     private BigDecimal price;
     private boolean paid;
     private boolean confirmed;
+    private boolean delivered;
 
     public LocalDate getReceivingDate() {
         return receivingDate;
@@ -96,17 +97,25 @@ public class Order {
         this.confirmed = confirmed;
     }
 
+    public boolean isDelivered() {
+        return delivered;
+    }
+
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && paid == order.paid && confirmed == order.confirmed && Objects.equals(receivingDate, order.receivingDate) && requestDate.equals(order.requestDate) && userSender.equals(order.userSender) && parcel.equals(order.parcel) && cityTo.equals(order.cityTo) && cityFrom.equals(order.cityFrom) && price.equals(order.price);
+        return id == order.id && paid == order.paid && confirmed == order.confirmed && delivered == order.delivered && Objects.equals(receivingDate, order.receivingDate) && requestDate.equals(order.requestDate) && userSender.equals(order.userSender) && parcel.equals(order.parcel) && cityTo.equals(order.cityTo) && cityFrom.equals(order.cityFrom) && price.equals(order.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(receivingDate, requestDate, id, userSender, parcel, cityTo, cityFrom, price, paid, confirmed);
+        return Objects.hash(receivingDate, requestDate, id, userSender, parcel, cityTo, cityFrom, price, paid, confirmed, delivered);
     }
 
     @Override
@@ -122,6 +131,7 @@ public class Order {
                 ", price=" + price +
                 ", paid=" + paid +
                 ", confirmed=" + confirmed +
+                ", delivered=" + delivered +
                 '}';
     }
 
@@ -183,6 +193,11 @@ public class Order {
 
         public OrderBuilder confirmed(boolean confirmed) {
             newOrder.setConfirmed(confirmed);
+            return this;
+        }
+
+        public OrderBuilder delivered(boolean delivered) {
+            newOrder.setDelivered(delivered);
             return this;
         }
 

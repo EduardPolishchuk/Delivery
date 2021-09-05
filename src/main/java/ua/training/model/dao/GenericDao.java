@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface GenericDao<T> {
+public interface GenericDao<T> extends AutoCloseable{
     Logger logger = LogManager.getLogger(GenericDao.class);
 
     boolean create (T entity);
