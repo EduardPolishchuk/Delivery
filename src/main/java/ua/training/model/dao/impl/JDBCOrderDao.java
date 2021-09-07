@@ -22,7 +22,8 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public boolean create(Order entity) {
+    public boolean create(Order order) {
+
         return false;
     }
 

@@ -1,7 +1,10 @@
 package ua.training.controller;
 
 
-import ua.training.controller.command.Command;
+import ua.training.controller.command.*;
+import ua.training.controller.validator.UserValidator;
+import ua.training.model.service.impl.CityServiceImpl;
+import ua.training.model.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,6 +22,10 @@ public class Servlet extends HttpServlet {
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
+        commands.put("start", new PreLoadCommand(new CityServiceImpl()));
+        commands.put("test", new TestCommand());
+        commands.put("login", new LoginCommand(new UserServiceImpl()));
+        commands.put("singUp", new SignUpCommand(new UserServiceImpl(), new UserValidator()));
     }
 
     public void doGet(HttpServletRequest request,
@@ -34,14 +41,14 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String path = request.getRequestURI().replaceAll(".*/Exhibition/" , "");
-//        Command command = commands.getOrDefault(path , new PreLoadCommand(new ExhibitionService()));
-//        String page = command.execute(request);
-//        if(page.contains("redirect:")){
-//            response.sendRedirect(page.replace("redirect:", "/Exhibition"));
-//        }
-//        else {
-//            request.getRequestDispatcher(page).forward(request, response);
-//        }
+        String path = request.getRequestURI().replaceAll(".*/Delivery/" , "");
+        Command command = commands.getOrDefault(path , new PreLoadCommand(new CityServiceImpl()));
+        String page = command.execute(request);
+        if(page.contains("redirect:")){
+            response.sendRedirect(page.replace("redirect:", "/Delivery"));
+        }
+        else {
+            request.getRequestDispatcher(page).forward(request, response);
+        }
     }
 }
