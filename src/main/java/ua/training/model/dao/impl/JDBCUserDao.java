@@ -3,7 +3,7 @@ package ua.training.model.dao.impl;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ua.training.model.dao.DBPropertyReader;
+import ua.training.model.dao.property_reader.DBPropertyReader;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.mapper.UserMapper;
 import ua.training.model.entity.User;
@@ -65,7 +65,7 @@ public class JDBCUserDao implements UserDao {
         User user = null;
         UserMapper userMapper = new UserMapper();
         try {
-            PreparedStatement ps = connection.prepareStatement(properties.getProperty(FIND_USER_BY_ID));
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role r on r.id = user.role where user.id =?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -73,8 +73,6 @@ public class JDBCUserDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
-        } finally {
-            close();
         }
         return Optional.ofNullable(user);
     }

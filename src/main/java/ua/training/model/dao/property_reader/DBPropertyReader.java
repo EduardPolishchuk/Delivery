@@ -1,4 +1,4 @@
-package ua.training.model.dao;
+package ua.training.model.dao.property_reader;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;

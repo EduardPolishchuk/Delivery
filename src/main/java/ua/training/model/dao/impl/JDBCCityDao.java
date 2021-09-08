@@ -4,7 +4,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.CityDao;
-import ua.training.model.dao.DBPropertyReader;
+import ua.training.model.dao.property_reader.DBPropertyReader;
 import ua.training.model.dao.mapper.CityMapper;
 import ua.training.model.entity.City;
 

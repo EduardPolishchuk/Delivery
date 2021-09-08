@@ -1,7 +1,7 @@
 package ua.training.model.dao.impl;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import ua.training.model.dao.DBPropertyReader;
+import ua.training.model.dao.property_reader.DBPropertyReader;
 
 import javax.sql.DataSource;
 import java.util.Properties;

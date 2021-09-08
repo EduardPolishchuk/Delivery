@@ -16,6 +16,16 @@ public class Order {
     private boolean paid;
     private boolean confirmed;
     private boolean delivered;
+    private OrderStatus status;
+
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
 
     public LocalDate getReceivingDate() {
         return receivingDate;
@@ -161,6 +171,11 @@ public class Order {
             return this;
         }
 
+        public OrderBuilder status(OrderStatus status) {
+            newOrder.setStatus(status);
+            return this;
+        }
+
         public OrderBuilder userSender(User user) {
             newOrder.setUserSender(user);
             return this;
@@ -204,5 +219,13 @@ public class Order {
         public Order build() {
             return newOrder;
         }
+    }
+
+    public enum OrderStatus {
+        WAITING_FOR_CONFIRM,
+        WAITING_FOR_PAYMENT,
+        PARCEL_DELIVERY,
+        DONE,
+        CANCELED
     }
 }

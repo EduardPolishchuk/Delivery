@@ -14,7 +14,7 @@ public class UserMapper implements ObjectMapper<User> {
         return User.builder()
                 .id(rs.getInt("id"))
                 .login(rs.getString("login"))
-                .role(User.Role.valueOf(rs.getString("role").toUpperCase()))
+                .role(User.Role.valueOf(rs.getString("name").toUpperCase()))
                 .balance(rs.getBigDecimal("balance"))
                 .email(rs.getString("email"))
                 .firstName(rs.getString("first_name"))

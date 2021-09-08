@@ -38,4 +38,8 @@ public class CityServiceImpl implements CityService {
             return cityDao.update(city);
         }
     }
+
+    public void doSmthng(){
+
+    }
 }

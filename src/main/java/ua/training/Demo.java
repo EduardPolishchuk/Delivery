@@ -4,6 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.CityDao;
 import ua.training.model.dao.DaoFactory;
+import ua.training.model.dao.OrderDao;
 import ua.training.model.dao.UserDao;
 import ua.training.model.entity.City;
 import ua.training.model.entity.Order;
@@ -46,30 +47,32 @@ public class Demo {
                 .type("Clothe")
                 .build();
 
-        Order order = Order.builder()
-                .receivingDate(LocalDate.now())
-                .id(2)
-                .userSender(user)
-                .cityFrom(vinn)
-                .cityTo(City.builder().name("Kiev").build())
-                .price(BigDecimal.valueOf(120))
-                .parcel(parcel)
-                .build();
-
         DaoFactory daoFactory = DaoFactory.getInstance();
 
         UserDao userDao = daoFactory.createUserDao();
-
         CityDao cityDao = daoFactory.createCityDao();
-        List<City> list = cityDao.findAll();
-        int k=0;
-        City newCity = cityDao.findById(1).get();
-        for (City city : list) {
-            System.out.println(city.getName() + " - " + newCity.getName());
-            System.out.println(distFrom(city.getLatitude(),city.getLongitude()
-                    ,newCity.getLatitude(),newCity.getLongitude())/1000);
-            System.out.println("=================================");
-        }
+
+
+
+
+        OrderDao orderDao = daoFactory.createOrderDao();
+
+        Order order = Order.builder()
+                .requestDate(LocalDate.now().plusDays(1))
+                .id(2)
+                .userSender(userDao.findById(1).get())
+                .cityFrom(cityDao.findById(1).get())
+                .cityTo(cityDao.findById(2).get())
+                .price(BigDecimal.valueOf(120))
+                .parcel(parcel)
+                .status(Order.OrderStatus.WAITING_FOR_CONFIRM)
+                .build();
+
+
+//        System.out.println(orderDao.create(order));
+
+        System.out.println(cityDao.findById(1).get());
+
 
 
     }
