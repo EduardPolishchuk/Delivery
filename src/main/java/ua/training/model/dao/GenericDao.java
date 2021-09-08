@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface GenericDao<T> extends AutoCloseable{
     Logger logger = LogManager.getLogger(GenericDao.class);
 
-    boolean create (T entity);
     Optional<T> findById(long id);
-    List<T> findAll();
+    boolean create (T entity);
     boolean update(T entity);
+    List<T> findAll();
     void close();
 
     default  void rollback(Connection connection){

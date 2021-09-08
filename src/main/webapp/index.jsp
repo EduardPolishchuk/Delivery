@@ -1,10 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Delivery Service</title>
     <jsp:include page="WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body>
@@ -15,25 +19,29 @@
         <div class="col ">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3 class="display-4">Delivery</h3>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">NAME</th>
-                            <th scope="col">LATITUDE</th>
-                            <th scope="col">LONGITUDE</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="city" items="${cityList}">
-                        <tr>
-                            <td><strong>${city.id}</strong></td>
-                            <td>${city.name}</td>
-                            <td>${city.latitude}</td>
-                            <td>${city.longitude}</td>
-                        </tr>
-                        </c:forEach>
+                    <h3 class="display-4">Delivery Service</h3>
+                    <form action="${pageContext.request.contextPath}/calculate">
+                        <div class="mb-3 w-75">
+                            <label  class="form-label">City From</label>
+                            <select class="form-select" name="cityFrom" aria-label="Default select example">
+                                <c:forEach var="city" items="${cityList}">
+                                    <option  value="${city.id}">${city.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 w-75">
+                            <label  class="form-label">City To</label>
+                            <select class="form-select" name="cityTo" aria-label="Default select example">
+
+                                <c:forEach var="city" items="${cityList}">
+                                    <option value="${city.id}">${city.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                    <h3 class="display-4">${calculatedValue}</h3>
                 </div>
             </div>
         </div>

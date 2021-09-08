@@ -16,7 +16,7 @@
 </head>
 <body class="text-center" style="background-color: black">
 <jsp:include page="WEB-INF/common/header2.jsp"/>
-<h2 class="display-3" style="color: aliceblue"><fmt:message key="registration"/></h2>
+<h2 class="display-3" style="color: #080b0c"><fmt:message key="registration"/></h2>
     <div class="container justify-content-center w-50 ">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
             <div class="col ">
@@ -68,7 +68,7 @@
     </div>
 <footer class="text-muted py-1">
     <div class="footer__inner" style="background-color: black; text-align: center; color: aliceblue ">
-        &copy; Exhibition Events 2021
+        &copy; Delivery Service 2021
     </div>
 </footer>
 <%--<jsp:include page="common/footer.jsp"/>--%>

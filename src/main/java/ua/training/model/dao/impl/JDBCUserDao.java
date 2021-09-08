@@ -49,7 +49,7 @@ public class JDBCUserDao implements UserDao {
             ps.setString(i++, user.getPassword());
             ps.setString(i++, user.getFirstName());
             ps.setString(i++, user.getLastName());
-            ps.setString(i, user.getRole().toString().toLowerCase());
+            ps.setString(i, USER);
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
