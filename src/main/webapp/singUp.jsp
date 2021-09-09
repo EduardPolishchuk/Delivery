@@ -16,31 +16,31 @@
 </head>
 <body class="text-center" style="background-color: black">
 <jsp:include page="WEB-INF/common/header2.jsp"/>
-<h2 class="display-3" style="color: #080b0c"><fmt:message key="registration"/></h2>
+<h2 class="display-3" style="color: #000000; background-color: rgba(255,238,231,0.87)"><fmt:message key="registration"/></h2>
     <div class="container justify-content-center w-50 ">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
             <div class="col ">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h3 class="display-4"><fmt:message key="enterYourData"/></h3>
+                        <h3 class="display-5"><fmt:message key="enterYourData"/></h3>
                         <form method="post"  action="${pageContext.request.contextPath}/singUp">
-                            <div class="mb-3 ">
+                            <div class="mb-2 ">
                                 <label  class="form-label"><fmt:message key="userName"/> </label>
                                 <input type="text" class="form-control" name="login" value="${param.login}" required>
                             </div>
-                            <div class="mb-3 ">
+                            <div class="mb-2 ">
                                 <label  class="form-label"><fmt:message key="email" /></label>
                                 <input type="text" class="form-control" name="email" value="${param.email}" required>
                             </div>
-                            <div class="mb-3 ">
+                            <div class="mb-2 ">
                                 <label  class="form-label"><fmt:message key="firstName"/> </label>
                                 <input type="text" class="form-control" name="firstName" value="${param.firstName}" required>
                             </div>
-                            <div class="mb-3 ">
+                            <div class="mb-2 ">
                                 <label  class="form-label"><fmt:message key="lastName"/></label>
                                 <input type="text" class="form-control" name="lastName" value="${param.lastName}" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-2">
                                 <label for="exampleInputPassword1" class="form-label"><fmt:message key="password"/> </label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                             </div>
@@ -66,11 +66,6 @@
             </div>
         </div>
     </div>
-<footer class="text-muted py-1">
-    <div class="footer__inner" style="background-color: black; text-align: center; color: aliceblue ">
-        &copy; Delivery Service 2021
-    </div>
-</footer>
-<%--<jsp:include page="common/footer.jsp"/>--%>
+<jsp:include page="WEB-INF/common/footer.jsp"/>
 </body>
 </html>

@@ -22,9 +22,12 @@ public class CalculateCommand implements Command {
         long cityFromId = Long.parseLong(request.getParameter("cityFrom"));
         long cityToId = Long.parseLong(request.getParameter("cityTo"));
 
+        request.setAttribute("cityFrom", cityFromId);
+        request.setAttribute("cityTo", cityFromId);
+
         if (cityFromId == cityToId) {
             request.getSession().setAttribute("calculatedValue", "SAME CITIES!");
-            return REDIRECT_HOME;
+            return INDEX_JSP;
         }
 
         Optional<City> op1 = cityService.findById(cityFromId);
@@ -36,7 +39,7 @@ public class CalculateCommand implements Command {
             request.getSession().setAttribute("calculatedValue", "ERROR: cannot find the city, please, refresh the page");
         }
 
-        return REDIRECT_HOME;
+        return INDEX_JSP;
     }
 
     public static float distFrom(City cityFrom, City cityTo) {

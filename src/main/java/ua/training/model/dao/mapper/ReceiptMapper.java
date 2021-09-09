@@ -8,6 +8,10 @@ import java.sql.SQLException;
 public class ReceiptMapper implements ObjectMapper<Receipt>{
     @Override
     public Receipt extractFromResultSet(ResultSet rs) throws SQLException {
-        return Receipt.builder().build();
+        return Receipt.builder()
+                .id(rs.getLong("id"))
+                .paid(rs.getBoolean("paid"))
+                .price(rs.getBigDecimal("price"))
+                .build();
     }
 }

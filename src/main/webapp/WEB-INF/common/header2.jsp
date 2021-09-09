@@ -20,7 +20,7 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
 
-<header class="p-3 bg-black text-white">
+<header class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="${pageContext.request.contextPath}/"
@@ -31,7 +31,7 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="${pageContext.request.contextPath}/"
-                       class="nav-link px-2 text-primary"><strong>HOME </strong></a></li>
+                       class="nav-link px-2 text-primary"><strong><fmt:message key="home"/> </strong></a></li>
                 <c:choose>
                     <c:when test="${role == 'USER'}">
                         <li><a href="${pageContext.request.contextPath}/user/userevents"
@@ -70,7 +70,7 @@
                 <c:otherwise>
                     <form action="${pageContext.request.contextPath}/login.jsp"
                           class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-0">
-                        <button type="submit" class="btn btn-outline-dark me-2"><fmt:message key="singIn"/></button>
+                        <button type="submit" class="btn btn-outline-light me-2"><fmt:message key="singIn"/></button>
                     </form>
                     <form action="${pageContext.request.contextPath}/singUp.jsp"
                           class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -85,8 +85,8 @@
                             <input type="hidden" name="${item.key}" value="${item.value}">
                         </c:if>
                     </c:forEach>
-                    <button type="submit" class="btn btn-dark" name="language" value="en"><strong>EN</strong></button>
-                    <button type="submit" class="btn btn-dark" name="language" value="uk"><strong>UA</strong></button>
+                    <button type="submit" class="btn btn-outline-light " name="language" value="en"><strong>EN</strong></button>
+                    <button type="submit" class="btn btn-outline-light" name="language" value="uk"><strong>UA</strong></button>
                 </form>
             </div>
         </div>

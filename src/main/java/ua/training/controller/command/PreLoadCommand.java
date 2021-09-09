@@ -22,7 +22,7 @@ public class PreLoadCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         List<City> list = cityService.findAll();
-        request.setAttribute("cityList", list);
+        request.getSession().setAttribute("cityList", list);
         return INDEX_JSP;
     }
 }
