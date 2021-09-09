@@ -58,9 +58,11 @@ public class JDBCOrderDao implements OrderDao {
             ps2.setString(counter, order.getStatus().toString());
             ps2.executeUpdate();
             connection.commit();
+            connection.setAutoCommit(true);
             return true;
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
+            rollback(connection);
         } finally {
             close();
         }
