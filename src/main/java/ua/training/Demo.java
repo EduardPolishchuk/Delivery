@@ -24,7 +24,7 @@ public class Demo {
                 .balance(BigDecimal.valueOf(1000))
                 .firstName("Alex")
                 .email("black@gmail.com")
-                .id(2)
+                .id(3)
                 .login("black123")
                 .role(User.Role.USER)
                 .lastName("Black")
@@ -35,16 +35,16 @@ public class Demo {
                 .latitude(49.2320162F)
                 .name("Vinn")
                 .nameUk("Вінн")
-                .id(2)
+                .id(3)
                 .longitude(28.467975F)
                 .build();
 
         Parcel parcel = Parcel.builder()
-                .height(24)
-                .length(34)
-                .weight(51)
-                .width(44)
-                .type("Clothe")
+                .height(34)
+                .length(222)
+                .weight(33)
+                .width(51)
+                .type("Detail")
                 .build();
 
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -53,15 +53,13 @@ public class Demo {
         CityDao cityDao = daoFactory.createCityDao();
 
 
-
-
         OrderDao orderDao = daoFactory.createOrderDao();
 
         Order order = Order.builder()
                 .requestDate(LocalDate.now().plusDays(1))
                 .id(2)
-                .userSender(userDao.findById(1).get())
-                .cityFrom(cityDao.findById(1).get())
+                .userSender(userDao.findById(3).get())
+                .cityFrom(cityDao.findById(3).get())
                 .cityTo(cityDao.findById(2).get())
                 .price(BigDecimal.valueOf(120))
                 .parcel(parcel)
@@ -69,8 +67,14 @@ public class Demo {
                 .build();
 
 
-        System.out.println(orderDao.findById(2));
+//        System.out.println(orderDao.create(order));
 
+        List<Order> list = orderDao.findAll();
+        for (Order or : list) {
+            System.out.println("==================================");
+            System.out.println(or);
+            System.out.println("==================================");
+        }
 //        System.out.println(cityDao.findById(1).get());
 //
 //        System.out.println(userDao.findById(2).get());

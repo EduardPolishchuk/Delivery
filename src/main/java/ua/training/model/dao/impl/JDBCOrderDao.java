@@ -13,6 +13,7 @@ import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
@@ -99,7 +100,35 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public List<Order> findAll() {
-        return null;
+        List<Order> list = new ArrayList<>();
+        OrderMapper orderMapper = new OrderMapper();
+        ParcelMapper parcelMapper = new ParcelMapper();
+        CityMapper cityMapper = new CityMapper();
+        UserMapper userMapper = new UserMapper();
+        Order order ;
+        try (
+                PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
+                        "FROM `order`\n" +
+                        "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
+                        "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
+                        "         LEFT JOIN role user_role on role = user_role.id\n" +
+                        "         left join city city_from on city_from.id = `order`.city_from\n" +
+                        "         left join city city_to on city_to.id = `order`.city_to ")) {
+
+            try (ResultSet rs = psOrder.executeQuery()) {
+                while (rs.next()){
+                    order = orderMapper.extractFromResultSet(rs);
+                    order.setParcel(parcelMapper.extractFromResultSet(rs));
+                    order.setCityFrom(cityMapper.extractFromResultSet(rs, "city_from."));
+                    order.setCityTo(cityMapper.extractFromResultSet(rs, "city_to."));
+                    order.setUserSender(userMapper.extractFromResultSet(rs));
+                    list.add(order);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+        }
+        return list;
     }
 
     @Override
