@@ -69,10 +69,11 @@ public class Demo {
                 .build();
 
 
-//        System.out.println(orderDao.create(order));
+        System.out.println(orderDao.findById(2));
 
-        System.out.println(cityDao.findById(1).get());
-
+//        System.out.println(cityDao.findById(1).get());
+//
+//        System.out.println(userDao.findById(2).get());
 
 
     }

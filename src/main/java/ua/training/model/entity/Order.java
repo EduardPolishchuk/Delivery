@@ -134,11 +134,11 @@ public class Order {
                 "receivingDate=" + receivingDate +
                 ", requestDate=" + requestDate +
                 ", id=" + id +
-                ", userSender=" + userSender +
-                ", parcel=" + parcel +
-                ", cityTo=" + cityTo +
-                ", cityFrom=" + cityFrom +
-                ", price=" + price +
+                ",\nuserSender=" + userSender +
+                ",\nparcel=" + parcel +
+                ",\ncityTo=" + cityTo +
+                ",\ncityFrom=" + cityFrom +
+                ",\nprice=" + price +
                 ", paid=" + paid +
                 ", confirmed=" + confirmed +
                 ", delivered=" + delivered +

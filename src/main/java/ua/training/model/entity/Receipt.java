@@ -41,4 +41,40 @@ public class Receipt {
         this.order = order;
     }
 
+    public static ReceiptBuilder builder(){
+        return new ReceiptBuilder();
+    }
+
+    public static class ReceiptBuilder{
+       private final Receipt newReceipt;
+
+       private ReceiptBuilder(){
+           newReceipt = new Receipt();
+       }
+
+       public ReceiptBuilder id(long id){
+           newReceipt.setId(id);
+           return this;
+       }
+
+        public ReceiptBuilder price(BigDecimal price){
+            newReceipt.setPrice(price);
+            return this;
+        }
+
+        public ReceiptBuilder paid(boolean paid){
+            newReceipt.setPaid(paid);
+            return this;
+        }
+
+        public ReceiptBuilder order(Order order){
+            newReceipt.setOrder(order);
+            return this;
+        }
+
+        public Receipt build(){
+           return newReceipt;
+        }
+
+    }
 }

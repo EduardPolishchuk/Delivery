@@ -12,9 +12,9 @@ public class UserMapper implements ObjectMapper<User> {
     @Override
     public User extractFromResultSet(ResultSet rs) throws SQLException {
         return User.builder()
-                .id(rs.getInt("id"))
+                .id(rs.getInt("user_id"))
                 .login(rs.getString("login"))
-                .role(User.Role.valueOf(rs.getString("name").toUpperCase()))
+                .role(User.Role.valueOf(rs.getString("role_name").toUpperCase()))
                 .balance(rs.getBigDecimal("balance"))
                 .email(rs.getString("email"))
                 .firstName(rs.getString("first_name"))

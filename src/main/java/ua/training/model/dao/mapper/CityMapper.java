@@ -8,12 +8,16 @@ import java.sql.SQLException;
 public class CityMapper implements ObjectMapper<City>{
     @Override
     public City extractFromResultSet(ResultSet rs) throws SQLException {
+        return extractFromResultSet(rs, "");
+    }
+
+    public City extractFromResultSet(ResultSet rs, String prefix) throws SQLException {
         return City.builder()
-                .name(rs.getString("name"))
-                .nameUk(rs.getString("name_uk"))
-                .id(rs.getLong("id"))
-                .longitude(rs.getFloat("longitude"))
-                .latitude(rs.getFloat("latitude"))
+                .name(rs.getString(prefix + "name"))
+                .nameUk(rs.getString(prefix + "name_uk"))
+                .id(rs.getLong(prefix + "id"))
+                .longitude(rs.getFloat(prefix + "longitude"))
+                .latitude(rs.getFloat(prefix + "latitude"))
                 .build();
     }
 }
