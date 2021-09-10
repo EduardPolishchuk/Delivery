@@ -95,13 +95,12 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public boolean update(User user) {
-        try (PreparedStatement ps = connection.prepareStatement(properties.getProperty(UPDATE_USER))) {
-            int i = 0;
-            ps.setString(++i, user.getLogin());
-            ps.setString(++i, user.getEmail());
-            ps.setString(++i, user.getPassword());
-            ps.setString(++i, user.getFirstName());
-            ps.setString(++i, user.getLastName());
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE user SET email=?,password=?,first_name=?,last_name=? WHERE user_id =?")) {
+            int i = 1;
+            ps.setString(i++, user.getEmail());
+            ps.setString(i++, user.getPassword());
+            ps.setString(i++, user.getFirstName());
+            ps.setString(i++, user.getLastName());
             ps.setLong(i, user.getId());
             ps.executeUpdate();
         } catch (SQLException e) {

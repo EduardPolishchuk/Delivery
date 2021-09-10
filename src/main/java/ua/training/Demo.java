@@ -66,18 +66,13 @@ public class Demo {
                 .status(Order.OrderStatus.WAITING_FOR_CONFIRM)
                 .build();
 
-
-//        System.out.println(orderDao.create(order));
-
-        List<Order> list = orderDao.findAll();
-        for (Order or : list) {
-            System.out.println("==================================");
-            System.out.println(or);
-            System.out.println("==================================");
-        }
-//        System.out.println(cityDao.findById(1).get());
-//
-//        System.out.println(userDao.findById(2).get());
+        User user1 = userDao.findById(2).get();
+        System.out.println(user1);
+        user1.setFirstName("Din");
+        user1.setPassword("1");
+        System.out.println(user1);
+        System.out.println(user1.getId());
+        System.out.println(userDao.update(user1));
 
 
     }

@@ -25,7 +25,7 @@ public class SignUpCommand implements Command {
         if (!optional.isPresent()) {
             return SING_UP_JSP;
         }
-        if (!userService.createUser(optional.get())) {
+        if (!userService.create(optional.get())) {
             result = SING_UP_JSP;
             request.getSession().setAttribute(ERROR, LOGIN_INVALID);
         }

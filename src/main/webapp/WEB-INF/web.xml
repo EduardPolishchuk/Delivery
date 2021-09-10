@@ -22,6 +22,11 @@
         <location>/WEB-INF/error/error.jsp</location>
     </error-page>
 
+    <listener>
+        <listener-class>
+            ua.training.controller.listener.SessionListener
+        </listener-class>
+    </listener>
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>ua.training.controller.filter.EncodingFilter</filter-class>

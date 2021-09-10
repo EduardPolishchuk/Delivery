@@ -20,7 +20,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <form action="${pageContext.request.contextPath}/calculate">
-                        <h4 class="display-5 text-center" style="align-content: center">Calculate</h4>
+                        <h4 class="display-5 text-center" style="align-content: center">Calculate the cost</h4>
                         <hr>
                         <h5 class="display-7" style="align-content: center">Parcel Params</h5>
                         <div class="row g-3 mb-3">
