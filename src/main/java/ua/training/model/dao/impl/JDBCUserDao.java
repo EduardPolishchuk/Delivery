@@ -114,7 +114,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public Optional<User> getUser(String login, String password) {
+    public Optional<User> findIfValid(String login, String password) {
         Optional<User> result = Optional.empty();
         UserMapper userMapper = new UserMapper();
         try (PreparedStatement ps = connection.prepareStatement(properties.getProperty(USER_IS_VALID))) {

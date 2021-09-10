@@ -27,7 +27,7 @@ public class Servlet extends HttpServlet {
         commands.put("login", new LoginCommand(new UserServiceImpl()));
         commands.put("singUp", new SignUpCommand(new UserServiceImpl(), new UserValidator()));
         commands.put("calculate", new CalculateCommand(new CityServiceImpl()));
-        commands.put("logout", new CalculateCommand(new CityServiceImpl()));
+        commands.put("logout", new LogOutCommand());
     }
 
     public void doGet(HttpServletRequest request,

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserDao extends GenericDao<User> {
 
-    Optional<User> getUser(String login, String password);
+    Optional<User> findIfValid(String login, String password);
 
     BigDecimal getUserBalance(User user);
 

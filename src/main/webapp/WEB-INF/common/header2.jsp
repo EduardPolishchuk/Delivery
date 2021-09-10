@@ -39,17 +39,17 @@
                         <li><a href="${pageContext.request.contextPath}/user/userprofile.jsp"
                                class="nav-link px-2 text-white"><fmt:message key="myProfile"/></a></li>
                     </c:when>
-                    <c:when test="${role == 'ADMIN'}">
-                        <li><a href="${pageContext.request.contextPath}/admin/adminbasis.jsp"
+                    <c:when test="${role == 'MANAGER'}">
+                        <li><a href="${pageContext.request.contextPath}/manager/managerbasis.jsp"
                                class="nav-link px-2 text-white"><fmt:message key="addExhibition"/></a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/adminClientList"
+                        <li><a href="${pageContext.request.contextPath}/manager/managerClientList"
                                class="nav-link px-2 text-white"><fmt:message key="visitorsList"/></a></li>
                     </c:when>
                 </c:choose>
             </ul>
                       <c:choose>
-                <c:when test="${role == 'USER' || role == 'ADMIN'}">
-                    <c:if test="${role == 'ADMIN'}">
+                <c:when test="${role == 'USER' || role == 'MANAGER'}">
+                    <c:if test="${role == 'MANAGER'}">
                         <h6 class="display-11" style="color: aliceblue"><fmt:message key="admin"/></h6><br>
                     </c:if>
                     <h5 class="display-6" style="color: aliceblue">${userProfile.login}
