@@ -6,6 +6,8 @@ import ua.training.model.dao.CityDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.OrderDao;
 import ua.training.model.dao.UserDao;
+import ua.training.model.dao.mapper.CityMapper;
+import ua.training.model.dao.mapper.ObjectMapper;
 import ua.training.model.entity.City;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;
@@ -51,6 +53,7 @@ public class Demo {
 
         UserDao userDao = daoFactory.createUserDao();
         CityDao cityDao = daoFactory.createCityDao();
+
 
 
         OrderDao orderDao = daoFactory.createOrderDao();

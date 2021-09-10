@@ -22,10 +22,10 @@
                     <form action="${pageContext.request.contextPath}/calculate">
                         <h4 class="display-5 text-center" style="align-content: center">Calculate the cost</h4>
                         <hr>
-                        <h5 class="display-7" style="align-content: center">Parcel Params</h5>
+                        <h5 class="display-7" style="align-content: center">Parcel parameters</h5>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Length </label>
+                                <label class="form-label">Length</label>
                                 <input type="number" min="1" class="form-control" placeholder="mm"
                                        aria-label="First name">
                             </div>

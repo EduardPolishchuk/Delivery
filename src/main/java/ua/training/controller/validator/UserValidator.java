@@ -25,7 +25,7 @@ public class UserValidator {
             request.getSession().setAttribute("error",login);
             return Optional.empty();
         }
-        user.setLogin(login);
+        user.setLogin(login.trim());
         return Optional.of(user);
     }
 
