@@ -37,7 +37,7 @@
                             </div>
                             <div class="col">
                                 <label  class="form-label">Weight (kg)</label>
-                                <input type="number" min="1" class="form-control " aria-invalid="true" aria-label="Last name">
+                                <input type="number" min="0" class="form-control "  aria-label="Last name">
                             </div>
                         </div>
                         <div class="row g-3 mb-3">
@@ -59,6 +59,9 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                    <form action="${pageContext.request.contextPath}/test">
+                        <button type="submit" class="btn btn-outline-light " ><strong>EN</strong></button>
                     </form>
                     <h3 class="display-4">${calculatedValue}</h3>
                 </div>

@@ -27,7 +27,7 @@ public class LoginCommand implements Command {
         String userName = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
 
-        if(User.Role.ADMIN.equals(role) || User.Role.USER.equals(role)){
+        if(User.Role.MANAGER.equals(role) || User.Role.USER.equals(role)){
             ContextUtility.logOutUser(request.getSession());
         }
         if (!userName.matches(LOGIN_REG) || !password.matches(PASSWORD_REG)) {

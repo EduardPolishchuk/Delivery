@@ -112,7 +112,7 @@ public class User {
     }
 
     public enum Role {
-        USER, ADMIN, UNKNOWN
+        USER, MANAGER, UNKNOWN
     }
 
     public static class UserBuilder {

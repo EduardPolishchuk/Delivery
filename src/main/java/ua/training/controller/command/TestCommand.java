@@ -13,10 +13,7 @@ public class TestCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        int id = Integer.parseInt(request.getParameter("city"));
-        List<City> list = (List) request.getSession().getAttribute("cityList");
-        System.out.println(list.size() + "size");
-        System.out.println(id);
-        return INDEX_JSP;
+
+        return "redirect:WEB-INF/success.jsp";
     }
 }

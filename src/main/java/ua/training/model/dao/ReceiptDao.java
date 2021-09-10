@@ -1,4 +1,6 @@
 package ua.training.model.dao;
 
-public interface ReceiptDao extends  GenericDao{
+import ua.training.model.entity.Receipt;
+
+public interface ReceiptDao extends  GenericDao<Receipt> {
 }

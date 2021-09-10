@@ -2,6 +2,9 @@ package ua.training.constants;
 
 public class Constants {
 
+    /**
+     * Paths
+     */
     public static final String REDIRECT_HOME = "redirect:/";
     public static final String REDIRECT_LOGIN_JSP = "redirect:/login.jsp";
     public static final String WEB_INF_ERROR_JSP = "/WEB-INF/error/error.jsp";
@@ -20,6 +23,9 @@ public class Constants {
     public static final String REDIRECT_USERPROFILE_JSP = "redirect:/user/userprofile.jsp";
     public static final String USER_USERBASIS_JSP = "/user/userbasis.jsp";
 
+    /**
+     * Constants
+     */
     public static final String EXHIBITION = "exhibition";
     public static final String EX_ID = "exId";
     public static final String AMOUNT = "amount";

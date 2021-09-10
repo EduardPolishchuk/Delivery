@@ -12,7 +12,7 @@ public class LogOutCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         User.Role role = (User.Role) request.getSession().getAttribute(ROLE);
-        if (User.Role.USER.equals(role) || User.Role.ADMIN.equals(role)) {
+        if (User.Role.USER.equals(role) || User.Role.MANAGER.equals(role)) {
             ContextUtility.logOutUser(request.getSession());
         }
         return REDIRECT_HOME;
