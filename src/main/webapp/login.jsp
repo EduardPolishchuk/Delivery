@@ -39,7 +39,7 @@
                             </div>
                             ${pageContext.session.removeAttribute('incorrect')}
                         </c:if>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary"><fmt:message key="submit"/></button>
                     </form>
                 </div>
             </div>

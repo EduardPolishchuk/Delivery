@@ -52,7 +52,7 @@
                     <c:if test="${role == 'MANAGER'}">
                         <h6 class="display-11" style="color: aliceblue"><fmt:message key="admin"/></h6><br>
                     </c:if>
-                    <h5 class="display-6" style="color: aliceblue">${userProfile.login}
+                    <h5 class="display-6 col-lg-auto  mb-lg-0 me-lg-2" style="color: aliceblue">${userProfile.login}
                     </h5>
                     <c:if test="${role == 'USER'}">
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-0">
@@ -102,13 +102,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/Exhibition/changeBalance" class="row g-3 needs-validation" novalidate>
+                <form action="/Delivery/changeBalance" class="row g-3 needs-validation" novalidate>
                     <div class="mb-3">
                     </div>
                     <div class="mb-3">
                         <label for="validationCustom01" class="form-label"><fmt:message key="amount"/></label>
                         <input type="hidden" name="page" value="${pageContext.request.requestURI}">
-                        <input type="text" class="form-control" id="validationCustom01" name="amount" value="0"
+                        <input type="number" min="1" class="form-control" id="validationCustom01" name="amount" value="0"
                                required>
                     </div>
                     <div class="modal-footer">

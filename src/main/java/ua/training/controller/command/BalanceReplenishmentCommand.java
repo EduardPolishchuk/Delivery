@@ -23,8 +23,11 @@ public class BalanceReplenishmentCommand implements Command {
     public String execute(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(USER_PROFILE);
         try {
-            user.setBalance(userService.balanceReplenishment
-                    (new BigDecimal(request.getParameter(AMOUNT)), user));
+            BigDecimal value = new BigDecimal(request.getParameter(AMOUNT));
+            if(value.intValue() < 0){
+                throw new NumberFormatException();
+            }
+            user.setBalance(userService.balanceReplenishment(value, user));
         } catch (NumberFormatException e) {
             logger.log(Level.ERROR, e.getMessage());
             return REDIRECT_HOME;

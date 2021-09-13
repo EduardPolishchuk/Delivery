@@ -3,6 +3,7 @@ package ua.training.controller;
 
 import ua.training.controller.command.*;
 import ua.training.controller.validator.UserValidator;
+import ua.training.model.service.UserService;
 import ua.training.model.service.impl.CityServiceImpl;
 import ua.training.model.service.impl.UserServiceImpl;
 
@@ -29,6 +30,7 @@ public class Servlet extends HttpServlet {
         commands.put("calculate", new CalculateCommand(new CityServiceImpl()));
         commands.put("logout", new LogOutCommand());
         commands.put("user/userUpdate", new UpdateUserCommand(new UserServiceImpl(),new UserValidator()));
+        commands.put("changeBalance" , new BalanceReplenishmentCommand(new UserServiceImpl()));
     }
 
     public void doGet(HttpServletRequest request,
