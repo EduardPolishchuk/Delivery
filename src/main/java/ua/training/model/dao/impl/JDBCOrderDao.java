@@ -11,6 +11,7 @@ import ua.training.model.dao.property_reader.DBPropertyReader;
 import ua.training.model.dao.OrderDao;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;
+import ua.training.model.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -136,6 +137,11 @@ public class JDBCOrderDao implements OrderDao {
     @Override
     public boolean update(Order entity) {
         return false;
+    }
+
+    @Override
+    public List<Order> findUserOrders(User user) {
+        return null;
     }
 
     @Override
