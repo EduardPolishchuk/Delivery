@@ -56,4 +56,16 @@ public class Tariff {
     public void setAdditional(float additional) {
         this.additional = additional;
     }
+
+    @Override
+    public String toString() {
+        return "Tariff{" +
+                "uahPerKilometerDistance=" + uahPerKilometerDistance +
+                ", uahPerMillimeterLength=" + uahPerMillimeterLength +
+                ", uahPerMillimeterWidth=" + uahPerMillimeterWidth +
+                ", uahPerMillimeterHeight=" + uahPerMillimeterHeight +
+                ", uahPerKilogramWeight=" + uahPerKilogramWeight +
+                ", additional=" + additional +
+                '}';
+    }
 }

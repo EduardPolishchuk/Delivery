@@ -31,6 +31,7 @@ public class Servlet extends HttpServlet {
         commands.put("logout", new LogOutCommand());
         commands.put("user/userUpdate", new UpdateUserCommand(new UserServiceImpl(),new UserValidator()));
         commands.put("changeBalance" , new BalanceReplenishmentCommand(new UserServiceImpl()));
+        commands.put("manager/managerClientList" , new ClientListCommand(new UserServiceImpl()));
     }
 
     public void doGet(HttpServletRequest request,

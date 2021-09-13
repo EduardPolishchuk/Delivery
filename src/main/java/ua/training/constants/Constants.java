@@ -14,7 +14,7 @@ public class Constants {
     public static final String INSUFFICIENT_FUNDS_ERROR_JSP = "/WEB-INF/error/insufficientFundsError.jsp";
     public static final String ERROR_JSP = "/WEB-INF/error/error.jsp";
     public static final String USER_LIST = "userList";
-    public static final String CLIENT_LIST_JSP = "/admin/adminClientList.jsp";
+    public static final String CLIENT_LIST_JSP = "/manager/managerClientList.jsp";
     public static final String REDIRECT_SUCCESS_JSP = "redirect:/success.jsp";
     public static final String SING_UP_JSP = "/singUp.jsp";
     public static final String ADMIN_EXHIBITION_VIEW_JSP = "/admin/adminExhibitionView.jsp";

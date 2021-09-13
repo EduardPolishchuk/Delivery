@@ -2,10 +2,7 @@ package ua.training;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ua.training.model.dao.CityDao;
-import ua.training.model.dao.DaoFactory;
-import ua.training.model.dao.OrderDao;
-import ua.training.model.dao.UserDao;
+import ua.training.model.dao.*;
 import ua.training.model.dao.mapper.CityMapper;
 import ua.training.model.dao.mapper.ObjectMapper;
 import ua.training.model.entity.City;
@@ -50,32 +47,34 @@ public class Demo {
                 .build();
 
         DaoFactory daoFactory = DaoFactory.getInstance();
+        TariffDao tariffDao = daoFactory.createTariffDao();
+        System.out.println(tariffDao.getTariff());
+//
+//        UserDao userDao = daoFactory.createUserDao();
+//        CityDao cityDao = daoFactory.createCityDao();
+//
+//
+//
+//        OrderDao orderDao = daoFactory.createOrderDao();
+//
+//        Order order = Order.builder()
+//                .requestDate(LocalDate.now().plusDays(1))
+//                .id(2)
+//                .userSender(userDao.findById(3).get())
+//                .cityFrom(cityDao.findById(3).get())
+//                .cityTo(cityDao.findById(2).get())
+//                .price(BigDecimal.valueOf(120))
+//                .parcel(parcel)
+//                .status(Order.OrderStatus.WAITING_FOR_CONFIRM)
+//                .build();
 
-        UserDao userDao = daoFactory.createUserDao();
-        CityDao cityDao = daoFactory.createCityDao();
-
-
-
-        OrderDao orderDao = daoFactory.createOrderDao();
-
-        Order order = Order.builder()
-                .requestDate(LocalDate.now().plusDays(1))
-                .id(2)
-                .userSender(userDao.findById(3).get())
-                .cityFrom(cityDao.findById(3).get())
-                .cityTo(cityDao.findById(2).get())
-                .price(BigDecimal.valueOf(120))
-                .parcel(parcel)
-                .status(Order.OrderStatus.WAITING_FOR_CONFIRM)
-                .build();
-
-        User user1 = userDao.findById(2).get();
-        System.out.println(user1);
-        user1.setFirstName("Din");
-        user1.setPassword("1");
-        System.out.println(user1);
-        System.out.println(user1.getId());
-        System.out.println(userDao.update(user1));
+//        User user1 = userDao.findById(2).get();
+//        System.out.println(user1);
+//        user1.setFirstName("Din");
+//        user1.setPassword("1");
+//        System.out.println(user1);
+//        System.out.println(user1.getId());
+//        System.out.println(userDao.update(user1));
 
 
     }

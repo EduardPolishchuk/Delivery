@@ -43,7 +43,7 @@
                         <li><a href="${pageContext.request.contextPath}/admin/adminbasis.jsp"
                                class="nav-link px-2 text-white"><fmt:message key="addExhibition"/></a></li>
                         <li><a href="${pageContext.request.contextPath}/admin/adminClientList"
-                               class="nav-link px-2 text-white"><fmt:message key="visitorsList"/></a></li>
+                               class="nav-link px-2 text-white"><fmt:message key="clientList"/></a></li>
                     </c:when>
                 </c:choose>
             </ul>
