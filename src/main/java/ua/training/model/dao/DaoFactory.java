@@ -11,6 +11,8 @@ public abstract class DaoFactory {
 
     public abstract CityDao createCityDao();
 
+    public abstract TariffDao createTariffDao();
+
     public static DaoFactory getInstance() {
         if (daoFactory == null) {
             synchronized (DaoFactory.class) {
