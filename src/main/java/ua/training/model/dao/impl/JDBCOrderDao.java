@@ -59,7 +59,6 @@ public class JDBCOrderDao implements OrderDao {
             ps2.setString(counter, order.getStatus().toString());
             ps2.executeUpdate();
             connection.commit();
-            connection.setAutoCommit(true);
             return true;
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -72,11 +71,6 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public Optional<Order> findById(long id) {
-        OrderMapper orderMapper = new OrderMapper();
-        ParcelMapper parcelMapper = new ParcelMapper();
-        CityMapper cityMapper = new CityMapper();
-        UserMapper userMapper = new UserMapper();
-        Order order = null;
         try (
                 PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
                         "FROM `order`\n" +
@@ -87,51 +81,46 @@ public class JDBCOrderDao implements OrderDao {
                         "         left join city city_to on city_to.id = `order`.city_to WHERE `order`.id =?")) {
 
             psOrder.setLong(1, id);
-            try (ResultSet rs = psOrder.executeQuery()) {
-                rs.next();
-                order = orderMapper.extractFromResultSet(rs);
-                order.setParcel(parcelMapper.extractFromResultSet(rs));
-                order.setCityFrom(cityMapper.extractFromResultSet(rs, "city_from."));
-                order.setCityTo(cityMapper.extractFromResultSet(rs, "city_to."));
-                order.setUserSender(userMapper.extractFromResultSet(rs));
-            }
+            return Optional.ofNullable(getOrderListByPreparedStatement(psOrder).get(0));
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
+            return Optional.empty();
         }
-        return Optional.ofNullable(order);
     }
 
     @Override
     public List<Order> findAll() {
-        List<Order> list = new ArrayList<>();
-        OrderMapper orderMapper = new OrderMapper();
-        ParcelMapper parcelMapper = new ParcelMapper();
-        CityMapper cityMapper = new CityMapper();
-        UserMapper userMapper = new UserMapper();
-        Order order ;
-        try (
-                PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
-                        "FROM `order`\n" +
-                        "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
-                        "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
-                        "         LEFT JOIN role user_role on role = user_role.id\n" +
-                        "         left join city city_from on city_from.id = `order`.city_from\n" +
-                        "         left join city city_to on city_to.id = `order`.city_to ")) {
+        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
+                "FROM `order`\n" +
+                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
+                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
+                "         LEFT JOIN role user_role on role = user_role.id\n" +
+                "         left join city city_from on city_from.id = `order`.city_from\n" +
+                "         left join city city_to on city_to.id = `order`.city_to ")) {
 
-            try (ResultSet rs = psOrder.executeQuery()) {
-                while (rs.next()){
-                    order = orderMapper.extractFromResultSet(rs);
-                    order.setParcel(parcelMapper.extractFromResultSet(rs));
-                    order.setCityFrom(cityMapper.extractFromResultSet(rs, "city_from."));
-                    order.setCityTo(cityMapper.extractFromResultSet(rs, "city_to."));
-                    order.setUserSender(userMapper.extractFromResultSet(rs));
-                    list.add(order);
-                }
-            }
+            return getOrderListByPreparedStatement(psOrder);
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
         }
-        return list;
+    }
+
+    @Override
+    public List<Order> findUserOrders(User user) {
+        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
+                "FROM `order`\n" +
+                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
+                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
+                "         LEFT JOIN role user_role on role = user_role.id\n" +
+                "         left join city city_from on city_from.id = `order`.city_from\n" +
+                "         left join city city_to on city_to.id = `order`.city_to where user_sender =?")) {
+
+            psOrder.setLong(1, user.getId());
+            return getOrderListByPreparedStatement(psOrder);
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     @Override
@@ -139,9 +128,26 @@ public class JDBCOrderDao implements OrderDao {
         return false;
     }
 
-    @Override
-    public List<Order> findUserOrders(User user) {
-        return null;
+    private List<Order> getOrderListByPreparedStatement(PreparedStatement ps) {
+        List<Order> list = new ArrayList<>();
+        OrderMapper orderMapper = new OrderMapper();
+        ParcelMapper parcelMapper = new ParcelMapper();
+        CityMapper cityMapper = new CityMapper();
+        UserMapper userMapper = new UserMapper();
+        Order order;
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                order = orderMapper.extractFromResultSet(rs);
+                order.setParcel(parcelMapper.extractFromResultSet(rs));
+                order.setCityFrom(cityMapper.extractFromResultSet(rs, "city_from."));
+                order.setCityTo(cityMapper.extractFromResultSet(rs, "city_to."));
+                order.setUserSender(userMapper.extractFromResultSet(rs));
+                list.add(order);
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+        }
+        return list;
     }
 
     @Override

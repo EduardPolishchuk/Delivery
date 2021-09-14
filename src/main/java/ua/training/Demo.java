@@ -47,16 +47,21 @@ public class Demo {
                 .build();
 
         DaoFactory daoFactory = DaoFactory.getInstance();
-        TariffDao tariffDao = daoFactory.createTariffDao();
-        System.out.println(tariffDao.getTariff());
+//        TariffDao tariffDao = daoFactory.createTariffDao();
+//        System.out.println(tariffDao.getTariff());
 //
-//        UserDao userDao = daoFactory.createUserDao();
+        UserDao userDao = daoFactory.createUserDao();
+        System.out.println(userDao.findById(29));
 //        CityDao cityDao = daoFactory.createCityDao();
 //
 //
 //
-//        OrderDao orderDao = daoFactory.createOrderDao();
-//
+        OrderDao orderDao = daoFactory.createOrderDao();
+        int counter = 1;
+        for (Order o : orderDao.findUserOrders(user)) {
+
+            System.out.println(counter++ + " ====> " + o);
+        }
 //        Order order = Order.builder()
 //                .requestDate(LocalDate.now().plusDays(1))
 //                .id(2)
