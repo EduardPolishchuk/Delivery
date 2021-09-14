@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 import static ua.training.constants.Constants.INDEX_JSP;
-import static ua.training.constants.Constants.REDIRECT_HOME;
 
 public class CalculateCommand implements Command {
 

@@ -39,7 +39,4 @@ public class CityServiceImpl implements CityService {
         }
     }
 
-    public void doSmthng(){
-
-    }
 }

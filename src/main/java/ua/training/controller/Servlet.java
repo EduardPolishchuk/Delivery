@@ -3,7 +3,6 @@ package ua.training.controller;
 
 import ua.training.controller.command.*;
 import ua.training.controller.validator.UserValidator;
-import ua.training.model.service.UserService;
 import ua.training.model.service.impl.CityServiceImpl;
 import ua.training.model.service.impl.UserServiceImpl;
 
@@ -29,9 +28,9 @@ public class Servlet extends HttpServlet {
         commands.put("singUp", new SignUpCommand(new UserServiceImpl(), new UserValidator()));
         commands.put("calculate", new CalculateCommand(new CityServiceImpl()));
         commands.put("logout", new LogOutCommand());
-        commands.put("user/userUpdate", new UpdateUserCommand(new UserServiceImpl(),new UserValidator()));
-        commands.put("changeBalance" , new BalanceReplenishmentCommand(new UserServiceImpl()));
-        commands.put("manager/managerClientList" , new ClientListCommand(new UserServiceImpl()));
+        commands.put("user/userUpdate", new UpdateUserCommand(new UserServiceImpl(), new UserValidator()));
+        commands.put("changeBalance", new BalanceReplenishmentCommand(new UserServiceImpl()));
+        commands.put("manager/managerClientList", new ClientListCommand(new UserServiceImpl()));
     }
 
     public void doGet(HttpServletRequest request,
@@ -47,13 +46,12 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getRequestURI().replaceAll(".*/Delivery/" , "");
-        Command command = commands.getOrDefault(path , new PreLoadCommand(new CityServiceImpl()));
+        String path = request.getRequestURI().replaceAll(".*/Delivery/", "");
+        Command command = commands.getOrDefault(path, new PreLoadCommand(new CityServiceImpl()));
         String page = command.execute(request);
-        if(page.contains("redirect:")){
+        if (page.contains("redirect:")) {
             response.sendRedirect(page.replace("redirect:", "/Delivery"));
-        }
-        else {
+        } else {
             request.getRequestDispatcher(page).forward(request, response);
         }
     }

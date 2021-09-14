@@ -27,7 +27,7 @@
                             <div class="row g-3 mb-3">
                                 <div class="col">
                                     <label class="form-label">Length</label>
-                                    <input type="number" min="1" class="form-control" placeholder="mm"
+                                    <input form="form1" type="number" min="1" class="form-control" placeholder="mm"
                                            aria-label="First name">
                                 </div>
                                 <div class="col">

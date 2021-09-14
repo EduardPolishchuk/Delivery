@@ -41,9 +41,8 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public boolean create(User user) {
-        try {
+        try (PreparedStatement ps = connection.prepareStatement(properties.getProperty(CREATE_USER))){
             int i = 1;
-            PreparedStatement ps = connection.prepareStatement(properties.getProperty(CREATE_USER));
             ps.setString(i++, user.getLogin());
             ps.setString(i++, user.getEmail());
             ps.setString(i++, user.getPassword());
@@ -64,8 +63,8 @@ public class JDBCUserDao implements UserDao {
     public Optional<User> findById(long id) {
         User user = null;
         UserMapper userMapper = new UserMapper();
-        try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role r on r.id = user.role where user.user_id =?");
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role r on r.id = user.role where user.user_id =?");){
+
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -134,8 +133,8 @@ public class JDBCUserDao implements UserDao {
 
     public BigDecimal getUserBalance(User user) {
         BigDecimal balance = BigDecimal.valueOf(0);
-        try {
-            PreparedStatement ps = connection.prepareStatement(properties.getProperty(GET_USER_BALANCE));
+        try (PreparedStatement ps = connection.prepareStatement(properties.getProperty(GET_USER_BALANCE));){
+
             ps.setLong(1, user.getId());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
