@@ -34,8 +34,8 @@
                        class="nav-link px-2 text-primary"><strong><fmt:message key="home"/> </strong></a></li>
                 <c:choose>
                     <c:when test="${role == 'USER'}">
-                        <li><a href="${pageContext.request.contextPath}/user/userevents"
-                               class="nav-link px-2 text-white"><fmt:message key="myEvents"/></a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/userOrders"
+                               class="nav-link px-2 text-white">My Orders</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userprofile.jsp"
                                class="nav-link px-2 text-white"><fmt:message key="myProfile"/></a></li>
                     </c:when>

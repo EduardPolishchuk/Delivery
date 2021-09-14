@@ -3,16 +3,14 @@ package ua.training;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.*;
-import ua.training.model.dao.mapper.CityMapper;
-import ua.training.model.dao.mapper.ObjectMapper;
 import ua.training.model.entity.City;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;
 import ua.training.model.entity.User;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class Demo {
     private static final Logger LOGGER = LogManager.getLogger(Demo.class);
@@ -47,21 +45,11 @@ public class Demo {
                 .build();
 
         DaoFactory daoFactory = DaoFactory.getInstance();
-//        TariffDao tariffDao = daoFactory.createTariffDao();
-//        System.out.println(tariffDao.getTariff());
-//
-        UserDao userDao = daoFactory.createUserDao();
-        System.out.println(userDao.findById(29));
-//        CityDao cityDao = daoFactory.createCityDao();
-//
-//
-//
         OrderDao orderDao = daoFactory.createOrderDao();
-        int counter = 1;
-        for (Order o : orderDao.findUserOrders(user)) {
+        Optional<Order> list = orderDao.findById(2);
 
-            System.out.println(counter++ + " ====> " + o);
-        }
+        System.out.println(list);
+
 //        Order order = Order.builder()
 //                .requestDate(LocalDate.now().plusDays(1))
 //                .id(2)

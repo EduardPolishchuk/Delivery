@@ -21,7 +21,7 @@ public class Constants {
     public static final String INDEX_JSP = "/index.jsp";
     public static final String ADMIN_USER_EXHIBITIONS_JSP = "/admin/adminUserExhibitions.jsp";
     public static final String REDIRECT_USERPROFILE_JSP = "redirect:/user/userprofile.jsp";
-    public static final String USER_USERBASIS_JSP = "/user/userbasis.jsp";
+    public static final String USER_USERBASIS_JSP = "/user/userOrders.jsp";
 
     /**
      * Constants

@@ -15,7 +15,7 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3" style="color: aliceblue"><fmt:message key="myEvents"/></h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Orders</h2>
 <div class="container justify-content-center w-75 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
         <div class="col ">
@@ -24,20 +24,32 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col"><fmt:message key="userName"/></th>
-                            <th scope="col"><fmt:message key="email"/></th>
-                            <th scope="col"><fmt:message key="firstName"/></th>
-                            <th scope="col"><fmt:message key="lastName"/></th>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Request Date</th>
+                            <th scope="col">Receiving Date</th>
+                            <th scope="col">City From</th>
+                            <th scope="col">City To</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Length</th>
+                            <th scope="col">Width</th>
+                            <th scope="col">Height</th>
+                            <th scope="col">Weight</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="user" items="${userList}">
+                        <c:forEach var="order" items="${userOrders}">
                         <tr>
                                 <%--                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
-                            <td><strong>${user.login}</strong></td>
-                            <td>${user.email}</td>
-                            <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
+                            <td><strong>${order.id}</strong></td>
+                            <td>${order.requestDate}</td>
+                            <td>${order.receivingDate}</td>
+                            <td>${order.cityFrom.name}</td>
+                            <td>${order.cityTo.name}</td>
+                            <td>${order.status}</td>
+                            <td>${order.parcel.length} mm</td>
+                            <td>${order.parcel.width} mm</td>
+                            <td>${order.parcel.height} mm</td>
+                            <td>${order.parcel.weight} kg</td>
                         </tr>
                         </c:forEach>
                 </div>

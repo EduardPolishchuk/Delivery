@@ -32,13 +32,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="user" items="${userList}">
+                        <c:forEach var="order" items="${userList}">
                         <tr>
 <%--                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
-                            <td><strong>${user.login}</strong></td>
-                            <td>${user.email}</td>
-                            <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
+                            <td><strong>${order.login}</strong></td>
+                            <td>${order.email}</td>
+                            <td>${order.firstName}</td>
+                            <td>${order.lastName}</td>
                         </tr>
                         </c:forEach>
                 </div>
