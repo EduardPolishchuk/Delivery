@@ -1,6 +1,11 @@
 package ua.training.model.dao;
 
 import ua.training.model.entity.Receipt;
+import ua.training.model.entity.User;
 
-public interface ReceiptDao extends  GenericDao<Receipt> {
+import java.util.List;
+
+public interface ReceiptDao extends GenericDao<Receipt> {
+
+    List<Receipt> findUserReceipts(User user);
 }

@@ -51,8 +51,6 @@ u
 Esrc/test/java/ua/training/model/service/impl/UserServiceImplTest.java,1\f\1f45d8da7bf627d9addd8f090da618b7bc46f592
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-c
-3src/main/java/ua/training/model/entity/Receipt.java,8\a\8a58e6a4a9bd3e9d4cfb1d8065b196f9c6f4ff18
 h
 8src/main/java/ua/training/model/service/CityService.java,7\d\7d79a5afcd120d8c01b84dbf8f0d642d1bdaa6d9
 r

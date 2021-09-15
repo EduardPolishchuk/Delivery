@@ -24,32 +24,20 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Order ID</th>
-                            <th scope="col">Request Date</th>
-                            <th scope="col">Receiving Date</th>
-                            <th scope="col">City From</th>
-                            <th scope="col">City To</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Length</th>
-                            <th scope="col">Width</th>
-                            <th scope="col">Height</th>
-                            <th scope="col">Weight</th>
+                            <th scope="col">Receipt ID</th>
+                            <th scope="col">Order</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Payment</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="order" items="${userOrders}">
+                        <c:forEach var="receipt" items="${userReceipts}">
                         <tr>
-                                <%--                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
-                            <td><strong>${order.id}</strong></td>
-                            <td>${order.requestDate}</td>
-                            <td>${order.receivingDate}</td>
-                            <td>${order.cityFrom.name}</td>
-                            <td>${order.cityTo.name}</td>
-                            <td>${order.status}</td>
-                            <td>${order.parcel.length} mm</td>
-                            <td>${order.parcel.width} mm</td>
-                            <td>${order.parcel.height} mm</td>
-                            <td>${order.parcel.weight} kg</td>
+<%--                                                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
+                            <td><strong>${receipt.id}</strong></td>
+                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>Order Link</strong></a></td>
+                            <td>${receipt.price} </td>
+                            <td>${receipt.paid ? 'paid' : 'not paid'} </td>
                         </tr>
                         </c:forEach>
                 </div>

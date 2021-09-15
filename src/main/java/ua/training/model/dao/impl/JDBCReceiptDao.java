@@ -4,12 +4,17 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.ReceiptDao;
+import ua.training.model.dao.mapper.ReceiptMapper;
 import ua.training.model.dao.property_reader.DBPropertyReader;
+import ua.training.model.entity.Order;
 import ua.training.model.entity.Receipt;
+import ua.training.model.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
@@ -26,13 +31,20 @@ public class JDBCReceiptDao implements ReceiptDao {
 
     @Override
     public Optional<Receipt> findById(long id) {
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * from receipt left join `order`  on `order`.id = receipt.order_id " +
+        ReceiptMapper receiptMapper = new ReceiptMapper();
+        Receipt receipt = null;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * from receipt " +
                 "WHERE receipt.id = ?")) {
             ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    receipt = receiptMapper.extractFromResultSet(rs);
+                }
+            }
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
         }
-        return Optional.empty();
+        return Optional.ofNullable(receipt);
     }
 
     @Override
@@ -47,11 +59,38 @@ public class JDBCReceiptDao implements ReceiptDao {
 
     @Override
     public List<Receipt> findAll() {
-        return null;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM receipt ")) {
+            return getReceiptsByPreparedStatement(ps);
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public List<Receipt> findUserReceipts(User user) {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM receipt left join `order` o on o.id = receipt.order_id where o.user_sender = ?")) {
+            ps.setLong(1, user.getId());
+            return getReceiptsByPreparedStatement(ps);
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    private List<Receipt> getReceiptsByPreparedStatement(PreparedStatement ps) throws SQLException {
+        List<Receipt> list = new ArrayList<>();
+        ReceiptMapper receiptMapper = new ReceiptMapper();
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                list.add(receiptMapper.extractFromResultSet(rs));
+            }
+        }
+        return list;
     }
 }

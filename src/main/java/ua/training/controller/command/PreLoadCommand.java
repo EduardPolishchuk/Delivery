@@ -13,6 +13,8 @@ import java.util.Optional;
 import static ua.training.constants.Constants.*;
 
 public class PreLoadCommand implements Command {
+    public static final int RECORDS_PER_PAGE = 3;
+    public static final String CURRENT_PAGE_NUMBER = "currentPage";
     private final CityService cityService;
     private final TariffService tariffService;
 

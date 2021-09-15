@@ -45,6 +45,16 @@ public class Receipt {
         return new ReceiptBuilder();
     }
 
+    @Override
+    public String toString() {
+        return "Receipt{" +
+                "id=" + id +
+                ", price=" + price +
+                ", paid=" + paid +
+                ", order=" + order +
+                '}';
+    }
+
     public static class ReceiptBuilder{
        private final Receipt newReceipt;
 

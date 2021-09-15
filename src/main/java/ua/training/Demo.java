@@ -43,12 +43,8 @@ public class Demo {
 
         DaoFactory daoFactory = DaoFactory.getInstance();
         OrderDao orderDao = daoFactory.createOrderDao();
-        TariffDao tariffDao = daoFactory.createTariffDao();
-        Tariff tariff = tariffDao.getTariff().get();
-        System.out.println(tariff);
-        tariff.setAdditional(20F);
-        System.out.println(tariff);
-        System.out.println(tariffDao.updateTariff(tariff));
+        ReceiptDao receiptDao = daoFactory.createReceiptDao();
+        receiptDao.findAll().forEach(System.out::println);
 
 
     }

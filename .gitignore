@@ -1,3 +1,4 @@
 # Project exclude paths
 /target/
 /Project_logs/
+src/main/java/ua/training/Demo.java

@@ -1,8 +1,10 @@
 package ua.training.controller.command;
 
+import ua.training.model.entity.Receipt;
 import ua.training.model.service.ReceiptService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class UserReceiptsCommand implements Command {
 
@@ -14,6 +16,9 @@ public class UserReceiptsCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        return null;
+
+        List<Receipt> list = receiptService.findAll();
+        request.getSession().setAttribute("userReceipts", list);
+        return "/user/userReceipts.jsp";
     }
 }
