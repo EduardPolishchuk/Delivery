@@ -3,10 +3,7 @@ package ua.training;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ua.training.model.dao.*;
-import ua.training.model.entity.City;
-import ua.training.model.entity.Order;
-import ua.training.model.entity.Parcel;
-import ua.training.model.entity.User;
+import ua.training.model.entity.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -46,28 +43,12 @@ public class Demo {
 
         DaoFactory daoFactory = DaoFactory.getInstance();
         OrderDao orderDao = daoFactory.createOrderDao();
-        Optional<Order> list = orderDao.findById(2);
-
-        System.out.println(list);
-
-//        Order order = Order.builder()
-//                .requestDate(LocalDate.now().plusDays(1))
-//                .id(2)
-//                .userSender(userDao.findById(3).get())
-//                .cityFrom(cityDao.findById(3).get())
-//                .cityTo(cityDao.findById(2).get())
-//                .price(BigDecimal.valueOf(120))
-//                .parcel(parcel)
-//                .status(Order.OrderStatus.WAITING_FOR_CONFIRM)
-//                .build();
-
-//        User user1 = userDao.findById(2).get();
-//        System.out.println(user1);
-//        user1.setFirstName("Din");
-//        user1.setPassword("1");
-//        System.out.println(user1);
-//        System.out.println(user1.getId());
-//        System.out.println(userDao.update(user1));
+        TariffDao tariffDao = daoFactory.createTariffDao();
+        Tariff tariff = tariffDao.getTariff().get();
+        System.out.println(tariff);
+        tariff.setAdditional(20F);
+        System.out.println(tariff);
+        System.out.println(tariffDao.updateTariff(tariff));
 
 
     }

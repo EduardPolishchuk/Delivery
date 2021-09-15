@@ -13,6 +13,8 @@ public abstract class DaoFactory {
 
     public abstract TariffDao createTariffDao();
 
+    public abstract ReceiptDao createReceiptDao();
+
     public static DaoFactory getInstance() {
         if (daoFactory == null) {
             synchronized (DaoFactory.class) {

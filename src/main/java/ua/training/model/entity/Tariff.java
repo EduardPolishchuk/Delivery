@@ -1,6 +1,7 @@
 package ua.training.model.entity;
 
 public class Tariff {
+    long id;
     float uahPerKilometerDistance;
     float uahPerMillimeterLength;
     float uahPerMillimeterWidth;
@@ -8,6 +9,13 @@ public class Tariff {
     float uahPerKilogramWeight;
     float additional;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public float getUahPerKilometerDistance() {
         return uahPerKilometerDistance;
@@ -60,7 +68,8 @@ public class Tariff {
     @Override
     public String toString() {
         return "Tariff{" +
-                "uahPerKilometerDistance=" + uahPerKilometerDistance +
+                "id=" + id +
+                ", uahPerKilometerDistance=" + uahPerKilometerDistance +
                 ", uahPerMillimeterLength=" + uahPerMillimeterLength +
                 ", uahPerMillimeterWidth=" + uahPerMillimeterWidth +
                 ", uahPerMillimeterHeight=" + uahPerMillimeterHeight +

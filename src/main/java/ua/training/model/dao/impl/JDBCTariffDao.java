@@ -29,7 +29,7 @@ public class JDBCTariffDao implements TariffDao {
         TariffMapper tariffMapper = new TariffMapper();
         try (Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("SELECT * FROM tariff")) {
-            if(rs.next()){
+            if (rs.next()) {
                 return Optional.ofNullable(tariffMapper.extractFromResultSet(rs));
             }
         } catch (SQLException e) {
@@ -40,7 +40,26 @@ public class JDBCTariffDao implements TariffDao {
 
     @Override
     public boolean updateTariff(Tariff tariff) {
-        return false;
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE tariff set uah_per_kg_weight=?" +
+                ", uah_per_km_distance = ?" +
+                ", uah_per_mm_height = ?" +
+                ", uah_per_mm_length = ?" +
+                ", uah_per_mm_width = ?" +
+                ", additional= ? where tariff_id = ?")) {
+            int counter = 1;
+            ps.setFloat(counter++, tariff.getUahPerKilogramWeight());
+            ps.setFloat(counter++, tariff.getUahPerKilometerDistance());
+            ps.setFloat(counter++, tariff.getUahPerMillimeterHeight());
+            ps.setFloat(counter++, tariff.getUahPerMillimeterLength());
+            ps.setFloat(counter++, tariff.getUahPerMillimeterWidth());
+            ps.setFloat(counter++, tariff.getAdditional());
+            ps.setLong(counter, tariff.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            return false;
+        }
     }
 
     @Override

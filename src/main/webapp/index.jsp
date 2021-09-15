@@ -87,7 +87,9 @@
                         <div class="col">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">
                                 <div class="card card-body">
-                                    Tariff is ...
+                                    Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,
+                                    ${tariff.uahPerMillimeterWidth} uah/mm width,
+                                    + additional ${tariff.additional} uah etc...
                                 </div>
                             </div>
                         </div>

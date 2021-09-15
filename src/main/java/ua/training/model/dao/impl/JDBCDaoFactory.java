@@ -35,6 +35,11 @@ public class JDBCDaoFactory extends DaoFactory {
         return new JDBCTariffDao(getConnection());
     }
 
+    @Override
+    public ReceiptDao createReceiptDao() {
+        return new JDBCReceiptDao(getConnection());
+    }
+
     public Connection getConnection(){
         try {
             return dataSource.getConnection();
