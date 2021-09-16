@@ -40,15 +40,10 @@ public class Demo {
                 .build();
 
         DaoFactory daoFactory = DaoFactory.getInstance();
-        OrderDao orderDao = daoFactory.createOrderDao();
-      orderDao.findSortedUserOrdersFromIndex(User.builder().id(2).build(), "id ",0, 2)
-              .forEach(s -> System.out.println(s.getId() +" --> " + s.getCityTo().getName()));
-        System.out.println("=====================================================================");
-      orderDao.findSortedUserOrdersFromIndex(User.builder().id(2).build(), "idDesc",0, 2)
-              .forEach(s -> System.out.println(s.getId() +" --> " + s.getCityTo().getName()));
-
-
-
+        ReceiptDao receiptDao = daoFactory.createReceiptDao();
+        Receipt receipt = receiptDao.findById(2).get();
+        System.out.println(receipt);
+        System.out.println(receiptDao.userPaysReceipt(user, receipt));
 
 
     }

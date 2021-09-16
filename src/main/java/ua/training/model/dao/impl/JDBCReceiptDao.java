@@ -68,11 +68,6 @@ public class JDBCReceiptDao implements ReceiptDao {
     }
 
     @Override
-    public void close() {
-
-    }
-
-    @Override
     public List<Receipt> findUserReceipts(User user) {
         try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM receipt left join `order` o on o.id = receipt.order_id where o.user_sender = ?")) {
             ps.setLong(1, user.getId());
@@ -80,6 +75,26 @@ public class JDBCReceiptDao implements ReceiptDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
             return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public boolean userPaysReceipt(User user, Receipt receipt) {
+        try (PreparedStatement paymentStatement = connection.prepareStatement("UPDATE user, `order`, receipt set paid = 1, balance = balance - ?" +
+                ", order_status = ? where user_id = `order`.user_sender and `order`.id = receipt.order_id and user_id=? and receipt.id =?")) {
+            connection.setAutoCommit(false);
+            int counter = 1;
+            paymentStatement.setBigDecimal(counter++,receipt.getPrice());
+            paymentStatement.setString(counter++,Order.OrderStatus.PARCEL_DELIVERY.toString());
+            paymentStatement.setLong(counter++,user.getId());
+            paymentStatement.setLong(counter,receipt.getId());
+            paymentStatement.executeUpdate();
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            rollback(connection);
+            return false;
         }
     }
 
@@ -92,5 +107,14 @@ public class JDBCReceiptDao implements ReceiptDao {
             }
         }
         return list;
+    }
+
+    @Override
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+        }
     }
 }

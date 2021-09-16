@@ -42,7 +42,7 @@
                             <td>
                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        data-bs-id="${receipt.id}">
+                                        data-bs-id="${receipt}">
                                     Pay
                                 </button>
                             </td>
@@ -68,7 +68,7 @@
                     <div class="mb-3">
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" class="form-control" id="exId-name" name="exId">
+                        <input type="hidden" class="form-control" id="exId-name" name="paidReceipt">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary"><fmt:message key="confirm"/></button>

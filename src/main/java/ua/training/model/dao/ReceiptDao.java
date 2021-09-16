@@ -8,4 +8,6 @@ import java.util.List;
 public interface ReceiptDao extends GenericDao<Receipt> {
 
     List<Receipt> findUserReceipts(User user);
+
+    boolean userPaysReceipt(User user, Receipt receipt);
 }
