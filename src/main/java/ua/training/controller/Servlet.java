@@ -32,6 +32,7 @@ public class Servlet extends HttpServlet {
         commands.put("user/userOrders", new UserOrdersCommand(new OrderServiceImpl()));
         commands.put("user/userReceipts", new UserReceiptsCommand(new ReceiptServiceImpl()));
         commands.put("user/userOrderView", new OrderViewCommand(new OrderServiceImpl()));
+        commands.put("user/userMain", new UserMainCommand());
         commands.put("user/userPayReceipt", new PayReceiptCommand(new ReceiptServiceImpl(), new UserServiceImpl()));
         commands.put("changeBalance", new BalanceReplenishmentCommand(new UserServiceImpl()));
         commands.put("manager/managerClientList", new ClientListCommand(new UserServiceImpl()));

@@ -80,6 +80,7 @@
                     </div>
 
                     <h3 class="display-4">${calculatedValue}</h3>
+                    ${calculatedValue = null}
                     <p>
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
                            aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>

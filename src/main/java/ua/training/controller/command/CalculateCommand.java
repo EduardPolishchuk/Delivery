@@ -22,10 +22,10 @@ public class CalculateCommand implements Command {
     public String execute(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(USER_PROFILE);
         String returnPage;
-        if(user == null || User.Role.USER.equals(user.getRole())){
+        if(user == null || !User.Role.USER.equals(user.getRole())){
             returnPage = INDEX_JSP;
         }else {
-            returnPage = Constants.USER_MAIN_JSP;
+            returnPage = USER_MAIN_JSP;
         }
         long cityFromId = Long.parseLong(request.getParameter("cityFrom"));
         long cityToId = Long.parseLong(request.getParameter("cityTo"));

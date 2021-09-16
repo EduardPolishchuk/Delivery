@@ -75,14 +75,15 @@
 
                     <div class="row g-3 mb-3">
                         <div class="col">
-                            <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
+                            <button form="form2" name="action" value="calculate" type="submit" class="btn btn-primary">Calculate</button>
                         </div>
                         <div class="col">
-                            <button  type="submit" class="btn btn-primary">Order</button>
+                            <button form="form2" type="submit" name="action" value="makeOrder" class="btn btn-primary">Order</button>
                         </div>
                     </div>
 
                     <h3 class="display-4">${calculatedValue}</h3>
+                    ${calculatedValue = null}
                     <p>
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
                            aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
