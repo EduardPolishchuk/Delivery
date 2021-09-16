@@ -1,12 +1,14 @@
 package ua.training.controller.command;
 
+import ua.training.constants.Constants;
 import ua.training.model.entity.City;
+import ua.training.model.entity.User;
 import ua.training.model.service.CityService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-import static ua.training.constants.Constants.INDEX_JSP;
+import static ua.training.constants.Constants.*;
 
 public class CalculateCommand implements Command {
 
@@ -18,6 +20,13 @@ public class CalculateCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute(USER_PROFILE);
+        String returnPage;
+        if(user == null || User.Role.USER.equals(user.getRole())){
+            returnPage = INDEX_JSP;
+        }else {
+            returnPage = Constants.USER_MAIN_JSP;
+        }
         long cityFromId = Long.parseLong(request.getParameter("cityFrom"));
         long cityToId = Long.parseLong(request.getParameter("cityTo"));
 
@@ -26,7 +35,7 @@ public class CalculateCommand implements Command {
 
         if (cityFromId == cityToId) {
             request.getSession().setAttribute("calculatedValue", "SAME CITIES!");
-            return INDEX_JSP;
+            return returnPage;
         }
 
         Optional<City> op1 = cityService.findById(cityFromId);
@@ -38,7 +47,7 @@ public class CalculateCommand implements Command {
             request.getSession().setAttribute("calculatedValue", "ERROR: cannot find the city, please, refresh the page");
         }
 
-        return INDEX_JSP;
+        return returnPage;
     }
 
     public static float distFrom(City cityFrom, City cityTo) {

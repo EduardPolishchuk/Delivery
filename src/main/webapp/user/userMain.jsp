@@ -9,10 +9,10 @@
 <html>
 <head>
     <title>Delivery Service</title>
-    <jsp:include page="WEB-INF/common/windowstyle.jsp"/>
+    <jsp:include page="/WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body>
-<jsp:include page="WEB-INF/common/header2.jsp"/>
+<jsp:include page="/WEB-INF/common/header2.jsp"/>
 <h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">Delivery Service</h2>
 <div class="container justify-content-center w-75 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
@@ -20,8 +20,8 @@
             <div class="card shadow-sm">
                 <div class="card-body">
 
-                    <form id="form2" action="${pageContext.request.contextPath}/calculate">
-                        <h4 class="display-5 text-center" style="align-content: center">Calculate the cost</h4>
+                    <form id="form2" action="${pageContext.request.contextPath}/user/userMain">
+                        <h4 class="display-5 text-center" style="align-content: center">Make an order</h4>
                         <hr>
                         <h5 class="display-7" style="align-content: center">Parcel parameters</h5>
                         <div class="row g-3 mb-3">
@@ -77,6 +77,9 @@
                         <div class="col">
                             <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
                         </div>
+                        <div class="col">
+                            <button  type="submit" class="btn btn-primary">Order</button>
+                        </div>
                     </div>
 
                     <h3 class="display-4">${calculatedValue}</h3>
@@ -100,7 +103,8 @@
         </div>
     </div>
 </div>
-<jsp:include page="WEB-INF/common/footer.jsp"/>
+
+<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </body>
 
 </html>

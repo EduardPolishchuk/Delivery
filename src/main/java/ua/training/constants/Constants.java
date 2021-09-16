@@ -36,4 +36,6 @@ public class Constants {
     public static final String PAGE = "page";
     public static final String NO_OF_PAGES = "noOfPages";
     public static final String USER_ID = "userID";
+    public static final String USER_ORDER_VIEW_JSP = "/user/userOrderView.jsp";
+    public static final String USER_MAIN_JSP = "/user/userMain.jsp";
 }

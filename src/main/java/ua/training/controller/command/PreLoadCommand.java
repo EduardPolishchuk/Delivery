@@ -3,6 +3,7 @@ package ua.training.controller.command;
 
 import ua.training.model.entity.City;
 import ua.training.model.entity.Tariff;
+import ua.training.model.entity.User;
 import ua.training.model.service.CityService;
 import ua.training.model.service.TariffService;
 
@@ -13,8 +14,6 @@ import java.util.Optional;
 import static ua.training.constants.Constants.*;
 
 public class PreLoadCommand implements Command {
-    public static final int RECORDS_PER_PAGE = 3;
-    public static final String CURRENT_PAGE_NUMBER = "currentPage";
     private final CityService cityService;
     private final TariffService tariffService;
 
@@ -25,13 +24,16 @@ public class PreLoadCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute(USER_PROFILE);
         List<City> list = cityService.findAll();
         Optional<Tariff> ops = tariffService.getTariff();
         if (ops.isPresent()) {
             request.getSession().setAttribute("tariff", ops.get());
         }
         request.getSession().setAttribute("cityList", list);
-
-        return INDEX_JSP;
+        if (user == null || !User.Role.USER.equals(user.getRole())) {
+            return  INDEX_JSP;
+        }
+        return  "/user/userMain.jsp";
     }
 }

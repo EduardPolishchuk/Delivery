@@ -10,7 +10,7 @@
 <fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
-    <title>MyEvents</title>
+    <title>MyReceipts</title>
     <jsp:include page="/WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body style="background-color: black">
@@ -35,7 +35,7 @@
                         <tr>
                             <td><strong>${receipt.id}</strong></td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}"
+                                <a href="${pageContext.request.contextPath}/user/userOrderView"
                                    style="color: black"><strong>Order Link</strong></a></td>
                             <td>${receipt.price} </td>
                             <td>${receipt.paid ? 'paid' : 'not paid'} </td>
@@ -43,7 +43,8 @@
                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-bs-id="${receipt.id}" data-bs-price="${receipt.price}"
-                                        data-bs-orderId="${receipt.order.id}" ${userProfile.balance - receipt.price < 0 ? 'disabled' : ''}> Pay
+                                        data-bs-orderId="${receipt.order.id}" ${userProfile.balance - receipt.price < 0 ? 'disabled' : ''}>
+                                    Pay
                                 </button>
                             </td>
                         </tr>
@@ -63,8 +64,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="${pageContext.request.contextPath}/user/userPayReceipt" class="row g-3 needs-validation"
-                >
+                <form action="${pageContext.request.contextPath}/user/userPayReceipt" class="row g-3 needs-validation">
                     <div class="mb-3">
                     </div>
                     <div class="mb-3">

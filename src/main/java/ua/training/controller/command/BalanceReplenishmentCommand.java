@@ -28,6 +28,7 @@ public class BalanceReplenishmentCommand implements Command {
                 throw new NumberFormatException();
             }
             user.setBalance(userService.balanceReplenishment(value, user));
+            request.getSession().setAttribute(USER_PROFILE, user);
         } catch (NumberFormatException e) {
             logger.log(Level.ERROR, e.getMessage());
             return REDIRECT_HOME;
