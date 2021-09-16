@@ -6,6 +6,7 @@
 <c:set var="language"
        value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
        scope="session"/>
+<c:set var="counter" value="1"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="locale/resources"/>
 <html>
@@ -24,16 +25,18 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Receipt ID</th>
+                            <th scope="col">#</th>
                             <th scope="col">Order</th>
                             <th scope="col">Price</th>
                             <th scope="col">Payment</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="receipt" items="${userReceipts}">
                         <tr>
-                            <td><strong>${receipt.id}</strong></td>
+                            <td>${counter}</td>
+                                <c:set var="counter" value="${counter + 1}"/>
                             <td>
                                 <a href="${pageContext.request.contextPath}/user/userOrderView"
                                    style="color: black"><strong>Order Link</strong></a></td>
@@ -48,6 +51,7 @@
                                 </button>
                             </td>
                         </tr>
+
                         </c:forEach>
                 </div>
             </div>
