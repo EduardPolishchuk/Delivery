@@ -1,6 +1,7 @@
 package ua.training.controller.command;
 
 import ua.training.model.entity.Order;
+import ua.training.model.entity.User;
 import ua.training.model.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import static ua.training.constants.Constants.*;
 
 public class UserOrdersCommand implements Command{
 
+    public static final int RECORDS_PER_PAGE = 3;
+    public static final String CURRENT_PAGE_NUMBER = "currentPage";
     private final OrderService orderService;
 
     public UserOrdersCommand(OrderService orderService) {
@@ -19,6 +22,27 @@ public class UserOrdersCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("userProfile");
+        long page = 1;
+        String sortBy = request.getParameter(SORT_BY);
+        if (sortBy == null ) {
+            sortBy = "";
+        }
+        if (request.getParameter(PAGE) != null && !request.getParameter(SORT_BY).isEmpty()) {
+            page = Integer.parseInt(request.getParameter(PAGE));
+        }
+        List<Order> list = orderService.findSortedUserOrdersFromIndex(user, sortBy, (page - 1) * RECORDS_PER_PAGE,
+                RECORDS_PER_PAGE);
+        if (list.isEmpty()) {
+            return INDEX_JSP;
+        }
+        long noOfRecords = orderService.getRowsNumber();
+        long noOfPages = (long) Math.ceil(noOfRecords * 1.0 / RECORDS_PER_PAGE);
+        request.setAttribute(EXPO_LIST, list);
+        request.setAttribute(NO_OF_PAGES, noOfPages);
+        request.setAttribute(CURRENT_PAGE_NUMBER, page);
+        request.setAttribute(SORT_BY, sortBy);
+
         request.getSession().setAttribute("userOrders" ,orderService.findAll());
         return USER_USERBASIS_JSP;
     }

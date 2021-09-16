@@ -53,7 +53,5 @@ Esrc/test/java/ua/training/model/service/impl/UserServiceImplTest.java,1\f\1f45
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 h
 8src/main/java/ua/training/model/service/CityService.java,7\d\7d79a5afcd120d8c01b84dbf8f0d642d1bdaa6d9
-r
-Bsrc/main/java/ua/training/controller/validator/OrderValidator.java,a\7\a79c01d62cdf864c47762a4ab7e96a4d5659ba3a
 h
 8src/main/java/ua/training/model/service/UserService.java,8\8\885a70e9fd915429775c1fcb94b1a3ffa7e864cc

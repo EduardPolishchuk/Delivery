@@ -17,32 +17,6 @@
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
 <h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Orders</h2>
 
-<div class="row " style="align-self: center">
-    <div class="col">
-        <form>
-            <div class="btn-group justify-content-center" role="group">
-                <input type="submit" class="btn-check" name="sortBy" value="${param.sortBy eq 3? '': 3}"
-                       id="btnradio1" autocomplete="off">
-                <label class="btn btn-primary ${param.sortBy == '3'? 'active':''}" for="btnradio1"><fmt:message
-                        key="theme"/> </label>
-
-                <input type="submit" class="btn-check active" name="sortBy" value="${param.sortBy eq 2? '': 2}"
-                       id="btnradio2"
-                       autocomplete="off">
-                <label class="btn btn-primary ${param.sortBy == '2'? 'active':''}" for="btnradio2"><fmt:message
-                        key="date"/></label>
-
-                <input type="submit" class="btn-check" name="sortBy" value="${param.sortBy eq 4? '': 4}"
-                       id="btnradio3" autocomplete="off">
-                <label class="btn btn-primary ${param.sortBy == '4'? 'active':''}" for="btnradio3"><fmt:message
-                        key="price"/></label>
-            </div>
-            <c:if test="${not empty param.canceled}">
-                <input type="hidden" name="canceled" value="${param.canceled}">
-            </c:if>
-        </form>
-    </div>
-</div>
 <div class="container justify-content-center  ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
         <div class="col ">
@@ -51,17 +25,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col"> <a  href="?sortBy=1" style="color: black"><strong>Order</strong></a></th>
-                            <th scope="col">Request Date</th>
-                            <th scope="col">Receiving Date</th>
-                            <th scope="col">City From</th>
-                            <th scope="col">City To</th>
-                            <th scope="col">Status</th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'orderId'? 'orderIdDesc':'orderId' }" style="color: black">Order ID</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'receiveDate'? 'receiveDateDesc':'receiveDate' }" style="color: black">Receiving Date</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }" style="color: black">City From</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }" style="color: black">City To</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'status'? 'statusDesc':'status' }" style="color: black">Status</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'type'? 'typeDesc':'type' }" style="color: black">Type</a></th>
                             <th scope="col">Length</th>
                             <th scope="col">Width</th>
                             <th scope="col">Height</th>
                             <th scope="col">Weight</th>
-                            <th scope="col">Type</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,11 +48,11 @@
                             <td>${order.cityFrom.name}</td>
                             <td>${order.cityTo.name}</td>
                             <td>${order.status}</td>
+                            <td>${order.parcel.type}</td>
                             <td>${order.parcel.length} mm</td>
                             <td>${order.parcel.width} mm</td>
                             <td>${order.parcel.height} mm</td>
                             <td>${order.parcel.weight} kg</td>
-                            <td>${order.parcel.type}</td>
                         </tr>
                         </c:forEach>
                 </div>

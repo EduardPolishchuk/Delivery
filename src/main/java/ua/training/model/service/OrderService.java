@@ -1,6 +1,7 @@
 package ua.training.model.service;
 
 import ua.training.model.entity.Order;
+import ua.training.model.entity.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +15,8 @@ public interface OrderService {
     boolean update(Order order);
 
     List<Order> findAll();
+
+    List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount);
+
+    long getRowsNumber();
 }

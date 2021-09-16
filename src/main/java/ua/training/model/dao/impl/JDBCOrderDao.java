@@ -105,6 +105,45 @@ public class JDBCOrderDao implements OrderDao {
         }
     }
 
+
+    @Override
+    public List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int limit) {
+        StringBuilder orderBy = new StringBuilder();
+        switch (sortBy) {
+            case "requestDate":
+                orderBy.append("request_date");
+                break;
+            case "receiveDate":
+                orderBy.append("receive_date");
+                break;
+            default:
+                orderBy.append("id");
+                break;
+        }
+        if(sortBy.contains("Desc")){
+            orderBy.append(" Desc");
+        }
+        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
+                "FROM `order`\n" +
+                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
+                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
+                "         LEFT JOIN role user_role on role = user_role.id\n" +
+                "         left join city city_from on city_from.id = `order`.city_from\n" +
+                "         left join city city_to on city_to.id = `order`.city_to where user_sender =?" +
+                " ORDER BY ? LIMIT ? OFFSET ?"
+        )) {
+            int counter = 1;
+            psOrder.setLong(counter++, user.getId());
+            psOrder.setString(counter++, orderBy.toString());
+            psOrder.setLong(counter++, limit);
+            psOrder.setLong(counter, startIndex);
+            return getOrderListByPreparedStatement(psOrder);
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
     @Override
     public List<Order> findUserOrders(User user) {
         try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
@@ -121,6 +160,20 @@ public class JDBCOrderDao implements OrderDao {
             logger.log(Level.ERROR, e.getMessage());
             return new ArrayList<>();
         }
+    }
+
+    @Override
+    public long getRowsNumber() {
+        long rows = 0;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(1) from `order`")) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                rows = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+        }
+        return rows;
     }
 
     @Override

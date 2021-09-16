@@ -3,6 +3,7 @@ package ua.training.model.service.impl;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.OrderDao;
 import ua.training.model.entity.Order;
+import ua.training.model.entity.User;
 import ua.training.model.service.OrderService;
 
 import java.util.List;
@@ -39,4 +40,18 @@ public class OrderServiceImpl implements OrderService {
             return orderDao.findAll();
         }
     }
+
+    @Override
+    public List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount) {
+        try(OrderDao orderDao = daoFactory.createOrderDao()){
+            return orderDao.findSortedUserOrdersFromIndex(user, sortBy, startIndex, amount);
+        }
+    }
+
+    @Override
+    public long getRowsNumber() {
+        return 0;
+    }
+
+
 }

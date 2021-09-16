@@ -43,8 +43,9 @@ public class Demo {
 
         DaoFactory daoFactory = DaoFactory.getInstance();
         OrderDao orderDao = daoFactory.createOrderDao();
-        ReceiptDao receiptDao = daoFactory.createReceiptDao();
-        receiptDao.findAll().forEach(System.out::println);
+      orderDao.findSortedUserOrdersFromIndex(User.builder().id(2).build(), "id",0, 3)
+              .forEach(System.out::println);
+        System.out.println(orderDao.getRowsNumber());
 
 
     }

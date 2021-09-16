@@ -135,7 +135,7 @@ public class Order {
                 ", requestDate=" + requestDate +
                 ", id=" + id +
                 ",\nuserSender=" + userSender +
-                ",\nparcel=" + parcel +
+                ",\nparcelId=" + parcel +
                 ",\ncityTo=" + cityTo +
                 ",\ncityFrom=" + cityFrom +
                 ",\nprice=" + price +
