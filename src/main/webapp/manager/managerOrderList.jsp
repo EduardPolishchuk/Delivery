@@ -29,6 +29,7 @@
                             <th scope="col">#</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'orderId'? 'orderIdDesc':'orderId' }" style="color: black">Order ID</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
+                            <th scope="col">More Information</th>
                             <th scope="col">Confirming</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }" style="color: black">City From</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }" style="color: black">City To</a></th>
@@ -47,6 +48,13 @@
                             <c:set var="counter" value="${counter + 1}"/>
                             <td><strong>${order.id}</strong></td>
                             <td>${order.requestDate}</td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/manager/managerOrderView">
+                                    <button name="order" value="${order.id}" type="submit" class="btn btn-sm btn-outline-secondary">
+                                        Details
+                                    </button>
+                                </form>
+                            </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/manager/managerOrderView">
                                     <button name="order" value="${order.id}" type="submit" class="btn btn-sm btn-outline-secondary">

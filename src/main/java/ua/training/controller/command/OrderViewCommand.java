@@ -30,7 +30,7 @@ public class OrderViewCommand implements Command {
             Order order = orderService.findById(orderId).orElseThrow(NumberFormatException::new);
             request.getSession().setAttribute("order", order);
             return User.Role.USER.equals(user.getRole()) ? USER_ORDER_VIEW_JSP :
-                    "/manager/managerCreateReceipt.jsp";
+                    "/manager/managerOrderDetails.jsp";
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             LOGGER.log(Level.ERROR, e.getMessage());
             return new UserReceiptsCommand(new ReceiptServiceImpl()).execute(request);
