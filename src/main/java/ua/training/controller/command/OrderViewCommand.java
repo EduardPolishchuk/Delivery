@@ -1,11 +1,19 @@
 package ua.training.controller.command;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import ua.training.model.entity.Order;
 import ua.training.model.service.OrderService;
+import ua.training.model.service.impl.OrderServiceImpl;
+
 import javax.servlet.http.HttpServletRequest;
-import static ua.training.constants.Constants.*;
 
-public class OrderViewCommand implements Command{
+import static ua.training.constants.Constants.USER_ORDER_VIEW_JSP;
 
+public class OrderViewCommand implements Command {
+
+    private static final Logger LOGGER = LogManager.getLogger(OrderViewCommand.class);
     private OrderService orderService;
 
     public OrderViewCommand(OrderService orderService) {
@@ -14,6 +22,14 @@ public class OrderViewCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request) {
-        return USER_ORDER_VIEW_JSP;
+        try {
+            long orderId = Long.parseLong(request.getParameter("order"));
+            Order order = orderService.findById(orderId).orElseThrow(NumberFormatException::new);
+            request.getSession().setAttribute("order", order);
+            return USER_ORDER_VIEW_JSP;
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.ERROR, e.getMessage());
+            return new OrderListCommand(new OrderServiceImpl()).execute(request);
+        }
     }
 }

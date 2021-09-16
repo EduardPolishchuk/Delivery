@@ -29,7 +29,7 @@
                             <th scope="col">#</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'orderId'? 'orderIdDesc':'orderId' }" style="color: black">Order ID</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
-                            <th scope="col">Receipt</th>
+                            <th scope="col">Confirming</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }" style="color: black">City From</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }" style="color: black">City To</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'status'? 'statusDesc':'status' }" style="color: black">Status</a></th>

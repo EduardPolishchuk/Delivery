@@ -38,7 +38,7 @@
                             <td>${counter}</td>
                                 <c:set var="counter" value="${counter + 1}"/>
                             <td>
-                                <a href="${pageContext.request.contextPath}/user/userOrderView"
+                                <a href="${pageContext.request.contextPath}/user/userOrderView?order=${receipt.order.id}"
                                    style="color: black"><strong>Order Link</strong></a></td>
                             <td>${receipt.price} </td>
                             <td>${receipt.paid ? 'paid' : 'not paid'} </td>
