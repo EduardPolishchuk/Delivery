@@ -10,7 +10,7 @@
 <fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
-    <title>MyEvents</title>
+    <title>MyOrders</title>
     <jsp:include page="/WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body style="background-color: black">
@@ -23,8 +23,10 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <table class="table">
+                        <c:set var="counter" value="1"/>
                         <thead>
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'orderId'? 'orderIdDesc':'orderId' }" style="color: black">Order ID</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'receiveDate'? 'receiveDateDesc':'receiveDate' }" style="color: black">Receiving Date</a></th>
@@ -41,7 +43,8 @@
                         <tbody>
                         <c:forEach var="order" items="${userOrders}">
                         <tr>
-                                <%--                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
+                            <td>${counter}</td>
+                            <c:set var="counter" value="${counter + 1}"/>
                             <td><strong>${order.id}</strong></td>
                             <td>${order.requestDate}</td>
                             <td>${order.receivingDate}</td>

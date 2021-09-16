@@ -8,7 +8,7 @@
 <fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
-    <title>Delivery Service</title>
+    <title>UserMain</title>
     <jsp:include page="/WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body>
@@ -41,27 +41,27 @@
                             <div class="col">
                                 <label class="form-label">Length</label>
                                 <input name="length" value="${param.length}" type="number" min="1" class="form-control"
-                                       placeholder="mm">
+                                       placeholder="mm" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Width</label>
                                 <input name="width" value="${param.width}" type="number" min="1" class="form-control"
-                                       placeholder="mm">
+                                       placeholder="mm" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Height </label>
                                 <input name="height" value="${param.height}" type="number" min="1" class="form-control"
-                                       placeholder="mm">
+                                       placeholder="mm" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Weight </label>
                                 <input name="weight" value="${param.weight}" type="number" min="0,1"
-                                       class="form-control " placeholder="kg">
+                                       class="form-control " placeholder="kg" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Type</label>
-                                <input name="weight" value="${param.weight}" type="text"
-                                       class="form-control ">
+                                <input name="type" value="${param.weight}" type="text"
+                                       class="form-control " required>
                             </div>
                         </div>
                         <h5 class="display-7" style="align-content: center">Route</h5>
@@ -112,7 +112,10 @@
                                 <div class="card card-body">
                                     Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,
                                     ${tariff.uahPerMillimeterWidth} uah/mm width,
-                                    + additional ${tariff.additional} uah etc...
+                                    ${tariff.uahPerMillimeterHeight} uah/mm height,
+                                    ${tariff.uahPerMillimeterLength} uah/mm length,
+                                    ${tariff.uahPerKilogramWeight} uah/kg weight,
+                                    + additional ${tariff.additional} uah .
                                 </div>
                             </div>
                         </div>

@@ -56,7 +56,7 @@ public class JDBCOrderDao implements OrderDao {
             ps2.setLong(counter++, order.getUserSender().getId());
             ps2.setLong(counter++, order.getCityFrom().getId());
             ps2.setLong(counter++, order.getCityTo().getId());
-            ps2.setString(counter, order.getStatus().toString());
+            ps2.setString(counter, Order.OrderStatus.WAITING_FOR_CONFIRM.toString());
             ps2.executeUpdate();
             connection.commit();
             return true;

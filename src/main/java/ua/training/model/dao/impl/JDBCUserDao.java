@@ -79,7 +79,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role  on role.id = user.role")) {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role  on role.id = user.role where role_name = 'user'")) {
             ResultSet rs = ps.executeQuery();
             UserMapper userMapper = new UserMapper();
             while (rs.next()) {

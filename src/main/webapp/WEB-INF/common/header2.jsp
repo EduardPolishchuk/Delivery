@@ -42,8 +42,7 @@
                                class="nav-link px-2 text-white"><fmt:message key="myProfile"/></a></li>
                     </c:when>
                     <c:when test="${role == 'MANAGER'}">
-                        <li><a href="${pageContext.request.contextPath}/manager/managerbasis.jsp"
-                               class="nav-link px-2 text-white"><fmt:message key="addExhibition"/></a></li>
+
                         <li><a href="${pageContext.request.contextPath}/manager/managerClientList"
                                class="nav-link px-2 text-white"><fmt:message key="clientList"/></a></li>
                     </c:when>

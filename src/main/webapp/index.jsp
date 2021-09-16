@@ -91,7 +91,10 @@
                                 <div class="card card-body">
                                     Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,
                                     ${tariff.uahPerMillimeterWidth} uah/mm width,
-                                    + additional ${tariff.additional} uah etc...
+                                    ${tariff.uahPerMillimeterHeight} uah/mm height,
+                                    ${tariff.uahPerMillimeterLength} uah/mm length,
+                                    ${tariff.uahPerKilogramWeight} uah/kg weight,
+                                    + additional ${tariff.additional} uah .
                                 </div>
                             </div>
                         </div>

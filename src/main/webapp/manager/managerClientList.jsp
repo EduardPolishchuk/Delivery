@@ -21,10 +21,11 @@
         <div class="col ">
             <div class="card shadow-sm">
                 <div class="card-body">
-<%--                    <h3 class="display-4"><fmt:message key="visitorsList"/></h3>--%>
+                    <c:set var="counter" value="1"/>
                     <table class="table">
                         <thead>
                         <tr>
+                            <th scope="col"># </th>
                             <th scope="col"><fmt:message key="userName"/> </th>
                             <th scope="col"><fmt:message key="email"/></th>
                             <th scope="col"><fmt:message key="firstName"/></th>
@@ -34,7 +35,8 @@
                         <tbody>
                         <c:forEach var="order" items="${userList}">
                         <tr>
-<%--                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
+                     <td>${counter}</td>
+                            <c:set var="counter" value="${counter + 1}"/>
                             <td><strong>${order.login}</strong></td>
                             <td>${order.email}</td>
                             <td>${order.firstName}</td>
