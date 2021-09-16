@@ -28,12 +28,12 @@
                             <div class="col">
                                 <label class="form-label">First Name</label>
                                 <input   type="number" min="1" class="form-control"
-                                         placeholder="${userProfile.firstName}" disabled>
+                                         placeholder="${order.userSender.firstName}" disabled>
                             </div>
                             <div class="col">
                                 <label class="form-label">Last Name</label>
                                 <input   type="number" min="1" class="form-control"
-                                         placeholder="${userProfile.lastName}" disabled>
+                                         placeholder="${order.userSender.lastName}" disabled>
                             </div>
                         </div>
                         <h5 class="display-7" style="align-content: center">Parcel parameters</h5>

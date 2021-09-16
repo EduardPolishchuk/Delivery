@@ -46,7 +46,6 @@ public class OrderListCommand implements Command{
             noOfRecords = orderService.findOrdersForConfirmAmount();
             path = MANAGER_ORDER_LIST_JSP;
         }
-        System.out.println(list.size());
         noOfPages = (long) Math.ceil(noOfRecords * 1.0 / RECORDS_PER_PAGE);
         request.setAttribute("userOrders", list);
         request.setAttribute(NO_OF_PAGES, noOfPages);

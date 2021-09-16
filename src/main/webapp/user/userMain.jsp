@@ -99,9 +99,10 @@
                             </button>
                         </div>
                     </div>
-
-                    <h3 class="display-4">${calculatedValue}</h3>
-                    ${calculatedValue = null}
+                    <c:if test="${not empty calculatedValue}">
+                        <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
+                        ${calculatedValue = null}
+                    </c:if>
                     <p>
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
                            aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>

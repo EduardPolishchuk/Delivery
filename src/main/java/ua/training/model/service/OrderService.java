@@ -3,6 +3,7 @@ package ua.training.model.service;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,8 @@ public interface OrderService {
     List<Order> findSortedOrdersFromIndex( String sortBy, long startIndex, int amount);
 
     long findOrdersForConfirmAmount();
+
+    BigDecimal calculateOrderPrice(Order order);
 
     long findUserOrdersAmount(User user);
 }

@@ -26,7 +26,7 @@ public class Servlet extends HttpServlet {
         commands.put("test", new TestCommand());
         commands.put("login", new LoginCommand(new UserServiceImpl()));
         commands.put("singUp", new SignUpCommand(new UserServiceImpl(), new UserValidator()));
-        commands.put("calculate", new CalculateCommand(new CityServiceImpl()));
+        commands.put("calculate", new CalculateCommand(new CityServiceImpl(), new OrderServiceImpl()));
         commands.put("logout", new LogOutCommand());
         commands.put("user/userUpdate", new UpdateUserCommand(new UserServiceImpl(), new UserValidator()));
         commands.put("user/userOrders", new OrderListCommand(new OrderServiceImpl()));
@@ -37,6 +37,7 @@ public class Servlet extends HttpServlet {
         commands.put("changeBalance", new BalanceReplenishmentCommand(new UserServiceImpl()));
         commands.put("manager/managerClientList", new ClientListCommand(new UserServiceImpl()));
         commands.put("manager/managerOrderList", new OrderListCommand(new OrderServiceImpl()));
+        commands.put("manager/managerOrderView", new OrderViewCommand(new OrderServiceImpl()));
     }
 
     @Override

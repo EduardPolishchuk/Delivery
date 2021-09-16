@@ -29,25 +29,25 @@
                                 <label class="form-label">Length</label>
                                 <input name="length" value="${param.length}" type="number" min="1" class="form-control"
                                        placeholder="mm"
-                                       aria-label="First name">
+                                       aria-label="First name" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Width</label>
                                 <input name="width" value="${param.width}" type="number" min="1" class="form-control"
                                        placeholder="mm"
-                                       aria-label="Last name">
+                                       aria-label="Last name" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Height </label>
                                 <input name="height" value="${param.height}" type="number" min="1" class="form-control"
                                        placeholder="mm"
-                                       aria-label="Last name">
+                                       aria-label="Last name" required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Weight </label>
                                 <input name="weight" value="${param.weight}" type="number" min="0,1"
                                        class="form-control " placeholder="kg"
-                                       aria-label="Last name">
+                                       aria-label="Last name" required>
                             </div>
                         </div>
                         <h5 class="display-7" style="align-content: center">Route</h5>
@@ -78,9 +78,10 @@
                             <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
                         </div>
                     </div>
-
-                    <h3 class="display-4">${calculatedValue}</h3>
-                    ${calculatedValue = null}
+                    <c:if test="${not empty calculatedValue}">
+                        <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
+                        ${calculatedValue = null}
+                    </c:if>
                     <p>
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
                            aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>

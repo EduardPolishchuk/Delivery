@@ -48,12 +48,11 @@
                             <td><strong>${order.id}</strong></td>
                             <td>${order.requestDate}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-secondary"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        data-bs-id="${receipt.id}" data-bs-price="${receipt.price}"
-                                        data-bs-orderId="${receipt.order.id}" ${userProfile.balance - receipt.price < 0 ? 'disabled' : ''}>
-                                    Create Receipt
-                                </button>
+                                <form action="${pageContext.request.contextPath}/manager/managerOrderView">
+                                    <button name="order" value="${order.id}" type="submit" class="btn btn-sm btn-outline-secondary">
+                                        Send Receipt
+                                    </button>
+                                </form>
                             </td>
                             <td>${order.cityFrom.name}</td>
                             <td>${order.cityTo.name}</td>

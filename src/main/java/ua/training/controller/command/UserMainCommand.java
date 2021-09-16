@@ -13,6 +13,6 @@ public class UserMainCommand implements Command{
         if(request.getParameter("action").equals("makeOrder")){
             return new MakeOrderCommand(new OrderServiceImpl()).execute(request);
         }
-        return new CalculateCommand(new CityServiceImpl()).execute(request);
+        return new CalculateCommand(new CityServiceImpl(), new OrderServiceImpl()).execute(request);
     }
 }
