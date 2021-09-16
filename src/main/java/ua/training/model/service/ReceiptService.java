@@ -13,7 +13,9 @@ public interface ReceiptService {
 
     boolean update(Receipt receipt);
 
-    List<Receipt> findUserReceipts(User user);
+    List<Receipt> findUserReceipts(User user, boolean paid);
+
+    boolean userPaysReceipt(User user, Receipt receipt);
 
     List<Receipt> findAll();
 }

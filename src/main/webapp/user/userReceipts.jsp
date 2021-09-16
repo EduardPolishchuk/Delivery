@@ -42,8 +42,8 @@
                             <td>
                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        data-bs-id="${receipt}">
-                                    Pay
+                                        data-bs-id="${receipt.id}" data-bs-price="${receipt.price}"
+                                        data-bs-orderId="${receipt.order.id}" ${userProfile.balance - receipt.price < 0 ? 'disabled' : ''}> Pay
                                 </button>
                             </td>
                         </tr>
@@ -69,6 +69,8 @@
                     </div>
                     <div class="mb-3">
                         <input type="hidden" class="form-control" id="exId-name" name="paidReceipt">
+                        <input type="hidden" class="form-control" id="price" name="price">
+                        <input type="hidden" class="form-control" id="orderId" name="orderId">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary"><fmt:message key="confirm"/></button>
@@ -89,8 +91,14 @@
     exampleModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget
         var exId = button.getAttribute('data-bs-id')
+        var price = button.getAttribute('data-bs-price')
+        var orderId = button.getAttribute('data-bs-orderId')
         var modalBodyInput = exampleModal.querySelector('.modal-body input')
+        var modalBodyInput2 = exampleModal.querySelector('.modal-body #price')
+        var modalBodyInput3 = exampleModal.querySelector('.modal-body #orderId')
         modalBodyInput.value = exId
+        modalBodyInput2.value = price
+        modalBodyInput3.value = orderId
 
     })
 </script>

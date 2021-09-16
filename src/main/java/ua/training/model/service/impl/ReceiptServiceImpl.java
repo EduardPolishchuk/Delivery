@@ -35,9 +35,16 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public List<Receipt> findUserReceipts(User user) {
+    public List<Receipt> findUserReceipts(User user, boolean paid) {
         try(ReceiptDao receiptDao = daoFactory.createReceiptDao()){
-            return receiptDao.findUserReceipts(user);
+            return receiptDao.findUserReceipts(user, paid);
+        }
+    }
+
+    @Override
+    public boolean userPaysReceipt(User user, Receipt receipt) {
+        try(ReceiptDao receiptDao = daoFactory.createReceiptDao()){
+            return receiptDao.userPaysReceipt(user,receipt);
         }
     }
 

@@ -13,7 +13,7 @@ public class Demo {
     public static void main(String[] args) {
         User user = User.builder()
                 .password("123")
-                .balance(BigDecimal.valueOf(1000))
+                .balance(BigDecimal.valueOf(0))
                 .firstName("Alex")
                 .email("black@gmail.com")
                 .id(3)

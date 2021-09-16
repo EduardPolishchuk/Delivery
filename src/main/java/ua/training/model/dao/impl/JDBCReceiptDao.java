@@ -68,9 +68,10 @@ public class JDBCReceiptDao implements ReceiptDao {
     }
 
     @Override
-    public List<Receipt> findUserReceipts(User user) {
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM receipt left join `order` o on o.id = receipt.order_id where o.user_sender = ?")) {
+    public List<Receipt> findUserReceipts(User user, boolean paid) {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM receipt left join `order` o on o.id = receipt.order_id where o.user_sender = ? and paid = ?")) {
             ps.setLong(1, user.getId());
+            ps.setBoolean(2, paid);
             return getReceiptsByPreparedStatement(ps);
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -80,14 +81,14 @@ public class JDBCReceiptDao implements ReceiptDao {
 
     @Override
     public boolean userPaysReceipt(User user, Receipt receipt) {
-        try (PreparedStatement paymentStatement = connection.prepareStatement("UPDATE user, `order`, receipt set paid = 1, balance = balance - ?" +
+
+        try (PreparedStatement paymentStatement = connection.prepareStatement("UPDATE user, `order`, receipt set paid = 1, balance = balance - receipt.price" +
                 ", order_status = ? where user_id = `order`.user_sender and `order`.id = receipt.order_id and user_id=? and receipt.id =?")) {
             connection.setAutoCommit(false);
             int counter = 1;
-            paymentStatement.setBigDecimal(counter++,receipt.getPrice());
-            paymentStatement.setString(counter++,Order.OrderStatus.PARCEL_DELIVERY.toString());
-            paymentStatement.setLong(counter++,user.getId());
-            paymentStatement.setLong(counter,receipt.getId());
+            paymentStatement.setString(counter++, Order.OrderStatus.PARCEL_DELIVERY.toString());
+            paymentStatement.setLong(counter++, user.getId());
+            paymentStatement.setLong(counter, receipt.getId());
             paymentStatement.executeUpdate();
             connection.commit();
             return true;
