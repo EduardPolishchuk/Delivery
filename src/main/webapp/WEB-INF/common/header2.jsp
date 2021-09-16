@@ -46,6 +46,8 @@
                                class="nav-link px-2 text-white">Order List</a></li>
                         <li><a href="${pageContext.request.contextPath}/manager/managerClientList"
                                class="nav-link px-2 text-white"><fmt:message key="clientList"/></a></li>
+                        <li><a href="${pageContext.request.contextPath}/manager/managerTariffView"
+                               class="nav-link px-2 text-white">Change Tariff</a></li>
                     </c:when>
                 </c:choose>
             </ul>

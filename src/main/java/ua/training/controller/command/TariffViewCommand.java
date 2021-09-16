@@ -17,6 +17,6 @@ public class TariffViewCommand implements Command {
     public String execute(HttpServletRequest request) {
         request.getSession().setAttribute("tariff",
                 tariffService.getTariff().orElse(new Tariff()));
-        return "/manager/ChangeTariff.jsp";
+        return "/manager/managerChangeTariff.jsp";
     }
 }

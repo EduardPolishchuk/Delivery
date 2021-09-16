@@ -8,6 +8,7 @@
        scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="locale/resources"/>
+<c:set var="vari" value="${not empty param.edit ? null : 'disabled'}" scope="session"/>
 <html>
 <head>
     <title>OrderView</title>
@@ -21,64 +22,61 @@
         <div class="col ">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form id="form2" action="${pageContext.request.contextPath}/user/userMain">
+                    <form id="form2" action="${pageContext.request.contextPath}/manager/managerChangeTariff">
                         <hr>
-                        <h5 class="display-7" style="align-content: center">Sender</h5>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">First Name</label>
-                                <input   type="number" min="1" class="form-control"
-                                         placeholder="${order.userSender.firstName}" disabled>
+                                <label class="form-label">Weight Uah/kg</label>
+                                <input type="number" min="0" class="form-control" value="${tariff.uahPerKilogramWeight}"
+                                ${vari} required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Last Name</label>
-                                <input   type="number" min="1" class="form-control"
-                                         placeholder="${order.userSender.lastName}" disabled>
+                                <label class="form-label">Distance Uah/km</label>
+                                <input type="number" min="0" class="form-control"
+                                       value="${tariff.uahPerKilometerDistance}"
+                                ${vari}
+                                       required>
                             </div>
                         </div>
-                        <h5 class="display-7" style="align-content: center">Parcel parameters</h5>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Length</label>
-                                <input name="length" value="${order.parcel.length}" type="number" min="1" class="form-control"
-                                       placeholder="mm" disabled>
+                                <label class="form-label">Length Uah/mm</label>
+                                <input name="length" min="0" value="${tariff.uahPerMillimeterLength}" type="number"
+                                       min="1"
+                                       class="form-control"
+                                ${vari}
+                                       required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Width</label>
-                                <input name="width" value="${order.parcel.width}" type="number" min="1" class="form-control"
-                                       placeholder="mm" disabled>
+                                <label class="form-label">Height Uah/mm</label>
+                                <input name="length " min="0" value="${tariff.uahPerMillimeterHeight}" type="number"
+                                       min="1"
+                                       class="form-control"
+                                ${vari}
+                                       required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Height </label>
-                                <input name="height" value="${order.parcel.height}" type="number" min="1" class="form-control"
-                                       placeholder="mm" disabled>
+                                <label class="form-label">Width Uah/mm</label>
+                                <input name="length" min="0" value="${tariff.uahPerMillimeterWidth}" type="number"
+                                       min="1"
+                                       class="form-control"
+                                ${vari}
+                                       required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Weight </label>
-                                <input name="weight" value="${order.parcel.weight}" type="number" min="0,1"
-                                       class="form-control " placeholder="kg" disabled>
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Type</label>
-                                <input name="type" value="${order.parcel.type}" type="text"
-                                       class="form-control " disabled>
-                            </div>
-                        </div>
-                        <h5 class="display-7" style="align-content: center">Route</h5>
-                        <div class="row g-3 mb-3">
-                            <div class="col">
-                                <label class="form-label">City From</label>
-                                <input name="type" value="${order.cityTo.name}" type="text"
-                                       class="form-control " disabled>
-                            </div>
-                            <div class="col">
-                                <label class="form-label">City To</label>
-                                <input name="type" value="${order.cityFrom.name}" type="text"
-                                       class="form-control " disabled>
+                                <label class="form-label">Additional Uah</label>
+                                <input name="length" min="0" value="${tariff.additional}" type="number" min="1"
+                                       class="form-control"
+                                ${vari}
+                                       required>
                             </div>
                         </div>
                         <hr>
-
+                        <button type="submit" class="btn btn-primary"  ${vari}><fmt:message key="update"/></button>
+                    </form>
+                    <form action="">
+                        <button type="submit" class="btn btn-dark" name="edit" value="${vari != null  ? '1' : null}">
+                            <fmt:message key="edit"/></button>
                     </form>
                 </div>
             </div>
