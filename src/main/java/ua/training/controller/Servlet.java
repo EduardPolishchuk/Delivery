@@ -29,13 +29,14 @@ public class Servlet extends HttpServlet {
         commands.put("calculate", new CalculateCommand(new CityServiceImpl()));
         commands.put("logout", new LogOutCommand());
         commands.put("user/userUpdate", new UpdateUserCommand(new UserServiceImpl(), new UserValidator()));
-        commands.put("user/userOrders", new UserOrdersCommand(new OrderServiceImpl()));
+        commands.put("user/userOrders", new OrderListCommand(new OrderServiceImpl()));
         commands.put("user/userReceipts", new UserReceiptsCommand(new ReceiptServiceImpl()));
         commands.put("user/userOrderView", new OrderViewCommand(new OrderServiceImpl()));
         commands.put("user/userMain", new UserMainCommand());
         commands.put("user/userPayReceipt", new PayReceiptCommand(new ReceiptServiceImpl(), new UserServiceImpl()));
         commands.put("changeBalance", new BalanceReplenishmentCommand(new UserServiceImpl()));
         commands.put("manager/managerClientList", new ClientListCommand(new UserServiceImpl()));
+        commands.put("manager/managerOrderList", new OrderListCommand(new OrderServiceImpl()));
     }
 
     @Override

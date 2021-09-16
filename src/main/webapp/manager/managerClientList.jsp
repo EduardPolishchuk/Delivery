@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <title>Clients List</title>
+    <title>ClientList</title>
     <jsp:include page="/WEB-INF/common/windowstyle.jsp"/>
 
 </head>

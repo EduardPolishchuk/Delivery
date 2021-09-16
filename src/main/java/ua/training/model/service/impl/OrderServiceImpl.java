@@ -49,9 +49,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public long findOrderAmount() {
+    public List<Order> findSortedOrdersFromIndex(String sortBy, long startIndex, int amount) {
         try(OrderDao orderDao = daoFactory.createOrderDao()){
-            return orderDao.findOrdersAmount();
+            return orderDao.findSortedOrdersFromIndex( sortBy, startIndex, amount);
+        }
+    }
+
+    @Override
+    public long findOrdersForConfirmAmount() {
+        try(OrderDao orderDao = daoFactory.createOrderDao()){
+            return orderDao.findOrdersForConfirmAmount();
         }
     }
 

@@ -42,7 +42,8 @@
                                class="nav-link px-2 text-white"><fmt:message key="myProfile"/></a></li>
                     </c:when>
                     <c:when test="${role == 'MANAGER'}">
-
+                        <li><a href="${pageContext.request.contextPath}/manager/managerOrderList"
+                               class="nav-link px-2 text-white">Order List</a></li>
                         <li><a href="${pageContext.request.contextPath}/manager/managerClientList"
                                class="nav-link px-2 text-white"><fmt:message key="clientList"/></a></li>
                     </c:when>
@@ -51,7 +52,7 @@
                       <c:choose>
                 <c:when test="${role == 'USER' || role == 'MANAGER'}">
                     <c:if test="${role == 'MANAGER'}">
-                        <h6 class="display-11" style="color: aliceblue"><fmt:message key="admin"/></h6><br>
+                        <h6 class="display-11" style="color: aliceblue"><fmt:message key="manager"/></h6><br>
                     </c:if>
                     <h5 class="display-6 col-lg-auto  mb-lg-0 me-lg-2" style="color: aliceblue">${userProfile.login}
                     </h5>

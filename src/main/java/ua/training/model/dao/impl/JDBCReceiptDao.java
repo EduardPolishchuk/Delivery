@@ -48,8 +48,29 @@ public class JDBCReceiptDao implements ReceiptDao {
     }
 
     @Override
-    public boolean create(Receipt entity) {
-        return false;
+    public boolean create(Receipt receipt) {
+        try (PreparedStatement insertReceipt = connection.prepareStatement("INSERT INTO receipt (price, paid, order_id)" +
+                " VALUES (?,?,?)");
+             PreparedStatement updateOrder = connection.prepareStatement("UPDATE `order` set order_status = ? where id = ?")) {
+
+            connection.setAutoCommit(false);
+            int counter = 1;
+            insertReceipt.setBigDecimal(counter++, receipt.getPrice());
+            insertReceipt.setBoolean(counter++, receipt.isPaid());
+            insertReceipt.setLong(counter, receipt.getOrder().getId());
+            counter = 1;
+            updateOrder.setString(counter++, Order.OrderStatus.WAITING_FOR_PAYMENT.toString());
+            updateOrder.setLong(counter, receipt.getOrder().getId());
+            insertReceipt.executeUpdate();
+            updateOrder.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(true);
+            return true;
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            rollback(connection);
+            return false;
+        }
     }
 
     @Override

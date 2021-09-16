@@ -38,4 +38,5 @@ public class Constants {
     public static final String USER_ID = "userID";
     public static final String USER_ORDER_VIEW_JSP = "/user/userOrderView.jsp";
     public static final String USER_MAIN_JSP = "/user/userMain.jsp";
+    public static final String MANAGER_ORDER_LIST_JSP = "/manager/managerOrderList.jsp";
 }

@@ -49,7 +49,7 @@ public class MakeOrderCommand implements Command {
                     .cityTo(City.builder().id(cityToId).build())
                     .cityFrom(City.builder().id(cityToFromId).build())
                     .build();
-            System.out.println(orderService.create(order));
+           orderService.create(order);
         } catch (NumberFormatException e) {
             logger.log(Level.ERROR, e.getMessage());
             return USER_MAIN_JSP;

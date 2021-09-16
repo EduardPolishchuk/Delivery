@@ -9,9 +9,11 @@ public interface OrderDao extends GenericDao<Order>{
 
     List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount);
 
+    List<Order> findSortedOrdersFromIndex( String sortBy, long startIndex, int amount);
+
     List<Order> findUserOrders(User user);
 
-    long findOrdersAmount();
+    long findOrdersForConfirmAmount();
 
     long findUserOrdersAmount(User user);
 
