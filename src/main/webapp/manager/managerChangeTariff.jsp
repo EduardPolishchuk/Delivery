@@ -27,12 +27,13 @@
                         <div class="row g-3 mb-3">
                             <div class="col">
                                 <label class="form-label">Weight Uah/kg</label>
-                                <input type="number" min="0" class="form-control" value="${tariff.uahPerKilogramWeight}"
+                                <input name="weightMulti" type="number" min="0" step="0.1" class="form-control"
+                                       value="${tariff.uahPerKilogramWeight}"
                                 ${vari} required>
                             </div>
                             <div class="col">
                                 <label class="form-label">Distance Uah/km</label>
-                                <input type="number" min="0" class="form-control"
+                                <input name="distanceMulti" type="number" min="0" step="0.1" class="form-control"
                                        value="${tariff.uahPerKilometerDistance}"
                                 ${vari}
                                        required>
@@ -41,7 +42,8 @@
                         <div class="row g-3 mb-3">
                             <div class="col">
                                 <label class="form-label">Length Uah/mm</label>
-                                <input name="length" min="0" value="${tariff.uahPerMillimeterLength}" type="number"
+                                <input name="lengthMulti" min="0" step="0.1" value="${tariff.uahPerMillimeterLength}"
+                                       type="number"
                                        min="1"
                                        class="form-control"
                                 ${vari}
@@ -49,7 +51,8 @@
                             </div>
                             <div class="col">
                                 <label class="form-label">Height Uah/mm</label>
-                                <input name="length " min="0" value="${tariff.uahPerMillimeterHeight}" type="number"
+                                <input name="heightMulti" min="0" step="0.1" value="${tariff.uahPerMillimeterHeight}"
+                                       type="number"
                                        min="1"
                                        class="form-control"
                                 ${vari}
@@ -57,7 +60,8 @@
                             </div>
                             <div class="col">
                                 <label class="form-label">Width Uah/mm</label>
-                                <input name="length" min="0" value="${tariff.uahPerMillimeterWidth}" type="number"
+                                <input name="widthMulti" min="0" step="0.1" value="${tariff.uahPerMillimeterWidth}"
+                                       type="number"
                                        min="1"
                                        class="form-control"
                                 ${vari}
@@ -65,10 +69,10 @@
                             </div>
                             <div class="col">
                                 <label class="form-label">Additional Uah</label>
-                                <input name="length" min="0" value="${tariff.additional}" type="number" min="1"
+                                <input name="additional" min="0" step="0.1" value="${tariff.additional}" type="number"
+                                       min="1"
                                        class="form-control"
-                                ${vari}
-                                       required>
+                                ${vari} required>
                             </div>
                         </div>
                         <hr>
