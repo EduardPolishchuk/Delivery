@@ -19,63 +19,61 @@
         <div class="col ">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form id="form1" action="${pageContext.request.contextPath}/">
-                        <form id="form2" action="${pageContext.request.contextPath}/calculate">
-                            <h4 class="display-5 text-center" style="align-content: center">Calculate the cost</h4>
-                            <hr>
-                            <h5 class="display-7" style="align-content: center">Parcel parameters</h5>
-                            <div class="row g-3 mb-3">
-                                <div class="col">
-                                    <label class="form-label">Length</label>
-                                    <input form="form1" type="number" min="1" class="form-control" placeholder="mm"
-                                           aria-label="First name">
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">Width </label>
-                                    <input type="number" min="1" class="form-control" placeholder="mm"
-                                           aria-label="Last name">
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">Height </label>
-                                    <input type="number" min="1" class="form-control" placeholder="mm"
-                                           aria-label="Last name">
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">Weight </label>
-                                    <input type="number" min="0.1" class="form-control " placeholder="kg"
-                                           aria-label="Last name">
-                                </div>
+
+                    <form id="form2" action="${pageContext.request.contextPath}/calculate">
+                        <h4 class="display-5 text-center" style="align-content: center">Calculate the cost</h4>
+                        <hr>
+                        <h5 class="display-7" style="align-content: center">Parcel parameters</h5>
+                        <div class="row g-3 mb-3">
+                            <div class="col">
+                                <label class="form-label">Length</label>
+                                <input name="length" value="${param.length}" type="number" min="1" class="form-control" placeholder="mm"
+                                       aria-label="First name">
                             </div>
-                            <h5 class="display-7" style="align-content: center">Route</h5>
-                            <div class="row g-3 mb-3">
-                                <div class="col">
-                                    <label class="form-label">City From</label>
-                                    <select class="form-select hide-icon" name="cityFrom"
-                                            aria-label="Default select example">
-                                        <c:forEach var="city" items="${cityList}">
-                                            <option value="${city.id}" ${city.id == cityFrom ? 'selected':''}>${city.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">City To</label>
-                                    <select class="form-select" name="cityTo" aria-label="Default select example">
-                                        <c:forEach var="city" items="${cityList}">
-                                            <option value="${city.id}" ${city.id == param.cityTo ? 'selected':''}>${city.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
+                            <div class="col">
+                                <label class="form-label">Width</label>
+                                <input name="width" value="${param.width}" type="number" min="1" class="form-control" placeholder="mm"
+                                       aria-label="Last name">
                             </div>
-                            <hr>
-                        </form>
+                            <div class="col">
+                                <label  class="form-label">Height </label>
+                                <input name="height" value="${param.height}" type="number" min="1" class="form-control" placeholder="mm"
+                                       aria-label="Last name">
+                            </div>
+                            <div class="col">
+                                <label  class="form-label">Weight </label>
+                                <input name="weight" value="${param.weight}" type="number" min="0,1" class="form-control " placeholder="kg"
+                                       aria-label="Last name">
+                            </div>
+                        </div>
+                        <h5 class="display-7" style="align-content: center">Route</h5>
+                        <div class="row g-3 mb-3">
+                            <div class="col">
+                                <label class="form-label">City From</label>
+                                <select class="form-select hide-icon" name="cityFrom"
+                                        aria-label="Default select example">
+                                    <c:forEach var="city" items="${cityList}">
+                                        <option value="${city.id}" ${city.id == cityFrom ? 'selected':''}>${city.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">City To</label>
+                                <select class="form-select" name="cityTo" aria-label="Default select example">
+                                    <c:forEach var="city" items="${cityList}">
+                                        <option value="${city.id}" ${city.id == param.cityTo ? 'selected':''}>${city.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
                     </form>
+
                     <div class="row g-3 mb-3">
                         <div class="col">
                             <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
                         </div>
-                        <div class="col">
-                            <button form="form1" type="submit" class="btn btn-primary">Order</button>
-                        </div>
+
                     </div>
 
                     <h3 class="display-4">${calculatedValue}</h3>

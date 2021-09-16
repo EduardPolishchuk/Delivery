@@ -16,7 +16,6 @@ public class UserReceiptsCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-
         List<Receipt> list = receiptService.findAll();
         request.getSession().setAttribute("userReceipts", list);
         return "/user/userReceipts.jsp";

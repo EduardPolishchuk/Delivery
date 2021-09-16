@@ -15,7 +15,7 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Orders</h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Receipts</h2>
 <div class="container justify-content-center w-75 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
         <div class="col ">
@@ -33,11 +33,19 @@
                         <tbody>
                         <c:forEach var="receipt" items="${userReceipts}">
                         <tr>
-<%--                                                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>${user.login}</strong></a></td>--%>
                             <td><strong>${receipt.id}</strong></td>
-                            <td><a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}" style="color: black"><strong>Order Link</strong></a></td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/manager/managerUserExhibitions?userID=${user.id}"
+                                   style="color: black"><strong>Order Link</strong></a></td>
                             <td>${receipt.price} </td>
                             <td>${receipt.paid ? 'paid' : 'not paid'} </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        data-bs-id="${receipt.id}">
+                                    Pay
+                                </button>
+                            </td>
                         </tr>
                         </c:forEach>
                 </div>
@@ -46,7 +54,46 @@
     </div>
 </div>
 <hr>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
 
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pay a receipt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="${pageContext.request.contextPath}/user/userPayReceipt" class="row g-3 needs-validation"
+                >
+                    <div class="mb-3">
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="exId-name" name="exId">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><fmt:message key="confirm"/></button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><fmt:message
+                                key="close"/></button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var exId = button.getAttribute('data-bs-id')
+        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+        modalBodyInput.value = exId
+
+    })
+</script>
 </body>
 </html>
 
