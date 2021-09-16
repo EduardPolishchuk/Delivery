@@ -60,7 +60,7 @@
                             </div>
                             <div class="col">
                                 <label class="form-label">Type</label>
-                                <input name="type" value="${param.weight}" type="text"
+                                <input name="type" value="${param.type}" type="text"
                                        class="form-control " required>
                             </div>
                         </div>

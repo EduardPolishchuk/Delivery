@@ -56,7 +56,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/manager/managerOrderView">
+                                <form action="${pageContext.request.contextPath}/manager/managerCreateReceipt">
                                     <button name="order" value="${order.id}" type="submit" class="btn btn-sm btn-outline-secondary">
                                         Send Receipt
                                     </button>
