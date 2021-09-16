@@ -11,5 +11,8 @@ public interface OrderDao extends GenericDao<Order>{
 
     List<Order> findUserOrders(User user);
 
-    long getRowsNumber();
+    long findOrdersAmount();
+
+    long findUserOrdersAmount(User user);
+
 }

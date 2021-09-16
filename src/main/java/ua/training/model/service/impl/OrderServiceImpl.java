@@ -49,8 +49,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public long getRowsNumber() {
-        return 0;
+    public long findOrderAmount() {
+        try(OrderDao orderDao = daoFactory.createOrderDao()){
+            return orderDao.findOrdersAmount();
+        }
+    }
+
+    @Override
+    public long findUserOrdersAmount(User user) {
+        try(OrderDao orderDao = daoFactory.createOrderDao()){
+            return orderDao.findUserOrdersAmount(user);
+        }
     }
 
 

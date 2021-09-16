@@ -18,5 +18,7 @@ public interface OrderService {
 
     List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount);
 
-    long getRowsNumber();
+    long findOrderAmount();
+
+    long findUserOrdersAmount(User user);
 }

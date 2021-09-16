@@ -109,19 +109,29 @@ public class JDBCOrderDao implements OrderDao {
     @Override
     public List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int limit) {
         StringBuilder orderBy = new StringBuilder();
-        switch (sortBy) {
-            case "requestDate":
-                orderBy.append("request_date");
-                break;
-            case "receiveDate":
-                orderBy.append("receive_date");
-                break;
-            default:
-                orderBy.append("id");
-                break;
-        }
         if(sortBy.contains("Desc")){
             orderBy.append(" Desc");
+            sortBy = sortBy.replace("Desc","");
+        }
+        switch (sortBy) {
+            case "requestDate":
+                orderBy.insert(0,"request_date");
+                break;
+            case "cityFrom":
+                orderBy.insert(0,"city_from.name");
+                break;
+            case "cityTo":
+                orderBy.insert(0,"city_to.name");
+                break;
+            case "status":
+                orderBy.insert(0,"status");
+                break;
+            case "receiveDate":
+                orderBy.insert(0,"receive_date");
+                break;
+            default:
+                orderBy.insert(0,"`order`.id");
+                break;
         }
         try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
                 "FROM `order`\n" +
@@ -134,7 +144,7 @@ public class JDBCOrderDao implements OrderDao {
         )) {
             int counter = 1;
             psOrder.setLong(counter++, user.getId());
-            psOrder.setString(counter++, orderBy.toString());
+            psOrder.setObject(counter++, sortBy);
             psOrder.setLong(counter++, limit);
             psOrder.setLong(counter, startIndex);
             return getOrderListByPreparedStatement(psOrder);
@@ -163,9 +173,24 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public long getRowsNumber() {
+    public long findOrdersAmount() {
         long rows = 0;
         try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(1) from `order`")) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                rows = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, e.getMessage());
+        }
+        return rows;
+    }
+
+    @Override
+    public long findUserOrdersAmount(User user) {
+        long rows = 0;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(1) from `order` where user_sender = ? ")) {
+            ps.setLong(1, user.getId());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 rows = rs.getLong(1);

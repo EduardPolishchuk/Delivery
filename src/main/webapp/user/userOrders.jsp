@@ -61,6 +61,54 @@
     </div>
 </div>
 <hr>
+<footer>
+    <div>
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                <c:set var="cnl" value="${not empty param.canceled? '&canceled=1':''}"/>
+                <c:choose>
+                    <c:when test="${currentPage <= 1}">
+                        <li class="page-item disabled">
+                            <span class="page-link"><fmt:message key="previous"/></span>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?page=${currentPage - 1}&sortBy=${sortBy}${cnl}"><fmt:message key="previous"/></a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+                <c:forEach begin="1" end="${noOfPages}" var="i">
+                    <c:choose>
+                        <c:when test="${currentPage eq i}">
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">${i}</span>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item"><a class="page-link"
+                                                     href="?page=${i}&sortBy=${sortBy}${cnl}">${i}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:choose>
+                    <c:when test="${currentPage >= noOfPages}">
+                        <li class="page-item disabled">
+                            <span class="page-link"><fmt:message key="next"/></span>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=${currentPage + 1}&sortBy=${sortBy}${cnl}"><fmt:message key="next"/></a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </nav>
+    </div>
+</footer>
+
 
 </body>
 </html>

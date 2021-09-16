@@ -28,22 +28,19 @@ public class UserOrdersCommand implements Command{
         if (sortBy == null ) {
             sortBy = "";
         }
-        if (request.getParameter(PAGE) != null && !request.getParameter(SORT_BY).isEmpty()) {
-            page = Integer.parseInt(request.getParameter(PAGE));
+        if (request.getParameter(PAGE) != null && !request.getParameter(PAGE).isEmpty()) {
+            page = Long.parseLong(request.getParameter(PAGE));
         }
         List<Order> list = orderService.findSortedUserOrdersFromIndex(user, sortBy, (page - 1) * RECORDS_PER_PAGE,
                 RECORDS_PER_PAGE);
-        if (list.isEmpty()) {
-            return INDEX_JSP;
-        }
-        long noOfRecords = orderService.getRowsNumber();
+
+        long noOfRecords = orderService.findUserOrdersAmount(user);
         long noOfPages = (long) Math.ceil(noOfRecords * 1.0 / RECORDS_PER_PAGE);
-        request.setAttribute(EXPO_LIST, list);
+        request.setAttribute("userOrders", list);
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE_NUMBER, page);
-        request.setAttribute(SORT_BY, sortBy);
+//        request.setAttribute(SORT_BY, sortBy);
 
-        request.getSession().setAttribute("userOrders" ,orderService.findAll());
         return USER_USERBASIS_JSP;
     }
 }
