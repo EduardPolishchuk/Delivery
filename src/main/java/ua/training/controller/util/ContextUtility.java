@@ -4,11 +4,12 @@ import ua.training.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 import java.util.HashSet;
 
 public class ContextUtility {
 
-   public static synchronized boolean checkUserIsLogged(HttpServletRequest request, String login) {
+    public static synchronized boolean checkUserIsLogged(HttpServletRequest request, String login) {
         @SuppressWarnings("unchecked")
         HashSet<String> loggedUsers = (HashSet<String>) request.getSession().getServletContext()
                 .getAttribute("loggedUsers");
@@ -27,9 +28,9 @@ public class ContextUtility {
                 .getAttribute("loggedUsers");
         User user = (User) session.getAttribute("userProfile");
         loggedUsers.remove(user.getLogin());
-        session.removeAttribute("error");
-        session.removeAttribute("userProfile");
-        session.setAttribute("role", User.Role.UNKNOWN);
+        while (session.getAttributeNames().hasMoreElements()) {
+            session.removeAttribute(session.getAttributeNames().nextElement());
+        }
         session.getServletContext()
                 .setAttribute("loggedUsers", loggedUsers);
     }

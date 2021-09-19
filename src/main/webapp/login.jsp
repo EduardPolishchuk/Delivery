@@ -1,10 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
+<fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
@@ -15,6 +12,7 @@
     <jsp:include page="WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body class="text-center" style="background-color: black">
+<jsp:include page="WEB-INF/common/windowstyle.jsp"/>
 <jsp:include page="WEB-INF/common/header2.jsp"/>
 <h2 class="display-3" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="loginToSystem"/></h2>
 <div class="container  w-25  ">

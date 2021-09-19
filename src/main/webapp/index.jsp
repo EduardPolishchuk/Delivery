@@ -1,10 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
+<fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
@@ -12,6 +9,7 @@
     <jsp:include page="WEB-INF/common/windowstyle.jsp"/>
 </head>
 <body>
+<jsp:include page="WEB-INF/common/windowstyle.jsp"/>
 <jsp:include page="WEB-INF/common/header2.jsp"/>
 <h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">Delivery Service</h2>
 <div class="container justify-content-center w-75 ">
@@ -77,15 +75,19 @@
                         <div class="col">
                             <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
                         </div>
+                        <div class="col">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                               aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
+                        </div>
                     </div>
                     <c:if test="${not empty calculatedValue}">
                         <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
                         ${calculatedValue = null}
                     </c:if>
-                    <p>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                           aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
-                    </p>
+<%--                    <p>--%>
+<%--                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"--%>
+<%--                           aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>--%>
+<%--                    </p>--%>
                     <div class="row">
                         <div class="col">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">

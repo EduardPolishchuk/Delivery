@@ -2,11 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<%@ taglib uri="/WEB-INF/custom_tag.tld" prefix="custom" %>--%>
-
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
+<fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
 <c:set var="vari" value="${not empty param.edit ? null : 'disabled'}" scope="session"/>
 <html>

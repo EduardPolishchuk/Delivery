@@ -2,10 +2,7 @@
 <%@ page import="java.util.*, java.text.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
+<fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
 <html>
 <head>
@@ -23,7 +20,7 @@
         <div class="col " style="text-align:center">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h4 class="display-5" style="text-align: center"><fmt:message key="somethingWrong"/> <%= exception %></h4>
+                    <h4 class="display-5" style="text-align: center"><fmt:message key="somethingWrong"/> </h4>
                     <form method="post" action="${pageContext.request.contextPath}/">
                         <button type="submit" class="btn btn-primary"><fmt:message key="home"/></button>
                     </form>

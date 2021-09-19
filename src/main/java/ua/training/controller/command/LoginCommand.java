@@ -21,8 +21,8 @@ public class LoginCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        User user;
         User.Role role = (User.Role) request.getSession().getAttribute(ROLE);
+        User user;
         Optional<User> result;
         String userName = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);

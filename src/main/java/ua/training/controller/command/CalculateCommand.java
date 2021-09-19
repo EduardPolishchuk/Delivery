@@ -6,6 +6,8 @@ import ua.training.model.entity.Parcel;
 import ua.training.model.entity.User;
 import ua.training.model.service.CityService;
 import ua.training.model.service.OrderService;
+import ua.training.model.service.impl.CityServiceImpl;
+import ua.training.model.service.impl.TariffServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -25,12 +27,12 @@ public class CalculateCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(USER_PROFILE);
-        String returnPage;
-        if (user == null || !User.Role.USER.equals(user.getRole())) {
-            returnPage = INDEX_JSP;
-        } else {
-            returnPage = USER_MAIN_JSP;
-        }
+        String returnPage =  new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
+//        if (user == null || !User.Role.USER.equals(user.getRole())) {
+//            returnPage = INDEX_JSP;
+//        } else {
+//            returnPage = USER_MAIN_JSP;
+//        }
         long cityFromId = Long.parseLong(request.getParameter("cityFrom"));
         long cityToId = Long.parseLong(request.getParameter("cityTo"));
 
