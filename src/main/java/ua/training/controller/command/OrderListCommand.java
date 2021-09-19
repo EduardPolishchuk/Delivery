@@ -12,7 +12,7 @@ import static ua.training.constants.Constants.*;
 
 public class OrderListCommand implements Command{
 
-    public static final int RECORDS_PER_PAGE = 4;
+    public static final int RECORDS_PER_PAGE = 5;
     public static final String CURRENT_PAGE_NUMBER = "currentPage";
     private final OrderService orderService;
 

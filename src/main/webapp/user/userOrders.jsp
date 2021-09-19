@@ -19,7 +19,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <table class="table">
-                        <c:set var="counter" value="${(currentPage - 1)*4 + 1}"/>
+                        <c:set var="counter" value="${(currentPage - 1)*5 + 1}"/>
                         <thead>
                         <tr>
                             <th scope="col">#</th>
