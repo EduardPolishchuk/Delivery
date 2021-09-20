@@ -37,7 +37,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="order" items="${userOrders}">
+                        <c:forEach var="order" items="${ordersList}">
                         <tr>
                             <td>${counter}</td>
                             <c:set var="counter" value="${counter + 1}"/>

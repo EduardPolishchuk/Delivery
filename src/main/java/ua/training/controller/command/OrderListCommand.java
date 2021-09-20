@@ -46,7 +46,7 @@ public class OrderListCommand implements Command {
             path = MANAGER_ORDER_LIST_JSP;
         }
         noOfPages = (long) Math.ceil(list.size() * 1.0 / RECORDS_PER_PAGE);
-        request.setAttribute("userOrders", sortOrderList(list, sortBy, page));
+        request.setAttribute("ordersList", sortOrderList(list, sortBy, page));
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE_NUMBER, page);
         request.setAttribute(SORT_BY, sortBy);
