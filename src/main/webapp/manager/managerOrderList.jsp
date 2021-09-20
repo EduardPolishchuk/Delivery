@@ -23,7 +23,6 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'orderId'? 'orderIdDesc':'orderId' }" style="color: black">Order ID</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
                             <th scope="col">More Information</th>
                             <th scope="col">Confirming</th>
@@ -42,7 +41,6 @@
                         <tr>
                             <td>${counter}</td>
                             <c:set var="counter" value="${counter + 1}"/>
-                            <td><strong>${order.id}</strong></td>
                             <td>${order.requestDate}</td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/manager/managerOrderView">
@@ -58,7 +56,7 @@
                                     </button>
                                 </form>
                             </td>
-                            <td>${order.cityFrom.name}</td>
+                            <td>${locale == 'uk' ? order.cityFrom.nameUk : order.cityFrom.name}</td>
                             <td>${order.cityTo.name}</td>
                             <td><fmt:message key="${order.status}"/></td>
                             <td>${order.parcel.type}</td>

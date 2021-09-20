@@ -19,17 +19,16 @@
 
                     <form id="form2" action="${pageContext.request.contextPath}/user/userMain">
                         <h4 class="display-6 text-center" style="align-content: center">Make an order</h4>
-                        <hr>
                         <h5 class="display-7" style="align-content: center">Sender</h5>
                         <div class="row g-3 mb-3">
                             <div class="col">
                                 <label class="form-label">First Name</label>
-                                <input   type="number" min="1" class="form-control"
+                                <input type="number" min="1" class="form-control"
                                        placeholder="${userProfile.firstName}" disabled>
                             </div>
                             <div class="col">
                                 <label class="form-label">Last Name</label>
-                                <input   type="number" min="1" class="form-control"
+                                <input type="number" min="1" class="form-control"
                                        placeholder="${userProfile.lastName}" disabled>
                             </div>
                         </div>
@@ -58,7 +57,7 @@
                             <div class="col">
                                 <label class="form-label">Type</label>
                                 <input name="type" value="${param.type}" type="text"
-                                       class="form-control " required>
+                                       class="form-control " placeholder="Other">
                             </div>
                         </div>
                         <h5 class="display-7" style="align-content: center">Route</h5>
@@ -83,27 +82,18 @@
                         </div>
                         <hr>
                     </form>
-
-                    <div class="row g-3 mb-3">
-                        <div class="col">
-                            <button form="form2" name="action" value="calculate" type="submit" class="btn btn-primary">
-                                Calculate
-                            </button>
-                        </div>
-                        <div class="col">
-                            <button form="form2" type="submit" name="action" value="makeOrder" class="btn btn-primary">
-                                Order
-                            </button>
-                        </div>
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <button form="form2" type="submit" name="action" value="calculate" class="btn btn-primary">Calculate</button>
+                        <button form="form2" type="submit" name="action" value="makeOrder" class="btn btn-primary">
+                            Order
+                        </button>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                           aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
                     </div>
                     <c:if test="${not empty calculatedValue}">
                         <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
                         ${calculatedValue = null}
                     </c:if>
-                    <p>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                           aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
-                    </p>
                     <div class="row">
                         <div class="col">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">

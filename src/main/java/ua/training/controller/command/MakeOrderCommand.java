@@ -39,7 +39,7 @@ public class MakeOrderCommand implements Command {
             Order order = Order.builder()
                     .requestDate(LocalDate.now())
                     .parcel(Parcel.builder()
-                            .type(type)
+                            .type(type == null || type.isEmpty() ? "Other" : type)
                             .width(width)
                             .weight(weight)
                             .length(length)
@@ -49,7 +49,7 @@ public class MakeOrderCommand implements Command {
                     .cityTo(City.builder().id(cityToId).build())
                     .cityFrom(City.builder().id(cityToFromId).build())
                     .build();
-           orderService.create(order);
+            orderService.create(order);
         } catch (NumberFormatException e) {
             logger.log(Level.ERROR, e.getMessage());
             return USER_MAIN_JSP;

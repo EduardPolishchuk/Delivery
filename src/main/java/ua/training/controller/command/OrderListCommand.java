@@ -29,9 +29,10 @@ public class OrderListCommand implements Command {
         User user = (User) request.getSession().getAttribute("userProfile");
         List<Order> list;
         String path;
+        String sortBy = request.getParameter(SORT_BY);
+        String locale = String.valueOf(request.getSession().getAttribute("locale"));
         long page = 1;
         long noOfPages;
-        String sortBy = request.getParameter(SORT_BY);
         if (sortBy == null) {
             sortBy = "";
         }
@@ -46,7 +47,7 @@ public class OrderListCommand implements Command {
             path = MANAGER_ORDER_LIST_JSP;
         }
         noOfPages = (long) Math.ceil(list.size() * 1.0 / RECORDS_PER_PAGE);
-        request.setAttribute("ordersList", sortOrderList(list, sortBy, page));
+        request.setAttribute("ordersList", sortOrderList(list, sortBy, locale, page));
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE_NUMBER, page);
         request.setAttribute(SORT_BY, sortBy);
@@ -54,17 +55,17 @@ public class OrderListCommand implements Command {
         return path;
     }
 
-    private List<Order> sortOrderList(List<Order> list, String sortBy, long page) {
+    private List<Order> sortOrderList(List<Order> list, String sortBy, String locale, long page) {
         boolean reverse = sortBy.contains("Desc");
 
         return list.stream()
-                .sorted(getComparator(sortBy.replaceAll("Desc", ""), reverse))
+                .sorted(getComparator(sortBy.replaceAll("Desc", ""), locale, reverse))
                 .skip((page - 1) * RECORDS_PER_PAGE)
                 .limit(RECORDS_PER_PAGE)
                 .collect(Collectors.toList());
     }
 
-    private Comparator<Order> getComparator(String sortBy, boolean reverse) {
+    private Comparator<Order> getComparator(String sortBy, String locale, boolean reverse) {
         Comparator<Order> comparator;
         switch (sortBy) {
             case "requestDate":
@@ -74,10 +75,14 @@ public class OrderListCommand implements Command {
                 comparator = Comparator.comparing(order -> order.getParcel().getType());
                 break;
             case "cityFrom":
-                comparator = Comparator.comparing(order -> order.getCityFrom().getName());
+                comparator = "uk".equals(locale) ?
+                        Comparator.comparing(order -> order.getCityFrom().getNameUk()) :
+                        Comparator.comparing(order -> order.getCityFrom().getName());
                 break;
             case "cityTo":
-                comparator = Comparator.comparing(order -> order.getCityTo().getName());
+                comparator = "uk".equals(locale) ?
+                        Comparator.comparing(order -> order.getCityTo().getNameUk()) :
+                        Comparator.comparing(order -> order.getCityTo().getName());
                 break;
             case "status":
                 comparator = Comparator.comparing(Order::getStatus);

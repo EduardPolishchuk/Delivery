@@ -14,6 +14,6 @@ public class AddCityCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request) {
-        return null;
+        return "/manager/managerAddCity.jsp";
     }
 }

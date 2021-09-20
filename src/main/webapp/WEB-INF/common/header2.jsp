@@ -27,10 +27,10 @@
                 </svg>
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="${pageContext.request.contextPath}/"
-                       class="nav-link px-2 text-primary"><strong><fmt:message key="home"/> </strong></a></li>
                 <c:choose>
                     <c:when test="${role == 'USER'}">
+                        <li><a href="${pageContext.request.contextPath}/"
+                               class="nav-link px-2 text-primary"><strong><fmt:message key="home"/> </strong></a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userOrders"
                                class="nav-link px-2 text-white">My Orders</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userReceipts"
@@ -45,6 +45,8 @@
                                class="nav-link px-2 text-white"><fmt:message key="clientList"/></a></li>
                         <li><a href="${pageContext.request.contextPath}/manager/managerTariffView"
                                class="nav-link px-2 text-white">Change Tariff</a></li>
+                        <li><a href="${pageContext.request.contextPath}/manager/managerAddCity"
+                               class="nav-link px-2 text-white">Add City</a></li>
                     </c:when>
                 </c:choose>
             </ul>

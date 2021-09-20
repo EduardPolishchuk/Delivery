@@ -1,7 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri="/WEB-INF/custom_tag.tld" prefix="custom" %>--%>
+<%@ taglib uri="/WEB-INF/custom_tag.tld" prefix="custom" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
 <html>
@@ -23,9 +23,8 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'orderId'? 'orderIdDesc':'orderId' }" style="color: black">Order ID</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'receiveDate'? 'receiveDateDesc':'receiveDate' }" style="color: black">Receiving Date</a></th>
+                            <th scope="col">Receiving Date</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }" style="color: black">City From</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }" style="color: black">City To</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'status'? 'statusDesc':'status' }" style="color: black">Status</a></th>
@@ -41,8 +40,9 @@
                         <tr>
                             <td>${counter}</td>
                             <c:set var="counter" value="${counter + 1}"/>
-                            <td><strong>${order.id}</strong></td>
-                            <td>${order.requestDate}</td>
+                            <td><custom:formatDate value="${order.requestDate}"
+                                                   pattern="${locale eq 'uk' ? 'dd/MM/yyyy' : 'yyyy/MM/dd'}"/>
+                            </td>
                             <td>${order.receivingDate}</td>
                             <td>${order.cityFrom.name}</td>
                             <td>${order.cityTo.name}</td>

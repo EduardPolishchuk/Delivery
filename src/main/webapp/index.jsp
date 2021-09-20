@@ -71,15 +71,12 @@
                         <hr>
                     </form>
 
-                    <div class="row g-3 mb-3">
-                        <div class="col">
-                            <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
-                        </div>
-                        <div class="col">
-                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                               aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
-                        </div>
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <button form="form2" type="submit" class="btn btn-primary">Calculate</button>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                           aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>
                     </div>
+
                     <c:if test="${not empty calculatedValue}">
                         <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
                         ${calculatedValue = null}
@@ -89,19 +86,12 @@
                         <div class="col">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">
                                 <div class="card card-body">
-                                    <div>Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,</div>
-                                    <div>${tariff.uahPerMillimeterWidth} uah/mm width,</div>
-                                    <div> ${tariff.uahPerMillimeterHeight} uah/mm height,</div>
-                                    <div>${tariff.uahPerMillimeterLength} uah/mm length,</div>
-                                    <div> ${tariff.uahPerKilogramWeight} uah/kg weight,</div>
-
-                                    <div>
-                                        + additional ${tariff.additional} uah .
-                                    </div>
-
-
-
-
+                                    Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,
+                                    ${tariff.uahPerMillimeterWidth} uah/mm width,
+                                     ${tariff.uahPerMillimeterHeight} uah/mm height,
+                                    ${tariff.uahPerMillimeterLength} uah/mm length,
+                                     ${tariff.uahPerKilogramWeight} uah/kg weight,
+                                        + additional ${tariff.additional} uah.
                                 </div>
                             </div>
                         </div>
