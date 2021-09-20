@@ -23,7 +23,6 @@ public class Servlet extends HttpServlet {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
         commands.put("start", new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()));
-        commands.put("test", new TestCommand());
         commands.put("login", new LoginCommand(new UserServiceImpl()));
         commands.put("singUp", new SignUpCommand(new UserServiceImpl(), new UserValidator()));
         commands.put("calculate", new CalculateCommand(new CityServiceImpl(), new OrderServiceImpl()));

@@ -157,10 +157,8 @@ public class JDBCOrderDao implements OrderDao {
 
     private int getOrderBy(String sortBy) {
         int orderBy;
-        if (sortBy.contains("Desc")) {
-            sortBy = sortBy.replace("Desc", "");
-        }
-        switch (sortBy) {
+        boolean reverse =  sortBy.contains("Desc");
+        switch (sortBy.replace("Desc", "")) {
             case "requestDate":
                 orderBy = 3;
                 break;

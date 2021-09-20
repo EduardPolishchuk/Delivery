@@ -1,12 +1,11 @@
 package ua.training.controller.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/*")
+
 public class LocaleFilter implements Filter {
 
     @Override
@@ -26,7 +25,7 @@ public class LocaleFilter implements Filter {
         } else {
             session.setAttribute("locale", locale);
         }
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

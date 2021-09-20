@@ -74,7 +74,8 @@
                             </div>
                         </div>
                         <hr>
-
+                        <h3 class="display-4">${price} <fmt:message key="uah"/></h3>
+                        ${price = null}
                     </form>
                 </div>
             </div>

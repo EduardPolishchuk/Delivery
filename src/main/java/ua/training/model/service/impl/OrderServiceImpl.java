@@ -50,6 +50,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> findUserOrders(User user) {
+        try (OrderDao orderDao = daoFactory.createOrderDao()) {
+            return orderDao.findUserOrders(user);
+        }
+    }
+
+    @Override
     public List<Order> findSortedOrdersFromIndex(String sortBy, long startIndex, int amount) {
         try (OrderDao orderDao = daoFactory.createOrderDao()) {
             return orderDao.findSortedOrdersFromIndex(sortBy, startIndex, amount);

@@ -84,20 +84,24 @@
                         <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
                         ${calculatedValue = null}
                     </c:if>
-<%--                    <p>--%>
-<%--                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"--%>
-<%--                           aria-expanded="false" aria-controls="multiCollapseExample1">Tariff</a>--%>
-<%--                    </p>--%>
+
                     <div class="row">
                         <div class="col">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">
                                 <div class="card card-body">
-                                    Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,
-                                    ${tariff.uahPerMillimeterWidth} uah/mm width,
-                                    ${tariff.uahPerMillimeterHeight} uah/mm height,
-                                    ${tariff.uahPerMillimeterLength} uah/mm length,
-                                    ${tariff.uahPerKilogramWeight} uah/kg weight,
-                                    + additional ${tariff.additional} uah .
+                                    <div>Tariff is ${tariff.uahPerKilometerDistance} uah/km distance,</div>
+                                    <div>${tariff.uahPerMillimeterWidth} uah/mm width,</div>
+                                    <div> ${tariff.uahPerMillimeterHeight} uah/mm height,</div>
+                                    <div>${tariff.uahPerMillimeterLength} uah/mm length,</div>
+                                    <div> ${tariff.uahPerKilogramWeight} uah/kg weight,</div>
+
+                                    <div>
+                                        + additional ${tariff.additional} uah .
+                                    </div>
+
+
+
+
                                 </div>
                             </div>
                         </div>

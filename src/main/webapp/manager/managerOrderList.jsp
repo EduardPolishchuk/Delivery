@@ -60,7 +60,7 @@
                             </td>
                             <td>${order.cityFrom.name}</td>
                             <td>${order.cityTo.name}</td>
-                            <td>${order.status}</td>
+                            <td><fmt:message key="${order.status}"/></td>
                             <td>${order.parcel.type}</td>
                             <td>${order.parcel.length} mm</td>
                             <td>${order.parcel.width} mm</td>
