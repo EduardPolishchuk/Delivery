@@ -1,8 +1,6 @@
 package ua.training.model.dao.mapper;
 
-import ua.training.model.entity.City;
 import ua.training.model.entity.Order;
-import ua.training.model.entity.Parcel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,12 +15,16 @@ public class OrderMapper implements ObjectMapper<Order> {
         return Order.builder()
                 .id(rs.getLong("id"))
                 .requestDate(toLocalDate(rs.getDate("request_date")))
+                .receivingDate(toLocalDate(rs.getDate("receiving_date")))
                 .status(Order.OrderStatus.valueOf(rs.getString("order_status")))
                 .confirmed(rs.getBoolean("confirmed"))
                 .build();
     }
 
     private static LocalDate toLocalDate(Date date) {
+        if(date == null){
+            return null;
+        }
         return LocalDate.from(Instant.ofEpochMilli(date.getTime())
                 .atZone(ZoneId.systemDefault()));
     }

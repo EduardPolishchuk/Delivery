@@ -1,7 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri="/WEB-INF/custom_tag.tld" prefix="custom" %>--%>
+<%@ taglib uri="/WEB-INF/custom_tag.tld" prefix="custom" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
 <html>
@@ -41,7 +41,9 @@
                         <tr>
                             <td>${counter}</td>
                             <c:set var="counter" value="${counter + 1}"/>
-                            <td>${order.requestDate}</td>
+                            <td><custom:formatDate value="${order.requestDate}"
+                                                   pattern="${locale eq 'uk' ? 'dd/MM/yyyy' : 'yyyy/MM/dd'}"/>
+                            </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/manager/managerOrderView">
                                     <button name="order" value="${order.id}" type="submit" class="btn btn-sm btn-outline-secondary">
