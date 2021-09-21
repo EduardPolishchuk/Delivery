@@ -17,15 +17,9 @@ public interface OrderService {
 
     List<Order> findAll();
 
-    List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount);
 
     List<Order> findUserOrders(User user);
 
-    List<Order> findSortedOrdersFromIndex( String sortBy, long startIndex, int amount);
-
-    long findOrdersForConfirmAmount();
-
     BigDecimal calculateOrderPrice(Order order);
 
-    long findUserOrdersAmount(User user);
 }

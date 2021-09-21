@@ -1,6 +1,5 @@
 package ua.training.model.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,10 +11,6 @@ public class Order {
     private Parcel parcel;
     private City cityTo;
     private City cityFrom;
-    private BigDecimal price;
-    private boolean paid;
-    private boolean confirmed;
-    private boolean delivered;
     private OrderStatus status;
 
 
@@ -83,49 +78,18 @@ public class Order {
         this.cityFrom = cityFrom;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public boolean isPaid() {
-        return paid;
-    }
-
-    public void setPaid(boolean paid) {
-        this.paid = paid;
-    }
-
-    public boolean isConfirmed() {
-        return confirmed;
-    }
-
-    public void setConfirmed(boolean confirmed) {
-        this.confirmed = confirmed;
-    }
-
-    public boolean isDelivered() {
-        return delivered;
-    }
-
-    public void setDelivered(boolean delivered) {
-        this.delivered = delivered;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && paid == order.paid && confirmed == order.confirmed && delivered == order.delivered && Objects.equals(receivingDate, order.receivingDate) && Objects.equals(requestDate, order.requestDate) && Objects.equals(userSender, order.userSender) && Objects.equals(parcel, order.parcel) && Objects.equals(cityTo, order.cityTo) && Objects.equals(cityFrom, order.cityFrom) && Objects.equals(price, order.price) && status == order.status;
+        return id == order.id && Objects.equals(receivingDate, order.receivingDate) && Objects.equals(requestDate, order.requestDate) && Objects.equals(userSender, order.userSender) && Objects.equals(parcel, order.parcel) && Objects.equals(cityTo, order.cityTo) && Objects.equals(cityFrom, order.cityFrom) && status == order.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(receivingDate, requestDate, id, userSender, parcel, cityTo, cityFrom, price, paid, confirmed, delivered, status);
+        return Objects.hash(receivingDate, requestDate, id, userSender, parcel, cityTo, cityFrom, status);
     }
 
     @Override
@@ -134,14 +98,11 @@ public class Order {
                 "receivingDate=" + receivingDate +
                 ", requestDate=" + requestDate +
                 ", id=" + id +
-                ",\nuserSender=" + userSender +
-                ",\nparcelId=" + parcel +
-                ",\ncityTo=" + cityTo +
-                ",\ncityFrom=" + cityFrom +
-                ",\nprice=" + price +
-                ", paid=" + paid +
-                ", confirmed=" + confirmed +
-                ", delivered=" + delivered +
+                ", userSender=" + userSender +
+                ", parcel=" + parcel +
+                ", cityTo=" + cityTo +
+                ", cityFrom=" + cityFrom +
+                ", status=" + status +
                 '}';
     }
 
@@ -193,26 +154,6 @@ public class Order {
 
         public OrderBuilder cityFrom(City cityFrom) {
             newOrder.setCityFrom(cityFrom);
-            return this;
-        }
-
-        public OrderBuilder price(BigDecimal price) {
-            newOrder.setPrice(price);
-            return this;
-        }
-
-        public OrderBuilder paid(boolean paid) {
-            newOrder.setPaid(paid);
-            return this;
-        }
-
-        public OrderBuilder confirmed(boolean confirmed) {
-            newOrder.setConfirmed(confirmed);
-            return this;
-        }
-
-        public OrderBuilder delivered(boolean delivered) {
-            newOrder.setDelivered(delivered);
             return this;
         }
 

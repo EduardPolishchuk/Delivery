@@ -49,7 +49,7 @@ public class CityServiceImplTest {
         Mockito.when(cityDaoMock.findById(city.getId())).thenReturn(Optional.of(city));
         Optional<City> cityOptional = cityServiceInstance.findById(city.getId());
         Assertions.assertTrue(cityOptional.isPresent());
-        Assertions.assertEquals(cityOptional.get(), city);
+        Assertions.assertEquals(city, cityOptional.get());
     }
 
     @Test

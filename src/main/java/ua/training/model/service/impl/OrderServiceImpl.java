@@ -42,12 +42,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Override
-    public List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount) {
-        try (OrderDao orderDao = daoFactory.createOrderDao()) {
-            return orderDao.findSortedUserOrdersFromIndex(user, sortBy, startIndex, amount);
-        }
-    }
+
 
     @Override
     public List<Order> findUserOrders(User user) {
@@ -56,21 +51,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Override
-    public List<Order> findSortedOrdersFromIndex(String sortBy, long startIndex, int amount) {
-        try (OrderDao orderDao = daoFactory.createOrderDao()) {
-            return orderDao.findSortedOrdersFromIndex(sortBy, startIndex, amount);
-        }
-    }
-
-    @Override
-    public long findOrdersForConfirmAmount() {
-        try (OrderDao orderDao = daoFactory.createOrderDao()) {
-            return orderDao.findOrdersForConfirmAmount();
-        }
-    }
-
-    @Override
+     @Override
     public BigDecimal calculateOrderPrice(Order order) {
         try (TariffDao tariffDao = daoFactory.createTariffDao()) {
             Tariff tariff = tariffDao.getTariff().get();
@@ -84,14 +65,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Override
-    public long findUserOrdersAmount(User user) {
-        try (OrderDao orderDao = daoFactory.createOrderDao()) {
-            return orderDao.findUserOrdersAmount(user);
-        }
-    }
-
-    private float distFrom(City cityFrom, City cityTo) {
+       private float distFrom(City cityFrom, City cityTo) {
         float lat1 = cityFrom.getLatitude();
         float lat2 = cityTo.getLatitude();
         float lng1 = cityFrom.getLongitude();

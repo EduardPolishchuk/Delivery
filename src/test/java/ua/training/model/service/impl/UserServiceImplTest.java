@@ -51,9 +51,10 @@ class UserServiceImplTest {
     @Test
     void shouldReturnUserByID() {
 
-        Mockito.when(userDaoMock.findById(1)).thenReturn(Optional.of(User.builder().id(1).build()));
-        User user = userServiceInstance.findById(1).get();
-        Assertions.assertEquals(1, user.getId());
+        Mockito.when(userDaoMock.findById(user.getId())).thenReturn(Optional.of(user));
+        Optional<User> optional = userServiceInstance.findById(user.getId());
+        Assertions.assertTrue(userServiceInstance.findById(user.getId()).isPresent());
+        Assertions.assertEquals(user, optional.get());
     }
 
     @Test
@@ -93,5 +94,21 @@ class UserServiceImplTest {
         User user = User.builder().build();
         Mockito.when(userDaoMock.update(user)).thenReturn(true);
         Assertions.assertTrue(userServiceInstance.update(user));
+    }
+
+    @Test
+    void shouldChangeAndReturnUserBalance() {
+        Mockito.when(userDaoMock.balanceReplenishment(new BigDecimal(200), user))
+                .thenReturn(new BigDecimal(200).add(user.getBalance()));
+        Assertions.assertEquals(new BigDecimal(600),
+                userServiceInstance.balanceReplenishment(new BigDecimal(200), user));
+    }
+
+    @Test
+    void shouldReturnUserBalance() {
+        Mockito.when(userDaoMock.getUserBalance(user))
+                .thenReturn(user.getBalance());
+        Assertions.assertEquals(user.getBalance()
+                , userServiceInstance.getUserBalance(user));
     }
 }
