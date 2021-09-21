@@ -17,7 +17,6 @@ public class OrderMapper implements ObjectMapper<Order> {
                 .requestDate(toLocalDate(rs.getDate("request_date")))
                 .receivingDate(toLocalDate(rs.getDate("receiving_date")))
                 .status(Order.OrderStatus.valueOf(rs.getString("order_status")))
-                .confirmed(rs.getBoolean("confirmed"))
                 .build();
     }
 

@@ -14,7 +14,7 @@
 </head>
 <body class="text-center" style="background-color: black">
 <jsp:include page="../common/header2.jsp"/>
-<h2 class="display-3" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="error"/> <%=exception%> </h2>
+<h2 class="display-3" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="error"/>  </h2>
 <div class="container  w-50  " style="text-align:center">
     <div class="row row-cols-1 row-cols-lg row-cols-md-1 g-1">
         <div class="col " style="text-align:center">

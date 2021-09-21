@@ -122,7 +122,7 @@ public class User {
             this.newUser = new User();
         }
 
-        public UserBuilder id(int id) {
+        public UserBuilder id(long id) {
             newUser.setId(id);
             return this;
         }

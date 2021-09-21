@@ -1,6 +1,7 @@
 package ua.training.controller.validator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -13,17 +14,8 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public class UserValidatorTest {
-    private UserValidator validator = new UserValidator();
-    private User user = User.builder()
-            .id(1)
-            .password("password")
-            .login("login")
-            .email("email@gmail.com")
-            .firstName("FirstName")
-            .lastName("LastName")
-            .balance(BigDecimal.valueOf(300))
-            .role(User.Role.USER)
-            .build();
+    private UserValidator validator ;
+    private User user ;
 
 
     @Mock
@@ -32,9 +24,25 @@ public class UserValidatorTest {
     @Mock
     private HttpSession session;
 
+    @BeforeEach
+    void init(){
+        MockitoAnnotations.initMocks(this);
+
+        validator = new UserValidator();
+        user = User.builder()
+                .id(1)
+                .password("password")
+                .login("login")
+                .email("email@gmail.com")
+                .firstName("FirstName")
+                .lastName("LastName")
+                .balance(BigDecimal.valueOf(300))
+                .role(User.Role.USER)
+                .build();
+    }
+
     @Test
     public void shouldReturnUserOptional() {
-        MockitoAnnotations.initMocks(this);
         Mockito.when(request.getParameter("login")).thenReturn(user.getLogin());
         Mockito.when(request.getParameter("password")).thenReturn(user.getPassword());
         Mockito.when(request.getParameter("firstName")).thenReturn(user.getFirstName());
@@ -52,7 +60,6 @@ public class UserValidatorTest {
 
     @Test
     public void shouldReturnEmptyOptional() {
-        MockitoAnnotations.initMocks(this);
         Mockito.when(request.getParameter("login")).thenReturn("");
         Mockito.when(request.getParameter("password")).thenReturn("");
         Mockito.when(request.getParameter("firstName")).thenReturn(user.getFirstName());
@@ -70,7 +77,6 @@ public class UserValidatorTest {
 
     @Test
     public void shouldReturnEmptyOptional2() {
-        MockitoAnnotations.initMocks(this);
         Mockito.when(request.getParameter("login")).thenReturn("");
         Mockito.when(request.getParameter("password")).thenReturn(user.getPassword());
         Mockito.when(request.getParameter("firstName")).thenReturn(user.getFirstName());

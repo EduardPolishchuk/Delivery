@@ -18,12 +18,12 @@ public class UserMapperTest {
     private ResultSet resultSet;
 
     @Test
-    public void shouldReturnExhibition() throws SQLException {
+    public void shouldReturnCorrectUser() throws SQLException {
         MockitoAnnotations.initMocks(this);
-        Mockito.when(resultSet.getInt("id")).thenReturn(1);
+        Mockito.when(resultSet.getLong("user_id")).thenReturn(1L);
         Mockito.when(resultSet.getBigDecimal("balance")).thenReturn(BigDecimal.valueOf(200));
         Mockito.when(resultSet.getString("login")).thenReturn("Login");
-        Mockito.when(resultSet.getString("role")).thenReturn("user");
+        Mockito.when(resultSet.getString("role_name")).thenReturn("USER");
         Mockito.when(resultSet.getString("email")).thenReturn("email");
         Mockito.when(resultSet.getString("first_name")).thenReturn("Name");
         Mockito.when(resultSet.getString("last_name")).thenReturn("LastName");
