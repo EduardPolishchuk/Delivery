@@ -40,12 +40,56 @@
                         key="DELIVERED"/></label>
             </div>
         </form>
+        <c:if test="${noOfPages > 1}">
+            <div>
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                        <c:choose>
+                            <c:when test="${currentPage <= 1}">
+                                <li class="page-item disabled">
+                                    <span class="page-link"><fmt:message key="previous"/></span>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="?page=${currentPage - 1}&sortBy=${sortBy}&status=${param.status}"><fmt:message key="previous"/></a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                            <c:choose>
+                                <c:when test="${currentPage eq i}">
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">${i}</span>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page=${i}&sortBy=${sortBy}&status=${param.status}">${i}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${currentPage >= noOfPages}">
+                                <li class="page-item disabled">
+                                    <span class="page-link"><fmt:message key="next"/></span>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=${currentPage + 1}&sortBy=${sortBy}&status=${param.status}"><fmt:message key="next"/></a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </nav>
+            </div>
+        </c:if>
     </div>
 </div>
 <div class="container justify-content-center  ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
-
-
         <div class="col ">
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -96,7 +140,7 @@
                                 </c:if>
                             </td>
                             <td>${locale == 'uk' ? order.cityFrom.nameUk : order.cityFrom.name}</td>
-                            <td>${order.cityTo.name}</td>
+                            <td>${locale == 'uk' ? order.cityTo.nameUk : order.cityTo.name}</td>
                             <td><fmt:message key="${order.status}"/></td>
                             <td>${order.parcel.type}</td>
                             <td>${order.parcel.length} mm</td>
@@ -110,57 +154,8 @@
         </div>
     </div>
 </div>
-<hr>
 <footer>
-<c:if test="${noOfPages > 1}">
-    <div>
-        <nav aria-label="...">
-            <ul class="pagination justify-content-center">
-                <c:choose>
-                    <c:when test="${currentPage <= 1}">
-                        <li class="page-item disabled">
-                            <span class="page-link"><fmt:message key="previous"/></span>
-                        </li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="page-item">
-                            <a class="page-link"
-                               href="?page=${currentPage - 1}&sortBy=${sortBy}&status=${param.status}"><fmt:message key="previous"/></a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-                <c:forEach begin="1" end="${noOfPages}" var="i">
-                    <c:choose>
-                        <c:when test="${currentPage eq i}">
-                            <li class="page-item active" aria-current="page">
-                                <span class="page-link">${i}</span>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="page-item"><a class="page-link"
-                                                     href="?page=${i}&sortBy=${sortBy}&status=${param.status}">${i}</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <c:choose>
-                    <c:when test="${currentPage >= noOfPages}">
-                        <li class="page-item disabled">
-                            <span class="page-link"><fmt:message key="next"/></span>
-                        </li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=${currentPage + 1}&sortBy=${sortBy}&status=${param.status}"><fmt:message key="next"/></a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </nav>
-    </div>
-</c:if>
 </footer>
-
-
 </body>
 </html>
 
