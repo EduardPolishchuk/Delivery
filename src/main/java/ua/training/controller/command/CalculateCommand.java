@@ -26,7 +26,7 @@ public class CalculateCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        String returnPage =  new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
+//        String returnPage =  new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
         long cityFromId = Long.parseLong(request.getParameter("cityFrom"));
         long cityToId = Long.parseLong(request.getParameter("cityTo"));
 
@@ -35,7 +35,7 @@ public class CalculateCommand implements Command {
 
         if (cityFromId == cityToId) {
             request.getSession().setAttribute("calculatedValue", "SAME CITIES!");
-            return returnPage;
+            return new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
         }
 
 
@@ -62,7 +62,7 @@ public class CalculateCommand implements Command {
             request.getSession().setAttribute("calculatedValue", "ERROR: cannot find the city, please, refresh the page");
         }
 
-        return returnPage;
+        return new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
     }
 
 }
