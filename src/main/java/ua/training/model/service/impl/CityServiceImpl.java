@@ -39,4 +39,9 @@ public class CityServiceImpl implements CityService {
         }
     }
 
+    @Override
+    public float convertToDecimalDegrees(float deg, float min, float sec) {
+        return deg + min / 60 + sec / 3600;
+    }
+
 }

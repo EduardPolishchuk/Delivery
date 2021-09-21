@@ -8,8 +8,12 @@ import java.util.Optional;
 public interface CityService {
 
     List<City> findAll();
+
     Optional<City> findById(long id);
-    boolean create (City city);
+
+    boolean create(City city);
+
     boolean update(City city);
 
+    float convertToDecimalDegrees(float deg, float min, float sec);
 }
