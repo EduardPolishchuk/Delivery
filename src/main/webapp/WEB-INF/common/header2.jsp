@@ -32,21 +32,21 @@
                         <li><a href="${pageContext.request.contextPath}/"
                                class="nav-link px-2 text-primary"><strong><fmt:message key="home"/> </strong></a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userOrders"
-                               class="nav-link px-2 text-white">My Orders</a></li>
+                               class="nav-link px-2 text-white"><fmt:message key="myOrders"/> </a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userReceipts"
-                               class="nav-link px-2 text-white">My Receipts</a></li>
+                               class="nav-link px-2 text-white"><fmt:message key="myReceipts"/></a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userprofile.jsp"
                                class="nav-link px-2 text-white"><fmt:message key="myProfile"/></a></li>
                     </c:when>
                     <c:when test="${role == 'MANAGER'}">
                         <li><a href="${pageContext.request.contextPath}/manager/managerOrderList"
-                               class="nav-link px-2 text-white">Order List</a></li>
+                               class="nav-link px-2 text-white"><fmt:message key="orderList"/> </a></li>
                         <li><a href="${pageContext.request.contextPath}/manager/managerClientList"
                                class="nav-link px-2 text-white"><fmt:message key="clientList"/></a></li>
                         <li><a href="${pageContext.request.contextPath}/manager/managerTariffView"
-                               class="nav-link px-2 text-white">Change Tariff</a></li>
+                               class="nav-link px-2 text-white"><fmt:message key="changeTariff"/> </a></li>
                         <li><a href="${pageContext.request.contextPath}/manager/managerAddCity"
-                               class="nav-link px-2 text-white">Add City</a></li>
+                               class="nav-link px-2 text-white"><fmt:message key="addCity"/></a></li>
                     </c:when>
                 </c:choose>
             </ul>
@@ -88,8 +88,8 @@
                             <input type="hidden" name="${item.key}" value="${item.value}">
                         </c:if>
                     </c:forEach>
-                    <button type="submit" class="btn btn-outline-light " name="language" value="en"><strong>EN</strong></button>
-                    <button type="submit" class="btn btn-outline-light" name="language" value="uk"><strong>UA</strong></button>
+                    <button type="submit" class="btn btn-outline-light " name="language" value="en"><strong><fmt:message key="en"/> </strong></button>
+                    <button type="submit" class="btn btn-outline-light" name="language" value="uk"><strong><fmt:message key="ukr"/></strong></button>
                 </form>
             </div>
         </div>

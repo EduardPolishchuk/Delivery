@@ -155,6 +155,7 @@
     </div>
 </div>
 <footer>
+    <jsp:include page="/WEB-INF/common/footer.jsp"/>
 </footer>
 </body>
 </html>

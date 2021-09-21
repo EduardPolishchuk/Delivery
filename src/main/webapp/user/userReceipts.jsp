@@ -12,7 +12,7 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Receipts</h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="myReceipts"/></h2>
 <div class="container justify-content-center w-75 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
         <div class="col ">
@@ -22,9 +22,9 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Order</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Payment</th>
+                            <th scope="col"><fmt:message key="orderLink"/></th>
+                            <th scope="col"><fmt:message key="price"/></th>
+                            <th scope="col"><fmt:message key="payment"/></th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -35,19 +35,27 @@
                                 <c:set var="counter" value="${counter + 1}"/>
                             <td>
                                 <a href="${pageContext.request.contextPath}/user/userOrderView?order=${receipt.order.id}"
-                                   style="color: black"><strong>Order Link</strong></a></td>
+                                   style="color: black"><strong><fmt:message key="Order"/></strong></a></td>
                             <td>${receipt.price} </td>
-                            <td>${receipt.paid ? 'paid' : 'not paid'} </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${receipt.paid}">
+                                        <fmt:message key="paid"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:message key="notPaid"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-bs-id="${receipt.id}" data-bs-price="${receipt.price}"
                                         data-bs-orderId="${receipt.order.id}" ${userProfile.balance - receipt.price < 0 ? 'disabled' : ''}>
-                                    Pay
+                                    <fmt:message key="pay"/>
                                 </button>
                             </td>
                         </tr>
-
                         </c:forEach>
                 </div>
             </div>

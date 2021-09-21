@@ -11,10 +11,10 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Orders</h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="myOrders"/> </h2>
 <div class="row " style="align-self: center">
     <div class="col">
-        <h5 class="display-8 text-center" style="color: #000102">Status</h5>
+        <h5 class="display-8 text-center" style="color: #000102"><fmt:message key="status"/></h5>
         <form>
             <div class="btn-group justify-content-center" role="group">
                 <input type="submit" class="btn-check active" name="status" value="${param.status eq 1? '': 1}"
@@ -98,16 +98,21 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'receivingDate'? 'receivingDateDesc':'receivingDate' }" style="color: black">Receiving Date</a></th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }" style="color: black">City From</a></th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }" style="color: black">City To</a></th>
-                            <th scope="col">Status</th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'type'? 'typeDesc':'type' }" style="color: black">Type</a></th>
-                            <th scope="col">Length</th>
-                            <th scope="col">Width</th>
-                            <th scope="col">Height</th>
-                            <th scope="col">Weight</th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }&status=${param.status}"
+                                               style="color: black"><fmt:message key="requestDate"/></a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'receivingDate'? 'receivingDateDesc':'receivingDate' }&status=${param.status}"
+                                               style="color: black"><fmt:message key="receivingDate"/></a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }&status=${param.status}"
+                                               style="color: black"><fmt:message key="cityFrom"/></a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }&status=${param.status}"
+                                               style="color: black"><fmt:message key="cityTo"/></a></th>
+                            <th scope="col"><fmt:message key="status"/></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'type'? 'typeDesc':'type' }&status=${param.status}"
+                                               style="color: black"><fmt:message key="type"/></a></th>
+                            <th scope="col"><fmt:message key="length"/></th>
+                            <th scope="col"><fmt:message key="width"/></th>
+                            <th scope="col"><fmt:message key="height"/></th>
+                            <th scope="col"><fmt:message key="weight"/></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -123,10 +128,10 @@
                             <td>${locale == 'uk' ? order.cityTo.nameUk : order.cityTo.name}</td>
                             <td><fmt:message key="${order.status}"/></td>
                             <td>${order.parcel.type}</td>
-                            <td>${order.parcel.length} mm</td>
-                            <td>${order.parcel.width} mm</td>
-                            <td>${order.parcel.height} mm</td>
-                            <td>${order.parcel.weight} kg</td>
+                            <td>${order.parcel.length} <fmt:message key="mm"/></td>
+                            <td>${order.parcel.width} <fmt:message key="mm"/></td>
+                            <td>${order.parcel.height} <fmt:message key="mm"/></td>
+                            <td>${order.parcel.weight} <fmt:message key="kg"/></td>
                         </tr>
                         </c:forEach>
                 </div>
@@ -136,8 +141,6 @@
 </div>
 <footer>
 </footer>
-
-
 </body>
 </html>
 
