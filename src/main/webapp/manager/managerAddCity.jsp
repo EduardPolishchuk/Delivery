@@ -10,8 +10,7 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">Adding a new
-    city</h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="addingCity"/> </h2>
 <div class="container justify-content-center w-75 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
         <div class="col ">
@@ -21,18 +20,18 @@
                         <hr>
                         <div class="row g-3 mb-3">
                             <div class="col w-75">
-                                <label class="form-label">Name </label>
+                                <label class="form-label"><fmt:message key="name"/> </label>
                                 <input type="text" class="form-control" name="name" value="${param.name}" required>
                             </div>
                             <div class="col w-75">
-                                <label class="form-label">Name uk</label>
+                                <label class="form-label"><fmt:message key="nameUk"/> </label>
                                 <input type="text" class="form-control" name="nameUk" value="${param.nameUk}" required>
                             </div>
 
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Latitude</label>
+                                <label class="form-label"><fmt:message key="latitude"/> </label>
                                 <div class="input-group mb-3 w-75">
                                     <input type="number" class="form-control" required value="${param.latDeg}" max="90"
                                            min="0" step="0.1" name="latDeg" >
@@ -46,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label class="form-label">Longitude</label>
+                                <label class="form-label"><fmt:message key="longitude"/> </label>
                                 <div class="input-group mb-3 w-75">
                                     <input type="number" class="form-control" required value="${param.lngDeg}" max="90"
                                            min="0" step="0.1" name="lngDeg" aria-label="Username">
@@ -66,14 +65,14 @@
                                                id="inlineRadio1" value="north" required
                                         ${param.latParam == 'north' ? 'checked' : ''}
                                         >
-                                        <label class="form-check-label" for="inlineRadio1">пн.ш.</label>
+                                        <label class="form-check-label" for="inlineRadio1"><fmt:message key="latNorth"/></label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="latParam"
                                                id="inlineRadio2" value="south"
                                         ${param.latParam == 'south' ? 'checked' : ''}
                                         >
-                                        <label class="form-check-label" for="inlineRadio2">пд.ш.</label>
+                                        <label class="form-check-label" for="inlineRadio2"><fmt:message key="latSouth"/> </label>
                                     </div>
 
                                 </div>
@@ -81,12 +80,12 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="lngParam"
                                                id="inlineRadio3" value="east" required>
-                                        <label class="form-check-label" for="inlineRadio3">сх. д.</label>
+                                        <label class="form-check-label" for="inlineRadio3"><fmt:message key="lngEast"/> </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="lngParam"
                                                id="inlineRadio4" value="west">
-                                        <label class="form-check-label" for="inlineRadio4">зх. д.</label>
+                                        <label class="form-check-label" for="inlineRadio4"><fmt:message key="lngWest"/> </label>
                                     </div>
 
                                 </div>

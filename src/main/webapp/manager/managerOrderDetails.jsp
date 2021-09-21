@@ -64,12 +64,12 @@
                         <div class="row g-3 mb-3">
                             <div class="col">
                                 <label class="form-label"><fmt:message key="cityFrom"/></label>
-                                <input name="type" value="${order.cityTo.name}" type="text"
+                                <input name="type" value="${locale == 'uk' ? order.cityFrom.nameUk : order.cityFrom.name}" type="text"
                                        class="form-control " disabled>
                             </div>
                             <div class="col">
                                 <label class="form-label"><fmt:message key="cityTo"/></label>
-                                <input name="type" value="${order.cityFrom.name}" type="text"
+                                <input name="type" value="${locale == 'uk' ? order.cityTo.nameUk : order.cityTo.name}" type="text"
                                        class="form-control " disabled>
                             </div>
                         </div>
@@ -84,7 +84,6 @@
 </div>
 <hr>
 
-<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </body>
 </html>
 
