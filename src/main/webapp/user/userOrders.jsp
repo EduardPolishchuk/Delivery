@@ -11,7 +11,7 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Orders qwe</h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">My Orders</h2>
 
 <div class="container justify-content-center  ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
@@ -24,7 +24,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'requestDate'? 'requestDateDesc':'requestDate' }" style="color: black">Request Date</a></th>
-                            <th scope="col"><a href="?sortBy=${param.sortBy == 'receivingDate'? 'receivingDateDesc':'receivingDate' }" style="color: black">Receiving Date qwe</a></th>
+                            <th scope="col"><a href="?sortBy=${param.sortBy == 'receivingDate'? 'receivingDateDesc':'receivingDate' }" style="color: black">Receiving Date</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityFrom'? 'cityFromDesc':'cityFrom' }" style="color: black">City From</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'cityTo'? 'cityToDesc':'cityTo' }" style="color: black">City To</a></th>
                             <th scope="col"><a href="?sortBy=${param.sortBy == 'status'? 'statusDesc':'status' }" style="color: black">Status</a></th>
@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="order" items="${ordersList}">
+                        <c:forEach var="order" items="${orderList}">
                         <tr>
                             <td>${counter}</td>
                             <c:set var="counter" value="${counter + 1}"/>

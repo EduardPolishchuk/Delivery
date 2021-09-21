@@ -3,12 +3,12 @@ package ua.training.model.dao.impl;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import ua.training.model.dao.OrderDao;
 import ua.training.model.dao.mapper.CityMapper;
 import ua.training.model.dao.mapper.OrderMapper;
 import ua.training.model.dao.mapper.ParcelMapper;
 import ua.training.model.dao.mapper.UserMapper;
 import ua.training.model.dao.property_reader.DBPropertyReader;
-import ua.training.model.dao.OrderDao;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;
 import ua.training.model.entity.User;
@@ -105,82 +105,6 @@ public class JDBCOrderDao implements OrderDao {
         }
     }
 
-
-    @Override
-    public List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int limit) {
-        int orderBy = getOrderBy(sortBy);
-        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
-                "FROM `order`\n" +
-                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
-                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
-                "         LEFT JOIN role user_role on role = user_role.id\n" +
-                "         left join city city_from on city_from.id = `order`.city_from\n" +
-                "         left join city city_to on city_to.id = `order`.city_to where user_sender =?" +
-                " ORDER BY ?   LIMIT ? OFFSET ?"
-        )) {
-            int counter = 1;
-            psOrder.setLong(counter++, user.getId());
-            psOrder.setInt(counter++, orderBy);
-            psOrder.setLong(counter++, limit);
-            psOrder.setLong(counter, startIndex);
-            return getOrderListByPreparedStatement(psOrder);
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, e.getMessage());
-            return new ArrayList<>();
-        }
-    }
-
-    @Override
-    public List<Order> findSortedOrdersFromIndex(String sortBy, long startIndex, int limit) {
-        int orderBy;
-        orderBy = getOrderBy(sortBy);
-        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
-                "FROM `order`\n" +
-                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
-                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
-                "         LEFT JOIN role user_role on role = user_role.id\n" +
-                "         left join city city_from on city_from.id = `order`.city_from\n" +
-                "         left join city city_to on city_to.id = `order`.city_to where order_status =?" +
-                " ORDER BY ?   LIMIT ? OFFSET ?"
-        )) {
-            int counter = 1;
-            psOrder.setString(counter++, Order.OrderStatus.WAITING_FOR_CONFIRM.toString());
-            psOrder.setInt(counter++, orderBy);
-            psOrder.setLong(counter++, limit);
-            psOrder.setLong(counter, startIndex);
-            return getOrderListByPreparedStatement(psOrder);
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, e.getMessage());
-            return new ArrayList<>();
-        }
-    }
-
-    private int getOrderBy(String sortBy) {
-        int orderBy;
-        boolean reverse =  sortBy.contains("Desc");
-        switch (sortBy.replace("Desc", "")) {
-            case "requestDate":
-                orderBy = 3;
-                break;
-            case "cityFrom":
-                orderBy = 5;
-                break;
-            case "cityTo":
-                orderBy = 6;
-                break;
-            case "status":
-                orderBy = 8;
-                break;
-            case "receiveDate":
-                orderBy = 2;
-                break;
-            default:
-                orderBy = 1;
-                break;
-        }
-        return orderBy;
-    }
-
     @Override
     public List<Order> findUserOrders(User user) {
         try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
@@ -200,35 +124,42 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public long findOrdersForConfirmAmount() {
-        long rows = 0;
-        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(1) from `order` where order_status =?")) {
-           ps.setString(1, Order.OrderStatus.WAITING_FOR_CONFIRM.toString());
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                rows = rs.getLong(1);
-            }
+    public List<Order> findUserOrdersWithStatus(User user, Order.OrderStatus status) {
+        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
+                "FROM `order`\n" +
+                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
+                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
+                "         LEFT JOIN role user_role on role = user_role.id\n" +
+                "         left join city city_from on city_from.id = `order`.city_from\n" +
+                "         left join city city_to on city_to.id = `order`.city_to where user_sender =? " +
+                "and order_status = ?")) {
+
+            psOrder.setLong(1, user.getId());
+            psOrder.setString(2, status.toString());
+            return getOrderListByPreparedStatement(psOrder);
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
         }
-        return rows;
     }
 
     @Override
-    public long findUserOrdersAmount(User user) {
-        long rows = 0;
-        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(1) from `order` where user_sender = ? ")) {
-            ps.setLong(1, user.getId());
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                rows = rs.getLong(1);
-            }
+    public List<Order> findOrdersWithStatus(Order.OrderStatus status) {
+        try (PreparedStatement psOrder = connection.prepareStatement("SELECT *\n" +
+                "FROM `order`\n" +
+                "         LEFT JOIN parcel  on `order`.parcel_id = parcel.parcel_id\n" +
+                "         LEFT JOIN user  on user_id = `order`.user_sender\n" +
+                "         LEFT JOIN role user_role on role = user_role.id\n" +
+                "         left join city city_from on city_from.id = `order`.city_from\n" +
+                "         left join city city_to on city_to.id = `order`.city_to " +
+                "where order_status = ?")) {
+            psOrder.setString(1, status.toString());
+            return getOrderListByPreparedStatement(psOrder);
         } catch (SQLException e) {
             logger.log(Level.ERROR, e.getMessage());
+            return new ArrayList<>();
         }
-        return rows;
     }
-
 
     @Override
     public boolean update(Order entity) {

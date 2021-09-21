@@ -18,7 +18,6 @@
         <div class="col ">
             <div class="card shadow-sm">
                 <div class="card-body">
-<%--                    <h3 class="display-4"><fmt:message key="enterYourData"/></h3>--%>
                     <form method="post" action="${pageContext.request.contextPath}/user/userUpdate">
                         <div class="mb-3 ">
                             <label class="form-label"><fmt:message key="email"/></label>

@@ -17,8 +17,11 @@ public interface OrderService {
 
     List<Order> findAll();
 
-
     List<Order> findUserOrders(User user);
+
+    List<Order> findUserOrdersWithStatus(User user, Order.OrderStatus status);
+
+    List<Order> findOrdersWithStatus( Order.OrderStatus status);
 
     BigDecimal calculateOrderPrice(Order order);
 

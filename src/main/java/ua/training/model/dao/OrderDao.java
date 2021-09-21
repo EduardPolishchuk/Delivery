@@ -8,16 +8,11 @@ import java.util.List;
 
 public interface OrderDao extends GenericDao<Order>{
 
-    List<Order> findSortedUserOrdersFromIndex(User user, String sortBy, long startIndex, int amount);
-
-    List<Order> findSortedOrdersFromIndex( String sortBy, long startIndex, int amount);
 
     List<Order> findUserOrders(User user);
+    List<Order> findUserOrdersWithStatus(User user, Order.OrderStatus status);
 
-    long findOrdersForConfirmAmount();
+    List<Order> findOrdersWithStatus( Order.OrderStatus status);
 
-
-
-    long findUserOrdersAmount(User user);
 
 }

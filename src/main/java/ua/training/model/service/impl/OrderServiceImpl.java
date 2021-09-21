@@ -51,7 +51,21 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-     @Override
+    @Override
+    public List<Order> findUserOrdersWithStatus(User user, Order.OrderStatus status) {
+        try (OrderDao orderDao = daoFactory.createOrderDao()) {
+            return orderDao.findUserOrdersWithStatus(user, status);
+        }
+    }
+
+    @Override
+    public List<Order> findOrdersWithStatus(Order.OrderStatus status) {
+        try (OrderDao orderDao = daoFactory.createOrderDao()) {
+            return orderDao.findOrdersWithStatus(status);
+        }
+    }
+
+    @Override
     public BigDecimal calculateOrderPrice(Order order) {
         try (TariffDao tariffDao = daoFactory.createTariffDao()) {
             Tariff tariff = tariffDao.getTariff().get();
