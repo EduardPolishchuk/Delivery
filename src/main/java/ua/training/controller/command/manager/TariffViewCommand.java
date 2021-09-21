@@ -1,5 +1,6 @@
-package ua.training.controller.command;
+package ua.training.controller.command.manager;
 
+import ua.training.controller.command.Command;
 import ua.training.model.entity.Tariff;
 import ua.training.model.service.TariffService;
 

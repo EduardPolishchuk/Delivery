@@ -1,5 +1,6 @@
-package ua.training.controller.command;
+package ua.training.controller.command.user;
 
+import ua.training.controller.command.Command;
 import ua.training.model.entity.Receipt;
 import ua.training.model.entity.User;
 import ua.training.model.service.ReceiptService;

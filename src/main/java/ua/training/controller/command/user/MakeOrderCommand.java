@@ -1,9 +1,9 @@
-package ua.training.controller.command;
+package ua.training.controller.command.user;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ua.training.model.dao.impl.JDBCUserDao;
+import ua.training.controller.command.Command;
 import ua.training.model.entity.City;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.Parcel;

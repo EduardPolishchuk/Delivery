@@ -3,6 +3,7 @@ package ua.training.controller.command;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import ua.training.controller.command.user.UserReceiptsCommand;
 import ua.training.model.entity.Order;
 import ua.training.model.entity.User;
 import ua.training.model.service.OrderService;

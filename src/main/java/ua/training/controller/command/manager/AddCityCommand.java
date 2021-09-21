@@ -1,7 +1,8 @@
-package ua.training.controller.command;
+package ua.training.controller.command.manager;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import ua.training.controller.command.Command;
 import ua.training.model.entity.City;
 import ua.training.model.service.CityService;
 

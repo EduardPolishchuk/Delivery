@@ -166,7 +166,7 @@ public class Order {
         WAITING_FOR_CONFIRM,
         WAITING_FOR_PAYMENT,
         PARCEL_DELIVERY,
-        DONE,
+        DELIVERED,
         CANCELED
     }
 }

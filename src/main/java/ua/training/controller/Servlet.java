@@ -2,6 +2,8 @@ package ua.training.controller;
 
 
 import ua.training.controller.command.*;
+import ua.training.controller.command.manager.*;
+import ua.training.controller.command.user.*;
 import ua.training.controller.validator.UserValidator;
 import ua.training.model.service.impl.*;
 

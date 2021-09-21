@@ -22,7 +22,6 @@ public class LoginCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         User.Role role = (User.Role) request.getSession().getAttribute(ROLE);
-        User user;
         Optional<User> result;
         String userName = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
@@ -36,9 +35,8 @@ public class LoginCommand implements Command {
         }
         result = userService.findIfValid(userName, password);
         if (result.isPresent() && !ContextUtility.checkUserIsLogged(request,userName)) {
-            user = result.get();
-            request.getSession().setAttribute(USER_PROFILE, user);
-            request.getSession().setAttribute(ROLE, user.getRole());
+            request.getSession().setAttribute(USER_PROFILE, result.get());
+            request.getSession().setAttribute(ROLE, result.get().getRole());
             return REDIRECT_HOME;
         } else {
             String error = !result.isPresent() ? PASS_ERROR : LOGINED_ERROR;
