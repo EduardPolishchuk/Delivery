@@ -126,7 +126,7 @@
                             <td>
                                 <form action="${pageContext.request.contextPath}/manager/managerOrderView">
                                     <button name="order" value="${order.id}" type="submit" class="btn btn-sm btn-outline-secondary">
-                                        Details
+                                        <fmt:message key="details"/>
                                     </button>
                                 </form>
                             </td>
@@ -155,7 +155,6 @@
     </div>
 </div>
 <footer>
-    <jsp:include page="/WEB-INF/common/footer.jsp"/>
 </footer>
 </body>
 </html>

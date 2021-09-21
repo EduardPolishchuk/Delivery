@@ -95,7 +95,7 @@
                         </div>
                     </form>
                     <button class="btn btn-primary" form="form2" type="submit" name="action" value="add">
-                        Submit
+                        <fmt:message key="submit"/>
                     </button>
                 </div>
             </div>

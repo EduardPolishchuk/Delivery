@@ -12,7 +12,7 @@
 </head>
 <body style="background-color: black">
 <jsp:include page="/WEB-INF/common/header2.jsp"/>
-<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)">Tariff</h2>
+<h2 class="display-3 text-center" style="color: #000102; background-color: rgba(255,238,231,0.87)"><fmt:message key="tariff"/></h2>
 <div class="container justify-content-center w-75 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
         <div class="col ">
@@ -22,13 +22,18 @@
                         <hr>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Weight Uah/kg</label>
+                                <label class="form-label">
+                                    <fmt:message key="weight"/>,
+                                    <fmt:message key="uah"/>/<fmt:message key="kg"/>
+                                </label>
                                 <input name="weightMulti" type="number" min="0" step="0.1" class="form-control"
                                        value="${tariff.uahPerKilogramWeight}"
                                 ${vari} required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Distance Uah/km</label>
+                                <label class="form-label">
+                                    <fmt:message key="distance"/>,  <fmt:message key="uah"/>/<fmt:message key="km"/>
+                                </label>
                                 <input name="distanceMulti" type="number" min="0" step="0.1" class="form-control"
                                        value="${tariff.uahPerKilometerDistance}"
                                 ${vari}
@@ -37,7 +42,8 @@
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Length Uah/mm</label>
+                                <label class="form-label"><fmt:message key="length"/>, <fmt:message key="uah"/>/<fmt:message key="mm"/>
+                                </label>
                                 <input name="lengthMulti" min="0" step="0.1" value="${tariff.uahPerMillimeterLength}"
                                        type="number"
                                        min="1"
@@ -46,7 +52,8 @@
                                        required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Height Uah/mm</label>
+                                <label class="form-label"><fmt:message key="height"/>, <fmt:message key="uah"/>/<fmt:message key="mm"/>
+                                </label>
                                 <input name="heightMulti" min="0" step="0.1" value="${tariff.uahPerMillimeterHeight}"
                                        type="number"
                                        min="1"
@@ -55,7 +62,8 @@
                                        required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Width Uah/mm</label>
+                                <label class="form-label"><fmt:message key="width"/>, <fmt:message key="uah"/>/<fmt:message key="mm"/>
+                                </label>
                                 <input name="widthMulti" min="0" step="0.1" value="${tariff.uahPerMillimeterWidth}"
                                        type="number"
                                        min="1"
@@ -64,7 +72,7 @@
                                        required>
                             </div>
                             <div class="col">
-                                <label class="form-label">Additional Uah</label>
+                                <label class="form-label"><fmt:message key="additional"/>, <fmt:message key="uah"/></label>
                                 <input name="additional" min="0" step="0.1" value="${tariff.additional}" type="number"
                                        min="1"
                                        class="form-control"
