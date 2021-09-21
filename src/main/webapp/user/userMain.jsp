@@ -58,6 +58,12 @@
                                        class="form-control "
                                        aria-label="Last name" required>
                             </div>
+                            <div class="col">
+                                <label class="form-label"><fmt:message key="type"/></label>
+                                <input name="type" value="${param.type}" type="text"
+                                       class="form-control "
+                                        >
+                            </div>
                         </div>
                         <h5 class="display-7" style="align-content: center"><fmt:message key="route"/> </h5>
                         <div class="row g-3 mb-3">
