@@ -35,22 +35,22 @@
                         <h5 class="display-7" style="align-content: center"><fmt:message key="parcelParams"/></h5>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label"><fmt:message key="length"/></label>
+                                <label class="form-label"><fmt:message key="length"/>, <fmt:message key="mm"/></label>
                                 <input name="length" value="${order.parcel.length}" type="number" min="1" class="form-control"
                                        placeholder="mm" disabled>
                             </div>
                             <div class="col">
-                                <label class="form-label"><fmt:message key="width"/></label>
+                                <label class="form-label"><fmt:message key="width"/>, <fmt:message key="mm"/></label>
                                 <input name="width" value="${order.parcel.width}" type="number" min="1" class="form-control"
                                        placeholder="mm" disabled>
                             </div>
                             <div class="col">
-                                <label class="form-label"><fmt:message key="height"/> </label>
+                                <label class="form-label"><fmt:message key="height"/>, <fmt:message key="mm"/> </label>
                                 <input name="height" value="${order.parcel.height}" type="number" min="1" class="form-control"
                                        placeholder="mm" disabled>
                             </div>
                             <div class="col">
-                                <label class="form-label"><fmt:message key="weight"/> </label>
+                                <label class="form-label"><fmt:message key="weight"/>, <fmt:message key="kg"/> </label>
                                 <input name="weight" value="${order.parcel.weight}" type="number" min="0,1"
                                        class="form-control " placeholder="kg" disabled>
                             </div>

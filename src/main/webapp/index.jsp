@@ -24,27 +24,27 @@
                         <h5 class="display-7" style="align-content: center"><fmt:message key="parcelParams"/></h5>
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label"><fmt:message key="length"/>, <fmt:message key="mm"/></label>
+                                <label class="form-label"><fmt:message key="length"/> </label>
                                 <input name="length" value="${param.length}" type="number" min="1" class="form-control"
 
-                                       aria-label="First name" required>
+                                      placeholder="<fmt:message key="mm"/>" aria-label="First name" required>
                             </div>
                             <div class="col">
-                                <label class="form-label"><fmt:message key="width"/>, <fmt:message key="mm"/> </label>
+                                <label class="form-label"><fmt:message key="width"/></label>
                                 <input name="width" value="${param.width}" type="number" min="1" class="form-control"
-
+                                       placeholder="<fmt:message key="mm"/>"
                                        aria-label="Last name" required>
                             </div>
                             <div class="col">
-                                <label class="form-label"><fmt:message key="height"/>, <fmt:message key="mm"/> </label>
+                                <label class="form-label"><fmt:message key="height"/></label>
                                 <input name="height" value="${param.height}" type="number" min="1" class="form-control"
-
+                                       placeholder="<fmt:message key="mm"/>"
                                        aria-label="Last name" required>
                             </div>
                             <div class="col">
-                                <label class="form-label"><fmt:message key="weight"/>, <fmt:message key="kg"/> </label>
+                                <label class="form-label"><fmt:message key="weight"/></label>
                                 <input name="weight" value="${param.weight}" type="number" min="0,1"
-                                       class="form-control "
+                                       class="form-control " placeholder="<fmt:message key="kg"/>"
                                        aria-label="Last name" required>
                             </div>
                         </div>
