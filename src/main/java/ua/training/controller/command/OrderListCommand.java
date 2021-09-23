@@ -5,7 +5,9 @@ import ua.training.model.entity.User;
 import ua.training.model.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ public class OrderListCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
+
         User user = (User) request.getSession().getAttribute("userProfile");
         List<Order> list;
         String locale = String.valueOf(request.getSession().getAttribute("locale"));
@@ -52,6 +55,7 @@ public class OrderListCommand implements Command {
         request.setAttribute(NO_OF_PAGES, noOfPages);
         request.setAttribute(CURRENT_PAGE_NUMBER, page);
         request.setAttribute("perPage", RECORDS_PER_PAGE);
+        request.setAttribute("currentDate", LocalDate.now());
         request.setAttribute(SORT_BY, sortBy);
 
         return path;

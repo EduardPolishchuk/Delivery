@@ -74,12 +74,12 @@ public class OrderServiceImpl implements OrderService {
                     + tariff.getUahPerMillimeterHeight() * parcel.getHeight()
                     + tariff.getUahPerMillimeterLength() * parcel.getLength()
                     + tariff.getUahPerMillimeterWidth() * parcel.getWidth()
-                    + tariff.getUahPerKilogramWeight() * distFrom(order.getCityFrom(), order.getCityTo())
+                    + tariff.getUahPerKilogramWeight() * getDistance(order.getCityFrom(), order.getCityTo())
                     + tariff.getAdditional()).setScale(1,BigDecimal.ROUND_HALF_UP);
         }
     }
 
-       private float distFrom(City cityFrom, City cityTo) {
+       private float getDistance(City cityFrom, City cityTo) {
         float lat1 = cityFrom.getLatitude();
         float lat2 = cityTo.getLatitude();
         float lng1 = cityFrom.getLongitude();

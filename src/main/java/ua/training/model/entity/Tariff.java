@@ -1,13 +1,13 @@
 package ua.training.model.entity;
 
 public class Tariff {
-    long id;
-    float uahPerKilometerDistance;
-    float uahPerMillimeterLength;
-    float uahPerMillimeterWidth;
-    float uahPerMillimeterHeight;
-    float uahPerKilogramWeight;
-    float additional;
+   private long id;
+   private float uahPerKilometerDistance;
+   private float uahPerMillimeterLength;
+   private float uahPerMillimeterWidth;
+   private float uahPerMillimeterHeight;
+   private float uahPerKilogramWeight;
+   private float additional;
 
     public long getId() {
         return id;

@@ -88,12 +88,12 @@
                         <div class="col">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">
                                 <div class="card card-body">
-                                    <fmt:message key="distance"/>: ${tariff.uahPerKilometerDistance} <fmt:message key="uah"/>/<fmt:message key="km"/> ,
-                                    <fmt:message key="width"/>: ${tariff.uahPerMillimeterWidth} <fmt:message key="uah"/>/<fmt:message key="mm"/> ,
+                                    <fmt:message key="parcelParams"/> (<fmt:message key="width"/>: ${tariff.uahPerMillimeterWidth} <fmt:message key="uah"/>/<fmt:message key="mm"/> ,
                                     <fmt:message key="height"/>: ${tariff.uahPerMillimeterHeight} <fmt:message key="uah"/>/<fmt:message key="mm"/>,
                                     <fmt:message key="length"/>: ${tariff.uahPerMillimeterLength} <fmt:message key="uah"/>/<fmt:message key="mm"/>,
-                                    <fmt:message key="weight"/>: ${tariff.uahPerKilogramWeight} <fmt:message key="uah"/>/<fmt:message key="kg"/>
-                                        + <fmt:message key="additional"/>: ${tariff.additional} <fmt:message key="uah"/>.
+                                    <fmt:message key="weight"/>: ${tariff.uahPerKilogramWeight} <fmt:message key="uah"/>/<fmt:message key="kg"/>),
+                                    <fmt:message key="distance"/>: ${tariff.uahPerKilometerDistance} <fmt:message key="uah"/>/<fmt:message key="km"/>
+                                    + <fmt:message key="additional"/>: ${tariff.additional} <fmt:message key="uah"/>.
                                 </div>
                             </div>
                         </div>
