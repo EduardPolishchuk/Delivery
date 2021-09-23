@@ -25,4 +25,6 @@ public interface OrderService {
 
     BigDecimal calculateOrderPrice(Order order);
 
+    boolean changeOrderStatus(User user,long orderId, Order.OrderStatus status);
+
 }

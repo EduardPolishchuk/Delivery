@@ -162,6 +162,20 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
+    public boolean changeOrderStatus(User user, long orderId, Order.OrderStatus status) {
+        try(PreparedStatement ps = connection.prepareStatement("UPDATE `order` set order_status =? where id=? and user_sender = ?")){
+            ps.setString(1,status.toString());
+            ps.setLong(2, orderId);
+            ps.setLong(3, user.getId());
+            ps.executeUpdate();
+            return true;
+        }catch (SQLException e){
+            logger.log(Level.ERROR, e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
     public boolean update(Order entity) {
         return false;
     }

@@ -1,5 +1,6 @@
 package ua.training.model.service.impl;
 
+import static ua.training.constants.Constants.*;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.OrderDao;
 import ua.training.model.dao.TariffDao;
@@ -43,7 +44,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-
     @Override
     public List<Order> findUserOrders(User user) {
         try (OrderDao orderDao = daoFactory.createOrderDao()) {
@@ -75,17 +75,23 @@ public class OrderServiceImpl implements OrderService {
                     + tariff.getUahPerMillimeterLength() * parcel.getLength()
                     + tariff.getUahPerMillimeterWidth() * parcel.getWidth()
                     + tariff.getUahPerKilogramWeight() * getDistance(order.getCityFrom(), order.getCityTo())
-                    + tariff.getAdditional()).setScale(1,BigDecimal.ROUND_HALF_UP);
+                    + tariff.getAdditional()).setScale(1, BigDecimal.ROUND_HALF_UP);
         }
     }
 
-       private float getDistance(City cityFrom, City cityTo) {
+    @Override
+    public boolean changeOrderStatus(User user, long orderId, Order.OrderStatus status) {
+        try (OrderDao orderDao = daoFactory.createOrderDao()) {
+            return orderDao.changeOrderStatus(user,orderId, status);
+        }
+    }
+
+    private float getDistance(City cityFrom, City cityTo) {
         float lat1 = cityFrom.getLatitude();
         float lat2 = cityTo.getLatitude();
         float lng1 = cityFrom.getLongitude();
         float lng2 = cityTo.getLongitude();
 
-        double earthRadius = 6371000; //meters
         double dLat = Math.toRadians(lat2 - lat1);
         double dLng = Math.toRadians(lng2 - lng1);
         double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -93,6 +99,6 @@ public class OrderServiceImpl implements OrderService {
                         Math.sin(dLng / 2) * Math.sin(dLng / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return (float) (earthRadius * c) / 1000;
+        return (float) (EARTH_RADIUS * c) / 1000;
     }
 }

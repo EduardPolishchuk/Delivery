@@ -39,4 +39,5 @@ public class Constants {
     public static final String USER_ORDER_VIEW_JSP = "/user/userOrderView.jsp";
     public static final String USER_MAIN_JSP = "/user/userMain.jsp";
     public static final String MANAGER_ORDER_LIST_JSP = "/manager/managerOrderList.jsp";
+    public static final int EARTH_RADIUS = 6371000; //meters
 }

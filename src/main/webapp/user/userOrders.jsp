@@ -141,7 +141,7 @@
                                 <c:if test="${order.receivingDate.isBefore(currentDate) &&
                                 order.status != 'DELIVERED'}">
                                     <form action="${pageContext.request.contextPath}/user/userGetParcel">
-                                        <button name="order" value="${order.id}" type="submit"
+                                        <button name="order_id" value="${order.id}" type="submit"
                                                 class="btn btn-sm btn-outline-secondary">
                                             GET
                                         </button>

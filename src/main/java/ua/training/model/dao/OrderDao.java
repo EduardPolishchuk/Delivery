@@ -14,5 +14,6 @@ public interface OrderDao extends GenericDao<Order>{
 
     List<Order> findOrdersWithStatus( Order.OrderStatus status);
 
+    boolean changeOrderStatus(User user, long orderId, Order.OrderStatus status);
 
 }
