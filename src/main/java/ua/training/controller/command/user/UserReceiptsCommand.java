@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserReceiptsCommand implements Command {
 
-    private ReceiptService receiptService;
+    private final ReceiptService receiptService;
 
     public UserReceiptsCommand(ReceiptService receiptService) {
         this.receiptService = receiptService;

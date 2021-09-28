@@ -143,7 +143,7 @@
                                     <form action="${pageContext.request.contextPath}/user/userGetParcel">
                                         <button name="order_id" value="${order.id}" type="submit"
                                                 class="btn btn-sm btn-outline-secondary">
-                                            GET
+                                            <fmt:message key="get"/>
                                         </button>
                                     </form>
                                 </c:if>

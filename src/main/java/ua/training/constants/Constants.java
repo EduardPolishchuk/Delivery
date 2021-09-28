@@ -40,4 +40,14 @@ public class Constants {
     public static final String USER_MAIN_JSP = "/user/userMain.jsp";
     public static final String MANAGER_ORDER_LIST_JSP = "/manager/managerOrderList.jsp";
     public static final int EARTH_RADIUS = 6371000; //meters
+
+
+    /**
+     * User Regex
+     */
+    public static final String LOGIN_REG = "^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\\d.-]{1,19}$";
+    public static final String PASSWORD_REG = "[A-Za-zА-ЩЬЮЯЫҐЄІЇа-щьюяыґєії0-9]+";
+    public static final String EMAIL_REG = "^[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}$";
+    public static final String FIRST_NAME_REG = "[A-Za-zА-ЩЬЮЯЫҐЄІЇа-щьюяыґєії\\']{1,}";
+    public static final String LAST_NAME_REG = "[A-Za-zА-ЩЬЮЯЫҐЄІЇа-щьюяыґєії\\']{2,}";
 }

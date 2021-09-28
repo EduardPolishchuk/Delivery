@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 import static ua.training.constants.Constants.*;
-import static ua.training.constants.RegularExpressions.LOGIN_REG;
-import static ua.training.constants.RegularExpressions.PASSWORD_REG;
 
 public class LoginCommand implements Command {
 

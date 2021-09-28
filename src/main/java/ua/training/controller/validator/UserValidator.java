@@ -4,10 +4,11 @@ import ua.training.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static ua.training.constants.RegularExpressions.*;
+import static ua.training.constants.Constants.*;
 
 public class UserValidator {
 
@@ -31,18 +32,18 @@ public class UserValidator {
 
     private User validate(HttpServletRequest request) {
         String error;
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
         String email = request.getParameter("email");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
-        map.put(email, EMAIL_REG);
-        map.put(firstName, FIRST_NAME_REG);
-        map.put(lastName, LAST_NAME_REG);
-        map.put(password, PASSWORD_REG);
+        map.put(EMAIL_REG, email);
+        map.put(FIRST_NAME_REG, firstName);
+        map.put(LAST_NAME_REG, lastName);
+        map.put(PASSWORD_REG, password);
         for (String str : map.keySet()) {
-            if (!str.matches(map.get(str))) {
-                error = str.equals(password) ? "passwordInvalid" : str;
+            if (!map.get(str).matches(str)) {
+                error = str.equals(password) ? "passwordInvalid" : map.get(str);
                 request.getSession().setAttribute("error", error);
                 return null;
             }

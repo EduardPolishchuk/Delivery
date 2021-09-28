@@ -16,8 +16,8 @@ import static ua.training.constants.Constants.*;
 
 public class CalculateCommand implements Command {
 
-    private CityService cityService;
-    private OrderService orderService;
+    private final CityService cityService;
+    private final OrderService orderService;
 
     public CalculateCommand(CityService cityService, OrderService orderService) {
         this.cityService = cityService;
@@ -26,7 +26,6 @@ public class CalculateCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-//        String returnPage =  new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
         long cityFromId = Long.parseLong(request.getParameter("cityFrom"));
         long cityToId = Long.parseLong(request.getParameter("cityTo"));
 
@@ -34,7 +33,7 @@ public class CalculateCommand implements Command {
         request.setAttribute("cityTo", cityFromId);
 
         if (cityFromId == cityToId) {
-            request.getSession().setAttribute("calculatedValue", "SAME CITIES!");
+            request.getSession().setAttribute("error", "sameCity");
             return new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
         }
 
@@ -59,7 +58,7 @@ public class CalculateCommand implements Command {
                     .build();
             request.getSession().setAttribute("calculatedValue", orderService.calculateOrderPrice(order));
         } else {
-            request.getSession().setAttribute("calculatedValue", "ERROR: cannot find the city, please, refresh the page");
+            request.getSession().setAttribute("error", "ERROR");
         }
 
         return new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);

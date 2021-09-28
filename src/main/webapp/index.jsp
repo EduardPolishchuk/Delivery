@@ -79,10 +79,18 @@
                            aria-expanded="false" aria-controls="multiCollapseExample1"><fmt:message key="tariff"/> </a>
                     </div>
 
-                    <c:if test="${not empty calculatedValue}">
-                        <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
-                        ${calculatedValue = null}
-                    </c:if>
+                    <c:choose>
+                        <c:when test="${error != null}">
+                            <h3 class="display-4"><fmt:message key="${error}"/></h3>
+                            ${error = null}
+                        </c:when>
+                        <c:otherwise>
+                            <c:if test="${calculatedValue != null}">
+                                <h3 class="display-4">${calculatedValue} <fmt:message key="uah"/></h3>
+                                ${calculatedValue = null}
+                            </c:if>
+                        </c:otherwise>
+                    </c:choose>
 
                     <div class="row">
                         <div class="col">

@@ -1,7 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri="/WEB-INF/custom_tag.tld" prefix="custom" %>--%>
 <c:set var="counter" value="1"/>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="locale/resources"/>
@@ -68,7 +67,7 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pay a receipt</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="pay"/></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
