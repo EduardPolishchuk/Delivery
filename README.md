@@ -11,4 +11,4 @@ Clone it from GitHub git clone https://github.com/EduardPolishchuk/Delivery.git
 2) Run [SQL Script](deliverydb_Script.sql) to fill database
 3) Go to Tomcat root folder /bin and run startup.bin to run Tomcat 
 4) Build and deploy the project with maven mvn tomcat9:deploy 
-5) Go to url localhost:8080/Delivery
+5) Go to url http://localhost:8080/Delivery
