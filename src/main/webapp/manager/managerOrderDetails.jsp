@@ -77,6 +77,14 @@
                         <h3 class="display-4">${price} <fmt:message key="uah"/></h3>
                         ${price = null}
                     </form>
+                    <c:if test="${order.status eq 'WAITING_FOR_CONFIRM'}">
+                        <form action="${pageContext.request.contextPath}/manager/managerCreateReceipt">
+                            <button name="order" value="${order.id}" type="submit"
+                                    class="btn btn-sm btn-outline-secondary">
+                                <fmt:message key="sendReceipt"/>
+                            </button>
+                        </form>
+                    </c:if>
                 </div>
             </div>
         </div>
