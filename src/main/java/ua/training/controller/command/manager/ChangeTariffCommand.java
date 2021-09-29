@@ -42,6 +42,6 @@ public class ChangeTariffCommand implements Command {
             LOGGER.log(Level.ERROR, e.getMessage());
         }
 
-        return new TariffViewCommand(new TariffServiceImpl()).execute(request);
+        return "redirect:/" + new TariffViewCommand(new TariffServiceImpl()).execute(request);
     }
 }

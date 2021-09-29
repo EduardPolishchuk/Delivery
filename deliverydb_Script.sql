@@ -132,8 +132,8 @@ create index fk_receipt_order1_idx
     on receipt (order_id);
 	
 	
-	INSERT INTO role (id, role_name) VALUES (1,'user');
-INSERT INTO role (id, role_name) VALUES (2,'manager');
+	INSERT INTO role (id, role_name) VALUES (2,'user');
+INSERT INTO role (id, role_name) VALUES (1,'manager');
 INSERT INTO user(login, email, password, balance, last_name, first_name, role) VALUES ('manager','admin@gmail.com','1',0,'Ivanov','Ivan', 1);
 INSERT INTO user(login, email, password, balance, last_name, first_name, role) VALUES ('user','qwe@gmail.com','1',0,'Foster','Mary',2);
 INSERT INTO user(login, email, password, balance, last_name, first_name, role) VALUES ('qweqwe','qweqwe@gmail.com','1',0,'Williams','Bob',2);
