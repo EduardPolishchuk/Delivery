@@ -20,15 +20,7 @@ public class JDBCUserDao implements UserDao {
     private static final String BALANCE_REPLENISHMENT = "balanceReplenishment";
     private static final String GET_USER_BALANCE = "getUserBalance";
     private static final String USER_IS_VALID = "userIsValid";
-    private static final String UPDATE_USER = "updateUser";
     private static final String CREATE_USER = "createUser";
-    private static final String USER = "user";
-    private static final String FIND_USER_BY_ID = "findUserByID";
-    private static final String FIND_ALL_USERS = "findAllUsers";
-    private static final String INSERT_INTO_USER_EXHIBITIONS = "insertIntoUserExhibitions";
-    private static final String UPDATE_USER_EXHIBITIONS = "updateUserExhibitions";
-    private static final String SELECT_FROM_USER_EXHIBITION = "selectFromUserExhibition";
-    private static final String UPDATE_BALANCE_AND_PLACES = "updateBalanceAndPlaces";
 
     private final Properties properties = DBPropertyReader.getProperties();
     private static final Logger logger = LogManager.getLogger(JDBCUserDao.class);
@@ -63,7 +55,7 @@ public class JDBCUserDao implements UserDao {
     public Optional<User> findById(long id) {
         User user = null;
         UserMapper userMapper = new UserMapper();
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role r on r.id = user.role where user.user_id =?");){
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN role r on r.id = user.role where user.user_id =?")){
 
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
@@ -133,7 +125,7 @@ public class JDBCUserDao implements UserDao {
 
     public BigDecimal getUserBalance(User user) {
         BigDecimal balance = BigDecimal.valueOf(0);
-        try (PreparedStatement ps = connection.prepareStatement(properties.getProperty(GET_USER_BALANCE));){
+        try (PreparedStatement ps = connection.prepareStatement(properties.getProperty(GET_USER_BALANCE))){
 
             ps.setLong(1, user.getId());
             ResultSet rs = ps.executeQuery();
