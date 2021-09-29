@@ -37,7 +37,6 @@ public class CalculateCommand implements Command {
             return new PreLoadCommand(new CityServiceImpl(), new TariffServiceImpl()).execute(request);
         }
 
-
         Optional<City> optionalCityFrom = cityService.findById(cityFromId);
         Optional<City> optionalCityTo = cityService.findById(cityToId);
 

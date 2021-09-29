@@ -11,6 +11,7 @@ public class TariffMapper implements ObjectMapper<Tariff> {
     public Tariff extractFromResultSet(ResultSet rs) throws SQLException {
         Tariff tariff = new Tariff();
         tariff.setId(rs.getLong("tariff_id"));
+        tariff.setAdditional(rs.getFloat("additional"));
         tariff.setUahPerMillimeterLength(rs.getFloat("uah_per_mm_length"));
         tariff.setUahPerMillimeterHeight(rs.getFloat("uah_per_mm_height"));
         tariff.setUahPerMillimeterWidth(rs.getFloat("uah_per_mm_width"));

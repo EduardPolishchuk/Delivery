@@ -19,7 +19,7 @@ import static ua.training.constants.Constants.*;
 
 public class MakeOrderCommand implements Command {
     private static final Logger logger = LogManager.getLogger(MakeOrderCommand.class);
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public MakeOrderCommand(OrderService orderService) {
         this.orderService = orderService;
